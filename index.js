@@ -16,14 +16,30 @@ var APP_ID = "amzn1.ask.skill.7a8eca68-7c79-431b-865a-dc27ca4d0135";
 //======================================================================================================
 
 var data=[
-    {firstName:"tania",lastName:"bardyn",title:"Associate Dean for University Libraries and Director of the Health Sciences Library",sayemail:slowSpell("bardyn"),email:"bardyn",phone:"206-543-0422",gender:"f"},
-    {firstName:"andrea",lastName:"ball",title:"Care Management and Population Health Librarian",sayemail:slowSpell("alball"),email:"alball",phone:"206-616-6630",gender:"f"},
-    {firstName:"frances",lastName:"chu",title:"Health Sciences Clinical Liason and Content Librarian",sayemail:slowSpell("chuf"),email:"chuf",phone:"206-616-1106",gender:"f"},
-    {firstName:"nicole",lastName:"dettmar",title:"Health Sciences Curriculum Design Librarian",sayemail:slowSpell("snydern"),email:"snydern",phone:"206-543-3409",gender:"f"},
-    {firstName:"stephen",lastName:"gabrielson",title:"Instruction and Research Librarian",sayemail:slowSpell("gabeswg"),email:"gabeswg",phone:"206-543-3437",gender:"m"},
-    {firstName:"diana",lastName:"louden",title:"Biomedical and Translational Sciences Librarian",sayemail:slowSpell("dknl"),email:"dknl",phone:"206-221-3480",gender:"f"},
-    {firstName:"emily",lastName:"patridge",title:"need to do",sayemail:slowSpell("ep001"),email:"ep001",phone:"206-221-3489",gender:"f"},
-    {firstName:"joanne",lastName:"rich",title:"need to do",sayemail:slowSpell("jrich"),email:"jrich",phone:"206-616-6601",gender:"f"},
+    {firstName:"tania",lastName:"bardyn",title:"Associate Dean for University Libraries and Director of the Health Sciences Library",sayemail:slowSpell("bardyn"),email:"bardyn",phone:"206-543-0422",gender:"f",topics:[""]},
+
+    {firstName:"andrea",lastName:"ball",title:"Care Management and Population Health Librarian",sayemail:slowSpell("alball"),email:"alball",phone:"206-616-6630",gender:"f",topics:["airlift northwest",
+    "allergy and infectious diseases","anesthesiology and pain medicine","cardiology","dermatology","emergency medicine","gastroenterology","general internal medicine","gerontology and geriatric medicine",
+    "hematology","department of medicine","nephrology","oncology","orthopaedocs","palliative care","paramedic training program","pediatrics","physical therapy","pulmonary and critical care medicine",
+    "radiation oncology","rheumatology","surgery","urology"]},
+
+    {firstName:"frances",lastName:"chu",title:"Health Sciences Clinical Liason and Content Librarian",sayemail:slowSpell("chuf"),email:"chuf",phone:"206-616-1106",gender:"f",topics:["critical care medicine",
+    "hall health primary care center","laboratory medicine","medical laboratory science","metabolism, endocrinology and nutrition","neurology","ophthalmology","otolaryngology","pathology",
+    "psychiatry and behavioral sciences","radiology"]},
+
+    {firstName:"nicole",lastName:"dettmar",title:"Health Sciences Curriculum Design Librarian",sayemail:slowSpell("snydern"),email:"snydern",phone:"206-543-3409",gender:"f",topics:["oral health services",
+    "oral medicine","oral and maxillofacial surgery","pediatric dentistry","periodontics","prosthodontics","restorative dentistry","ride","write","w.w.a.m.i."]},
+
+    {firstName:"stephen",lastName:"gabrielson",title:"Instruction and Research Librarian",sayemail:slowSpell("gabeswg"),email:"gabeswg",phone:"206-543-3437",gender:"m",topics:[""]},
+
+    {firstName:"diana",lastName:"louden",title:"Biomedical and Translational Sciences Librarian",sayemail:slowSpell("dknl"),email:"dknl",phone:"206-221-3480",gender:"f",topics:["office of animal welfare",
+    "biochemistry","bioengineering","bioethics and humanities","biological structure","biomedical informatics and medical education","comparative medicine","genome sciences","immunology",
+    "institute of translational health sciences","medical genetics","microbiology","molecular and cellular biology","molecular medicine","physiology and biophysics","public health genetics"]},
+
+    {firstName:"emily",lastName:"patridge",title:"need to do",sayemail:slowSpell("ep001"),email:"ep001",phone:"206-221-3489",gender:"f",topics:["obstetrics and gynecology","occupational therapy"]},
+
+    {firstName:"joanne",lastName:"rich",title:"need to do",sayemail:slowSpell("jrich"),email:"jrich",phone:"206-616-6601",gender:"f",topics:["pharmaceutics","psychosocial and community health"]},
+
     {firstName:"sarah",lastName:"safranek",title:"Public Health and Primary Care Librarian",sayemail:slowSpell("safranek"),email:"safranek",phone:"206-543-3408",gender:"f"},
     {firstName:"sarah",lastName:"sarah",title:"copy",sayemail:slowSpell("safranek"),email:"safranek",phone:"206-543-3408",gender:"f"}
 ];
@@ -584,13 +600,17 @@ function generateSearchHelpMessage(gender){
 }
 
 function generateTellMeMoreMessage(person){
-    var sentence = person.firstName + "'s e-mail address is " + person.sayemail + " at <break time=\"0.5s\"/> u<break time=\"0.05s\"/> w<break time=\"0.05s\"/> dot<break time=\"0.05s\"/> e <break time=\"0.05s\"/>d <break time=\"0.05s\"/>u<break time=\"0.05s\"/>. " + generateSendingCardToAlexaAppMessage(person,"general");
+    var sentence = person.firstName + "'s e-mail address is " + person.sayemail + " <break time=\"0.5s\"/>at <break time=\"0.5s\"/> u<break time=\"0.05s\"/> w<break time=\"0.05s\"/> dot<break time=\"0.05s\"/> e <break time=\"0.05s\"/>d <break time=\"0.05s\"/>u.<break time=\"0.1s\"/>" +
+    genderize("his-her", person.gender) + " phone number is " + person.phone +
+    ", and some of " + genderize("his-her", person.gender) + " specialties include " + generateTopics(person) + generateSendingCardToAlexaAppMessage(person,"general");
     return sentence;
 }
+
 function generateSpecificInfoMessage(slots,person){
     var infoTypeValue;
     var sentence;
     var info;
+    var type;
 
     if (slots.infoType.value == "git hub"){
       infoTypeValue = "github";
@@ -605,11 +625,13 @@ function generateSpecificInfoMessage(slots,person){
     // return optimizeForSpeech(sentence);
     if (infoTypeValue == "email") {
       info = person.email;
+      type = "e-mail";
     } else {
       info = person.phone;
+      type = "phone number";
     }
 
-    return sentence = person.firstName + "'s " + infoTypeValue.toLowerCase() + " is - " + info + ". Would you like to find more information? " + getGenericHelpMessage(data);
+    return sentence = person.firstName + "'s " + type + " is - " + info + ". Would you like to find more information? " + getGenericHelpMessage(data);
 
 }
 
@@ -654,6 +676,45 @@ function generateCard(person) {
         "title": cardTitle,
         "body": cardBody,
     };
+}
+
+function generateTopics(person) {
+  var topic1;
+  var topic2;
+  var topic3;
+
+  var result = "";
+
+  // for (var i = 0; i < person.topics.length; i++) {
+  //   if (i == person.topics.length - 1) {
+  //     result += person.topics[i] + ". "
+  //   } else if (i == person.topics.length - 2) {
+  //     result += person.topics[i] + ", and "
+  //   } else {
+  //     result += person.topics[i] + ", "
+  //   }
+  // }
+
+  for (var i = 0; i < 3; i++) {
+    if (i == 2) {
+      topic3 = person.topics[getRandom(0,person.topics.length - 1)];
+      while ((topic3 == topic2) || (topic3 == topic1)) {
+        topic3 = person.topics[getRandom(0,person.topics.length - 1)];
+      }
+      result += topic3 + ". ";
+    } else if (i == 1) {
+      topic2 = person.topics[getRandom(0,person.topics.length - 1)];
+      while (topic2 == topic1) {
+        topic2 = person.topics[getRandom(0,person.topics.length - 1)];
+      }
+      result += topic2 + ", and ";
+    } else {
+      topic1 = person.topics[getRandom(0,person.topics.length - 1)];
+      result += topic1 + ", ";
+    }
+  }
+
+  return result;
 }
 
 function loopThroughArrayOfObjects(arrayOfStrings) {

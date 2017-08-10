@@ -12,7 +12,8 @@
         "help",
         "help please",
         "i don't know what to do",
-        "what do i do"
+        "how do i find someone",
+        "how do i find"
       ]
     },
     {
@@ -28,7 +29,10 @@
         "please repeat",
         "what",
         "what was that",
-        "i didn't get that"
+        "i didn't get that",
+        "repeat",
+        "again",
+        "what did you say"
       ]
     },
     {
@@ -49,29 +53,11 @@
       "samples": []
     },
     {
-      "name": "SearchByCityIntent",
-      "samples": [
-        "who is in {cityName} ",
-        "find me an evangelist in {cityName} ",
-        "find me someone in {cityName} ",
-        "{cityName} ",
-        "{cityName} evangelist"
-      ],
-      "slots": [
-        {
-          "name": "cityName",
-          "type": "AMAZON.US_CITY",
-          "samples": []
-        }
-      ]
-    },
-    {
       "name": "SearchByInfoTypeIntent",
       "samples": [
-        "{whatPhrase} {firstName} {lastName} {infoType}",
         "{whatPhrase} {lastName} {infoType}",
-        "{whatPhrase} {firstName}  {infoType} handle",
-        "{whatPhrase} {firstName} {infoType} username"
+        "{whatPhrase} {firstName} {infoType}",
+        "{whatPhrase} {firstName} {lastName} {infoType}"
       ],
       "slots": [
         {
@@ -105,9 +91,11 @@
         "{whoPhrase} {firstName} ",
         "{whoPhrase} {firstName} {lastName} ",
         "{whoPhrase} {lastName} ",
-        "{whatPhrase} {firstName} {lastName} {infoType} username",
+        "{whatPhrase} {firstName} {lastName} {infoType} number",
         "{whatPhrase} {infoType} for {firstName} ",
-        "{whatPhrase} {firstName} {lastName} {infoType} handle"
+        "{whatPhrase} {firstName} {lastName} {infoType} email",
+        "{whatPhrase} {infoType} for {lastName}",
+        "{lastName} {firstName}"
       ],
       "slots": [
         {
@@ -142,7 +130,9 @@
       "samples": [
         "contact info",
         "tell me more",
-        "more details"
+        "more details",
+        "more",
+        "what else"
       ],
       "slots": []
     },
@@ -150,11 +140,10 @@
       "name": "TellMeThisIntent",
       "samples": [
         "{whatPhrase} her {infoType} handle",
-        "{whatPhrase} her {infoType} username",
-        "{whatPhrase} {infoType} username",
-        "{whatPhrase} his {infoType} handle",
-        "tell me his {infoType} username",
-        "tell me her {infoType} handle"
+        "{whatPhrase} {infoType}",
+        "{whatPhrase} his {infoType}",
+        "tell me his {infoType}",
+        "tell me her {infoType}"
       ],
       "slots": [
         {
@@ -238,70 +227,63 @@
         {
           "id": null,
           "name": {
-            "value": "cutsinger",
+            "value": "bardyn",
             "synonyms": []
           }
         },
         {
           "id": null,
           "name": {
-            "value": "blankenburg",
+            "value": "ball",
             "synonyms": []
           }
         },
         {
           "id": null,
           "name": {
-            "value": "doring",
+            "value": "chu",
             "synonyms": []
           }
         },
         {
           "id": null,
           "name": {
-            "value": "mccauley",
+            "value": "dettmar",
             "synonyms": []
           }
         },
         {
           "id": null,
           "name": {
-            "value": "isbitsky",
+            "value": "gabrielson",
             "synonyms": []
           }
         },
         {
           "id": null,
           "name": {
-            "value": "palermo",
+            "value": "louden",
             "synonyms": []
           }
         },
         {
           "id": null,
           "name": {
-            "value": "jotwani",
+            "value": "patridge",
             "synonyms": []
           }
         },
         {
           "id": null,
           "name": {
-            "value": "myers",
+            "value": "rich",
             "synonyms": []
           }
         },
         {
           "id": null,
           "name": {
-            "value": "bryen",
-            "synonyms": []
-          }
-        },
-        {
-          "id": null,
-          "name": {
-            "value": "gilbert",
+            "value": "safranek",
             "synonyms": []
           }
         }
@@ -313,29 +295,20 @@
         {
           "id": null,
           "name": {
-            "value": "twitter",
-            "synonyms": []
+            "value": "e-mail",
+            "synonyms": [
+              "e-mail address"
+            ]
           }
         },
         {
           "id": null,
           "name": {
-            "value": "git hub",
-            "synonyms": []
-          }
-        },
-        {
-          "id": null,
-          "name": {
-            "value": "linkedin",
-            "synonyms": []
-          }
-        },
-        {
-          "id": null,
-          "name": {
-            "value": "github",
-            "synonyms": []
+            "value": "phone",
+            "synonyms": [
+              "phone number",
+              "number"
+            ]
           }
         }
       ]
@@ -370,6 +343,13 @@
             "value": "tell me",
             "synonyms": []
           }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "show me",
+            "synonyms": []
+          }
         }
       ]
     },
@@ -387,6 +367,13 @@
           "id": null,
           "name": {
             "value": "who is",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "who's",
             "synonyms": []
           }
         }
