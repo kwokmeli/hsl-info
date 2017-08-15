@@ -12,36 +12,41 @@ var APP_ID = "amzn1.ask.skill.7a8eca68-7c79-431b-865a-dc27ca4d0135";
 // =====================================================================================================
 // --------------------------------- Section 1. Data and Text strings  ---------------------------------
 // =====================================================================================================
-//TODO: Replace this data with your own.
-//======================================================================================================
 
 var data=[
-    {firstName:"tania",lastName:"bardyn",title:"Associate Dean for University Libraries and Director of the Health Sciences Library",sayemail:slowSpell("bardyn"),email:"bardyn",phone:"206-543-0422",gender:"f",topics:[""]},
+    {firstName:"tania",lastName:"bardyn",title:"Associate Dean for University Libraries and Director of the Health Sciences Library",sayemail:slowSpell("bardyn"),email:"bardyn",phone:"206-543-0422",gender:"f",
+    topics:["mobile app development","library and information services","technology support","informatics and education development"],liason:[]},
 
-    {firstName:"andrea",lastName:"ball",title:"Care Management and Population Health Librarian",sayemail:slowSpell("alball"),email:"alball",phone:"206-616-6630",gender:"f",topics:["airlift northwest",
-    "allergy and infectious diseases","anesthesiology and pain medicine","cardiology","dermatology","emergency medicine","gastroenterology","general internal medicine","gerontology and geriatric medicine",
-    "hematology","department of medicine","nephrology","oncology","orthopaedocs","palliative care","paramedic training program","pediatrics","physical therapy","pulmonary and critical care medicine",
-    "radiation oncology","rheumatology","surgery","urology"]},
+    {firstName:"andrea",lastName:"ball",title:"Care Management and Population Health Librarian",sayemail:slowSpell("alball"),email:"alball",phone:"206-616-6630",gender:"f",topics:[
+    "allergies and infectious diseases","anesthesiology","pain medicine","cardiology","dermatology","emergency medicine","gastroenterology","general internal medicine","gerontology","geriatric medicine",
+    "hematology","nephrology","oncology","orthopaedics","palliative care","pediatrics","physical therapy","pulmonary and critical care medicine",
+    "radiation oncology","rheumatology","surgery","urology"],liason:["airlift northwest","harborview medical center","department of medicine","northwest hospital","u dub medical center"]},
 
     {firstName:"frances",lastName:"chu",title:"Health Sciences Clinical Liason and Content Librarian",sayemail:slowSpell("chuf"),email:"chuf",phone:"206-616-1106",gender:"f",topics:["critical care medicine",
-    "hall health primary care center","laboratory medicine","medical laboratory science","metabolism, endocrinology and nutrition","neurology","ophthalmology","otolaryngology","pathology",
-    "psychiatry and behavioral sciences","radiology"]},
+    "laboratory medicine","medical laboratory science","metabolism","endocrinology and nutrition","neurology","ophthalmology","otolaryngology","pathology",
+    "psychiatry and behavioral sciences","radiology"],liason:["hall health primary care center","harborview medical center","the school of nursing","u dub medical center"]},
 
     {firstName:"nicole",lastName:"dettmar",title:"Health Sciences Curriculum Design Librarian",sayemail:slowSpell("snydern"),email:"snydern",phone:"206-543-3409",gender:"f",topics:["oral health services",
-    "oral medicine","oral and maxillofacial surgery","pediatric dentistry","periodontics","prosthodontics","restorative dentistry","ride","write","w.w.a.m.i."]},
+    "oral medicine","oral and maxillofacial surgery","pediatric dentistry","periodontics","prosthodontics","restorative dentistry"],liason:["the school of dentistry","the school of medicine","ride",
+    "the school of medicine","write","w.w.a.m.i"]},
 
-    {firstName:"stephen",lastName:"gabrielson",title:"Instruction and Research Librarian",sayemail:slowSpell("gabeswg"),email:"gabeswg",phone:"206-543-3437",gender:"m",topics:[""]},
+    {firstName:"stephen",lastName:"gabrielson",title:"Instruction and Research Librarian",sayemail:slowSpell("gabeswg"),email:"gabeswg",phone:"206-543-3437",gender:"m",topics:[],liason:["the school of nursing",
+    "the school of dentistry"]},
 
-    {firstName:"diana",lastName:"louden",title:"Biomedical and Translational Sciences Librarian",sayemail:slowSpell("dknl"),email:"dknl",phone:"206-221-3480",gender:"f",topics:["office of animal welfare",
+    {firstName:"diana",lastName:"louden",title:"Biomedical and Translational Sciences Librarian",sayemail:slowSpell("dknl"),email:"dknl",phone:"206-221-3480",gender:"f",topics:[
     "biochemistry","bioengineering","bioethics and humanities","biological structure","biomedical informatics and medical education","comparative medicine","genome sciences","immunology",
-    "institute of translational health sciences","medical genetics","microbiology","molecular and cellular biology","molecular medicine","physiology and biophysics","public health genetics"]},
+    "medical genetics","microbiology","molecular and cellular biology","molecular medicine","physiology and biophysics","public health genetics"],liason:["the office of animal welfare",
+    "institute of translational health sciences","the molecular and cellular biology program","the graduate program in neuroscience","the school of pharmacy","the school of puclic health"]},
 
-    {firstName:"emily",lastName:"patridge",title:"need to do",sayemail:slowSpell("ep001"),email:"ep001",phone:"206-221-3489",gender:"f",topics:["obstetrics and gynecology","occupational therapy"]},
+    {firstName:"emily",lastName:"patridge",title:"need to do",sayemail:slowSpell("ep001"),email:"ep001",phone:"206-221-3489",gender:"f",topics:["obstetrics and gynecology","occupational therapy"],
+    liason:["harborview medical center","northwest hospital","u dub medical center","u dub neighborhood clinics"]},
 
-    {firstName:"joanne",lastName:"rich",title:"need to do",sayemail:slowSpell("jrich"),email:"jrich",phone:"206-616-6601",gender:"f",topics:["pharmaceutics","psychosocial and community health"]},
+    {firstName:"joanne",lastName:"rich",title:"need to do",sayemail:slowSpell("jrich"),email:"jrich",phone:"206-616-6601",gender:"f",topics:["pharmaceutics","psychosocial and community health"],
+    liason:["pharmacy services","the school of pharmacy"]},
 
-    {firstName:"sarah",lastName:"safranek",title:"Public Health and Primary Care Librarian",sayemail:slowSpell("safranek"),email:"safranek",phone:"206-543-3408",gender:"f"},
-    {firstName:"sarah",lastName:"sarah",title:"copy",sayemail:slowSpell("safranek"),email:"safranek",phone:"206-543-3408",gender:"f"}
+    {firstName:"sarah",lastName:"safranek",title:"Public Health and Primary Care Librarian",sayemail:slowSpell("safranek"),email:"safranek",phone:"206-543-3408",gender:"f",topics:["biostatistics",
+    "environmental and occupational health scienes","epidemiology","family medicine","global health","health services","nutritional sciences"],liason:["health information administration program",
+    "institute for health metrics and evaluation","i tech","maternal and child health program","medex northwest","pathobiology doctoral program","the school of public health","w.w.a.m.i"]}
 ];
 
 //======================================================================================================
@@ -59,10 +64,10 @@ var WELCOME_MESSAGE = "Learn about the librarians of the Health Sciences Library
 var HELP_MESSAGE = "I can help you find a librarian. "
 
 //This is the message a user will hear when they begin a new search
-var NEW_SEARCH_MESSAGE = getGenericHelpMessage(data);
+var NEW_SEARCH_MESSAGE = "To start a new search, say the name of a librarian or a topic to search for. " + getGenericHelpMessage(data);
 
 //This is the message a user will hear when they ask Alexa for help while in the SEARCH state
-var SEARCH_STATE_HELP_MESSAGE = getGenericHelpMessage(data);
+var SEARCH_STATE_HELP_MESSAGE = "Say the name of a librarian or a topic to search for. " + getGenericHelpMessage(data);
 
 var DESCRIPTION_STATE_HELP_MESSAGE = "Here are some things you can say: Tell me more, or give me his or her contact info";
 
@@ -72,7 +77,7 @@ var MULTIPLE_RESULTS_STATE_HELP_MESSAGE = "Sorry, please say the first and last 
 var SHUTDOWN_MESSAGE = "Ok.";
 
 //This is the message a user will hear when they try to cancel or stop the skill.
-var EXIT_SKILL_MESSAGE = "Ok.";
+var EXIT_SKILL_MESSAGE = "Ok. Have a nice day!";
 
 // =====================================================================================================
 // ------------------------------ Section 2. Skill Code - Intent Handlers  -----------------------------
@@ -126,7 +131,7 @@ const newSessionHandlers = {
     },
     "AMAZON.StartOverIntent": function() {
         this.handler.state = states.SEARCHMODE;
-        var output = "Ok, starting over." + getGenericHelpMessage(data);
+        var output = "Ok, starting over. " + getGenericHelpMessage(data);
         this.emit(":ask", output, output);
     },
     "AMAZON.HelpIntent": function() {
@@ -569,7 +574,7 @@ function generateSearchResultsMessage(searchQuery,results){
     if (results){
       switch (true) {
       case (results.length == 0):
-          sentence = "Hmm. I couldn't find " + searchQuery + ". " + getGenericHelpMessage(data);
+          sentence = "Hmm. I couldn't find " + searchQuery + ". Please try again. " + getGenericHelpMessage(data);
           break;
       case (results.length == 1):
           var person = results[0];
@@ -584,13 +589,13 @@ function generateSearchResultsMessage(searchQuery,results){
       }
     }
     else{
-      sentence = "Sorry, I didn't quite get that. " + getGenericHelpMessage(data);
+      sentence = "Sorry, I didn't quite get that. Please try again. " + getGenericHelpMessage(data);
     }
     return sentence;
 }
 
 function getGenericHelpMessage(data){
-  var sentences = ["ask - who is " + getRandomName(data),"say the name of a librarian or say a specialty."];
+  var sentences = ["ask - who is " + getRandomName(data), "say the name of a librarian or say a topic of interest."];
   return "For example, you can " + sentences[getRandom(0,sentences.length-1)]
 }
 
@@ -601,8 +606,27 @@ function generateSearchHelpMessage(gender){
 
 function generateTellMeMoreMessage(person){
     var sentence = person.firstName + "'s e-mail address is " + person.sayemail + " <break time=\"0.5s\"/>at <break time=\"0.5s\"/> u<break time=\"0.05s\"/> w<break time=\"0.05s\"/> dot<break time=\"0.05s\"/> e <break time=\"0.05s\"/>d <break time=\"0.05s\"/>u.<break time=\"0.1s\"/>" +
-    genderize("his-her", person.gender) + " phone number is " + person.phone +
-    ", and some of " + genderize("his-her", person.gender) + " specialties include " + generateTopics(person) + generateSendingCardToAlexaAppMessage(person,"general");
+    genderize("his-her", person.gender) + " phone number is " + person.phone;
+
+    if (person.topics.length == 0) {
+      sentence += ". ";
+
+    } else if ((person.topics.length < 3) && (person.topics.length > 0)) {
+      sentence += ", and " + genderize("his-her", person.gender) + generateTopics(person) + ". ";
+
+    } else {
+      sentence += ", and some of " + genderize("his-her", person.gender) + " specialties include " + generateTopics(person) + generateSendingCardToAlexaAppMessage(person,"general");
+    }
+
+    if (person.liason.length == 0) {
+
+    } else if ((person.liason.length) < 3 && (person.liason.length > 0)) {
+      sentence += genderize("he-she", person.gender) + " is also a liason for " + generateLiasons(person) + ". ";
+
+    } else {
+
+    }
+
     return sentence;
 }
 
@@ -685,32 +709,69 @@ function generateTopics(person) {
 
   var result = "";
 
-  // for (var i = 0; i < person.topics.length; i++) {
-  //   if (i == person.topics.length - 1) {
-  //     result += person.topics[i] + ". "
-  //   } else if (i == person.topics.length - 2) {
-  //     result += person.topics[i] + ", and "
-  //   } else {
-  //     result += person.topics[i] + ", "
-  //   }
-  // }
-
-  for (var i = 0; i < 3; i++) {
-    if (i == 2) {
-      topic3 = person.topics[getRandom(0,person.topics.length - 1)];
-      while ((topic3 == topic2) || (topic3 == topic1)) {
-        topic3 = person.topics[getRandom(0,person.topics.length - 1)];
-      }
-      result += topic3 + ". ";
-    } else if (i == 1) {
-      topic2 = person.topics[getRandom(0,person.topics.length - 1)];
-      while (topic2 == topic1) {
-        topic2 = person.topics[getRandom(0,person.topics.length - 1)];
-      }
-      result += topic2 + ", and ";
+  if ((person.topics.length < 3) && (person.topics.length > 0)) {
+    if (person.topics.length == 1) {
+      result += person.topics[0];
     } else {
-      topic1 = person.topics[getRandom(0,person.topics.length - 1)];
-      result += topic1 + ", ";
+      result += " specialties are " + person.topics[0] + " and " + person.topics[1];
+    }
+
+  } else {
+    for (var i = 0; i < 3; i++) {
+      if (i == 2) {
+        topic3 = person.topics[getRandom(0,person.topics.length - 1)];
+        while ((topic3 == topic2) || (topic3 == topic1)) {
+          topic3 = person.topics[getRandom(0,person.topics.length - 1)];
+        }
+        result += topic3 + ". ";
+      } else if (i == 1) {
+        topic2 = person.topics[getRandom(0,person.topics.length - 1)];
+        while (topic2 == topic1) {
+          topic2 = person.topics[getRandom(0,person.topics.length - 1)];
+        }
+        result += topic2 + ", and ";
+      } else {
+        topic1 = person.topics[getRandom(0,person.topics.length - 1)];
+        result += topic1 + ", ";
+      }
+    }
+  }
+
+  return result;
+}
+
+function generateLiasons(person) {
+  var liason1;
+  var liason2;
+  var liason3;
+
+  var result = "";
+
+  if ((person.liason.length < 3) && (person.liason.length > 0)) {
+    if (person.liason.length == 1) {
+      result += person.liason[0];
+    } else {
+      result += person.liason[0] + " and " + person.liason[1];
+    }
+
+  } else {
+    for (var i = 0; i < 3; i++) {
+      if (i == 2) {
+        liason3 = person.liason[getRandom(0,person.liason.length - 1)];
+        while ((liason3 == liason2) || (liason3 == liason1)) {
+          liason3 = person.liason[getRandom(0,person.liason.length - 1)];
+        }
+        result += liason3 + ". ";
+      } else if (i == 1) {
+        liason2 = person.liason[getRandom(0,person.liason.length - 1)];
+        while (liason2 == liason1) {
+          liason2 = person.liason[getRandom(0,person.liason.length - 1)];
+        }
+        result += liason2 + ", and ";
+      } else {
+        liason1 = person.liason[getRandom(0,person.liason.length - 1)];
+        result += liason1 + ", ";
+      }
     }
   }
 
@@ -741,11 +802,6 @@ function sanitizeSearchQuery(searchQuery){
     return searchQuery;
 }
 
-function optimizeForSpeech(str){
-    var optimizedString = str.replace("github","git-hub");
-    return optimizedString;
-}
-
 function isSlotValid(request, slotName){
         var slot = request.intent.slots[slotName];
         //console.log("request = "+JSON.stringify(request)); //uncomment if you want to see the request
@@ -761,8 +817,6 @@ function isSlotValid(request, slotName){
             return false;
         }
 }
-
-
 
 function isInArray(value, array) {
   return array.indexOf(value) > -1;
