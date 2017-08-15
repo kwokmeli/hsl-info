@@ -57,7 +57,15 @@
       "samples": [
         "{whatPhrase} {lastName} {infoType}",
         "{whatPhrase} {firstName} {infoType}",
-        "{whatPhrase} {firstName} {lastName} {infoType}"
+        "{whatPhrase} {firstName} {lastName} {infoType}",
+        "{lastName} {infoType}",
+        "{firstName} {infoType}",
+        "{infoType} {firstName} ",
+        "{infoType} {lastName}",
+        "{firstName} {lastName} {infoType}",
+        "{lastName} {firstName} {infoType}",
+        "{specialty}",
+        "{whoPhrase} {specialty}"
       ],
       "slots": [
         {
@@ -78,6 +86,16 @@
         {
           "name": "whatPhrase",
           "type": "WHAT_PHRASE",
+          "samples": []
+        },
+        {
+          "name": "specialty",
+          "type": "SPECIALTY",
+          "samples": []
+        },
+        {
+          "name": "whoPhrase",
+          "type": "WHO_PHRASE",
           "samples": []
         }
       ]
@@ -132,18 +150,37 @@
         "tell me more",
         "more details",
         "more",
-        "what else"
+        "what else",
+        "more info",
+        "more information",
+        "other information",
+        "other info",
+        "other contact info",
+        "other contact information",
+        "get more information",
+        "get more details",
+        "get more info"
       ],
       "slots": []
     },
     {
       "name": "TellMeThisIntent",
       "samples": [
-        "{whatPhrase} her {infoType} handle",
         "{whatPhrase} {infoType}",
         "{whatPhrase} his {infoType}",
         "tell me his {infoType}",
-        "tell me her {infoType}"
+        "tell me her {infoType}",
+        "what is her {infoType}",
+        "what is his {infoType}",
+        "{whatPhrase} her {infoType}",
+        "{infoType} {whatPhrase}",
+        "what's his {infoType}",
+        "what's her {infoType}",
+        "{whatPhrase} their {infoType}",
+        "tell me their {infoType}",
+        "what's their {infoType}",
+        "what is their {infoType}",
+        "{infoType}"
       ],
       "slots": [
         {
@@ -295,9 +332,9 @@
         {
           "id": null,
           "name": {
-            "value": "e-mail",
+            "value": "email",
             "synonyms": [
-              "e-mail address"
+              "email address"
             ]
           }
         },
@@ -309,6 +346,730 @@
               "phone number",
               "number"
             ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "specialty",
+            "synonyms": [
+              "topic",
+              "specialties",
+              "topics"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "SPECIALTY",
+      "values": [
+        {
+          "id": null,
+          "name": {
+            "value": "airlift northwest",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "allergy and infectious diseases",
+            "synonyms": [
+              "allergy",
+              "allergies",
+              "infectious diseases"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "anesthesiology and pain medicine",
+            "synonyms": [
+              "anesthesiology",
+              "pain medicine"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "office of animal welfare",
+            "synonyms": [
+              "animal welfare"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "biochemistry",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "bioengineering",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "bioethics and humanities",
+            "synonyms": [
+              "bioethics",
+              "humanities"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "biological structure",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "biomedical informatics and medical education",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "biostatistics",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "cardiology",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "comparative medicine",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "critical care medicine",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "school of dentistry",
+            "synonyms": [
+              "dentristy",
+              "dentist"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "dermatology",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "emergency medicine",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "environmental and occupational health sciences",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "epidemiology",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "family medicine",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "gastroenterology",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "general internal medicine",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "genome sciences",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "gerontology and geriatric medicine",
+            "synonyms": [
+              "geriatric",
+              "geriatric medicine",
+              "gerontology"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "global health",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "hall health primary care center",
+            "synonyms": [
+              "hall health"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "harborview medical center",
+            "synonyms": [
+              "harborview",
+              "medical center"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "history of medicine",
+            "synonyms": [
+              "rare books",
+              "medicine history",
+              "medicinal history"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "health information administration program",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "health services",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "hematology",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "immunology",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "institute for health metrics and evaluation",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "institute of translational health sciences",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "i-tech",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "laboratory medicine",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "maternal and child health program",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "medex northwest",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "medical genetics",
+            "synonyms": [
+              "genetics"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "medical laboratory science",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "department of medicine",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "school of medicine",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "metabolism, endocrinology and nutrition",
+            "synonyms": [
+              "metabolism",
+              "nutrition",
+              "endocrinology"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "microbiology",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "molecular and cellular biology program",
+            "synonyms": [
+              "molecular biology",
+              "cellular biology",
+              "biology",
+              "biology program"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "molecular medicine",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "nephrology",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "graduate program in neuroscience",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "neurology",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "n.i.h. k award recipients",
+            "synonyms": [
+              "n.i.h."
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "northwest hospital",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "school of nursing",
+            "synonyms": [
+              "nursing"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "nutritional sciences",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "obstetrics and gynecology",
+            "synonyms": [
+              "obstertrics",
+              "gynecology"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "occupational therapy",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "oncology",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "ophthalmology",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "oral health services",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "oral medicine",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "oral and maxillofacial surgery",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "orthodontics",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "otolaryngology",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "palliative care",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "paramedic training program",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "pathobiology doctoral program",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "pathology",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "pediatric dentistry",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "pediatrics",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "periodontics",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "pharmaceutics",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "pharmacy services",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "school of pharmacy",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "physical therapy",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "physician assistant",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "physiology and biophysics",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "prosthodontics",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "psychiatry and behavioral sciences",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "psychosocial and community health",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "school of public health",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "public health genetics",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "pulmonary and critical care medicine",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "radiation oncology",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "radiology",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "rehabilitation medicine",
+            "synonyms": [
+              "rehabilitation sciences",
+              "rehabilitation medicine and sciences",
+              "rehabilitation sciences and medicine"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "restorative dentistry",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "rheumatology",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "ride",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "school of social work",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "social workers",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "surgery",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "urology",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "medical center",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "neighborhood clinics",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "write",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "w.w.a.m.i.",
+            "synonyms": []
           }
         }
       ]
@@ -350,6 +1111,55 @@
             "value": "show me",
             "synonyms": []
           }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "state",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "what does",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "what are",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "what are some",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "what are some of",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "what's some",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "what's some of",
+            "synonyms": []
+          }
         }
       ]
     },
@@ -374,6 +1184,62 @@
           "id": null,
           "name": {
             "value": "who's",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "who specializes in",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "who is good at",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "who concentrates on",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "who is the liaison",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "who is the liaison for",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "who knows",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "who does research on",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "who does research in",
             "synonyms": []
           }
         }

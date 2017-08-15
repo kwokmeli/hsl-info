@@ -15,37 +15,37 @@ var APP_ID = "amzn1.ask.skill.7a8eca68-7c79-431b-865a-dc27ca4d0135";
 
 var data=[
     {firstName:"tania",lastName:"bardyn",title:"Associate Dean for University Libraries and Director of the Health Sciences Library",sayemail:slowSpell("bardyn"),email:"bardyn",phone:"206-543-0422",gender:"f",
-    topics:["mobile app development","library and information services","technology support","informatics and education development"],liason:[]},
+    topics:["mobile app development","library and information services","technology support","informatics and education development"],liaison:[]},
 
     {firstName:"andrea",lastName:"ball",title:"Care Management and Population Health Librarian",sayemail:slowSpell("alball"),email:"alball",phone:"206-616-6630",gender:"f",topics:[
     "allergies and infectious diseases","anesthesiology","pain medicine","cardiology","dermatology","emergency medicine","gastroenterology","general internal medicine","gerontology","geriatric medicine",
     "hematology","nephrology","oncology","orthopaedics","palliative care","pediatrics","physical therapy","pulmonary and critical care medicine",
-    "radiation oncology","rheumatology","surgery","urology"],liason:["airlift northwest","harborview medical center","department of medicine","northwest hospital","u dub medical center"]},
+    "radiation oncology","rheumatology","surgery","urology"],liaison:["airlift northwest","harborview medical center","department of medicine","northwest hospital","u dub medical center"]},
 
-    {firstName:"frances",lastName:"chu",title:"Health Sciences Clinical Liason and Content Librarian",sayemail:slowSpell("chuf"),email:"chuf",phone:"206-616-1106",gender:"f",topics:["critical care medicine",
+    {firstName:"frances",lastName:"chu",title:"Health Sciences Clinical liaison and Content Librarian",sayemail:slowSpell("chuf"),email:"chuf",phone:"206-616-1106",gender:"f",topics:["critical care medicine",
     "laboratory medicine","medical laboratory science","metabolism","endocrinology and nutrition","neurology","ophthalmology","otolaryngology","pathology",
-    "psychiatry and behavioral sciences","radiology"],liason:["hall health primary care center","harborview medical center","the school of nursing","u dub medical center"]},
+    "psychiatry and behavioral sciences","radiology"],liaison:["hall health primary care center","harborview medical center","the school of nursing","u dub medical center"]},
 
     {firstName:"nicole",lastName:"dettmar",title:"Health Sciences Curriculum Design Librarian",sayemail:slowSpell("snydern"),email:"snydern",phone:"206-543-3409",gender:"f",topics:["oral health services",
-    "oral medicine","oral and maxillofacial surgery","pediatric dentistry","periodontics","prosthodontics","restorative dentistry"],liason:["the school of dentistry","the school of medicine","ride",
+    "oral medicine","oral and maxillofacial surgery","pediatric dentistry","periodontics","prosthodontics","restorative dentistry"],liaison:["the school of dentistry","the school of medicine","ride",
     "the school of medicine","write","w.w.a.m.i"]},
 
-    {firstName:"stephen",lastName:"gabrielson",title:"Instruction and Research Librarian",sayemail:slowSpell("gabeswg"),email:"gabeswg",phone:"206-543-3437",gender:"m",topics:[],liason:["the school of nursing",
+    {firstName:"stephen",lastName:"gabrielson",title:"Instruction and Research Librarian",sayemail:slowSpell("gabeswg"),email:"gabeswg",phone:"206-543-3437",gender:"m",topics:[],liaison:["the school of nursing",
     "the school of dentistry"]},
 
     {firstName:"diana",lastName:"louden",title:"Biomedical and Translational Sciences Librarian",sayemail:slowSpell("dknl"),email:"dknl",phone:"206-221-3480",gender:"f",topics:[
-    "biochemistry","bioengineering","bioethics and humanities","biological structure","biomedical informatics and medical education","comparative medicine","genome sciences","immunology",
-    "medical genetics","microbiology","molecular and cellular biology","molecular medicine","physiology and biophysics","public health genetics"],liason:["the office of animal welfare",
+    "biochemistry","bioengineering","bioethics and humanities","biological structures","biomedical informatics and medical education","comparative medicine","genome sciences","immunology",
+    "medical genetics","microbiology","molecular and cellular biology","molecular medicine","physiology and biophysics","public health genetics"],liaison:["the office of animal welfare",
     "institute of translational health sciences","the molecular and cellular biology program","the graduate program in neuroscience","the school of pharmacy","the school of puclic health"]},
 
     {firstName:"emily",lastName:"patridge",title:"need to do",sayemail:slowSpell("ep001"),email:"ep001",phone:"206-221-3489",gender:"f",topics:["obstetrics and gynecology","occupational therapy"],
-    liason:["harborview medical center","northwest hospital","u dub medical center","u dub neighborhood clinics"]},
+    liaison:["harborview medical center","northwest hospital","u dub medical center","u dub neighborhood clinics"]},
 
     {firstName:"joanne",lastName:"rich",title:"need to do",sayemail:slowSpell("jrich"),email:"jrich",phone:"206-616-6601",gender:"f",topics:["pharmaceutics","psychosocial and community health"],
-    liason:["pharmacy services","the school of pharmacy"]},
+    liaison:["pharmacy services","the school of pharmacy"]},
 
     {firstName:"sarah",lastName:"safranek",title:"Public Health and Primary Care Librarian",sayemail:slowSpell("safranek"),email:"safranek",phone:"206-543-3408",gender:"f",topics:["biostatistics",
-    "environmental and occupational health sciences","epidemiology","family medicine","global health","health services","nutritional sciences"],liason:["health information administration program",
+    "environmental and occupational health sciences","epidemiology","family medicine","global health","health services","nutritional sciences"],liaison:["health information administration program",
     "institute for health metrics and evaluation","i tech","maternal and child health program","medex northwest","pathobiology doctoral program","the school of public health","w.w.a.m.i"]}
 ];
 
@@ -469,6 +469,7 @@ function searchByNameIntentHandler(){
     }
 }
 
+/* TODO: Add in search by specialty functionality */
 function searchByInfoTypeIntentHandler(){
   var slots = this.event.request.intent.slots;
   var firstName = isSlotValid(this.event.request, "firstName");
@@ -478,7 +479,7 @@ function searchByInfoTypeIntentHandler(){
   var canSearch = figureOutWhichSlotToSearchBy(firstName,lastName);
   console.log("canSearch is set to = " + canSearch);
 
-    if (canSearch){
+    if (canSearch) {
       var searchQuery = slots[canSearch].value;
       var searchResults = searchDatabase(data, searchQuery, canSearch);
 
@@ -490,18 +491,18 @@ function searchByInfoTypeIntentHandler(){
       this.attributes.lastSearch.lastIntent = "SearchByNameIntent";
 
       if (searchResults.count > 1) { //multiple results found
-          console.log("multiple results were found");
-          var listOfPeopleFound = loopThroughArrayOfObjects(lastSearch.results);
-          output = generateSearchResultsMessage(searchQuery,searchResults.results) + listOfPeopleFound + ". Who would you like to learn more about?";
-          this.handler.state = states.MULTIPLE_RESULTS; // change state to MULTIPLE_RESULTS
-          this.attributes.lastSearch.lastSpeech = output;
-          this.emit(":ask", output);
+        console.log("multiple results were found");
+        var listOfPeopleFound = loopThroughArrayOfObjects(lastSearch.results);
+        output = generateSearchResultsMessage(searchQuery,searchResults.results) + listOfPeopleFound + ". Who would you like to learn more about?";
+        this.handler.state = states.MULTIPLE_RESULTS; // change state to MULTIPLE_RESULTS
+        this.attributes.lastSearch.lastSpeech = output;
+        this.emit(":ask", output);
       } else if (searchResults.count == 1) { //one result found
           this.handler.state = states.DESCRIPTION; // change state to description
           console.log("one match was found");
           if (infoType) {
             //if a specific infoType was requested, redirect to specificInfoIntent
-            console.log("infoType was provided as well")
+            console.log("infoType or specialty was provided as well")
             var person = this.attributes.lastSearch.results[0];
             var cardContent = generateCard(person);
             var speechOutput = generateSpecificInfoMessage(slots,person);
@@ -511,12 +512,13 @@ function searchByInfoTypeIntentHandler(){
             this.emit(":askWithCard", speechOutput, repromptSpeech, cardContent.title, cardContent.body, cardContent.image);
             // this.emitWithState("TellMeThisIntent");
           } else {
-              console.log("no infoType was provided.")
-              output = generateSearchResultsMessage(searchQuery,searchResults.results)
-              this.attributes.lastSearch.lastSpeech = output;
-              // this.emit(":ask", generateSearchResultsMessage(searchQuery,searchResults.results));
-              this.emit(":ask", output);
+            console.log("no infoType was provided.")
+            output = generateSearchResultsMessage(searchQuery,searchResults.results)
+            this.attributes.lastSearch.lastSpeech = output;
+            // this.emit(":ask", generateSearchResultsMessage(searchQuery,searchResults.results));
+            this.emit(":ask", output);
           }
+
       } else { //no match found
         console.log("no match found");
         console.log("searchQuery was  = " + searchQuery);
@@ -526,14 +528,13 @@ function searchByInfoTypeIntentHandler(){
         // this.emit(":ask", generateSearchResultsMessage(searchQuery,searchResults.results));
         this.emit(":ask", output);
       }
-    }
-      else {
-        console.log("no searchable slot was provided");
-        console.log("searchQuery was  = " + searchQuery);
-        console.log("searchResults.results was  = " + searchResults);
+    } else {
+      console.log("no searchable slot was provided");
+      console.log("searchQuery was  = " + searchQuery);
+      console.log("searchResults.results was  = " + searchResults);
 
-        this.emit(":ask", generateSearchResultsMessage(searchQuery,false));
-      }
+      this.emit(":ask", generateSearchResultsMessage(searchQuery,false));
+    }
 }
 // =====================================================================================================
 // ------------------------------- Section 3. Generating Speech Messages -------------------------------
@@ -605,19 +606,19 @@ function generateTellMeMoreMessage(person){
     sentence += ". ";
 
   } else if ((person.topics.length < 3) && (person.topics.length > 0)) {
-    sentence += ", and " + genderize("his-her", person.gender) + generateTopics(person) + ". ";
+    sentence += ", and " + genderize("his-her", person.gender) + " specialties are " + generateTopics(person) + ". ";
 
   } else {
     sentence += ", and some of " + genderize("his-her", person.gender) + " specialties include " + generateTopics(person);
   }
 
-  if (person.liason.length == 0) {
+  if (person.liaison.length == 0) {
 
-  } else if ((person.liason.length) < 3 && (person.liason.length > 0)) {
-    sentence += genderize("he-she", person.gender) + " is also a liason for " + generateLiasons(person) + ". ";
+  } else if ((person.liaison.length) < 3 && (person.liaison.length > 0)) {
+    sentence += genderize("he-she", person.gender) + " is also a liaison for " + generateLiaisons(person) + ". ";
 
   } else {
-    sentence += "Some of the programs that " + genderize("he-she", person.gender) + " is a liason for are - " + generateLiasons(person) + generateSendingCardToAlexaAppMessage(person,"general");
+    sentence += "Some of the programs that " + genderize("he-she", person.gender) + " is a liaison for are - " + generateLiaisons(person) + generateSendingCardToAlexaAppMessage(person,"general");
   }
 
   return sentence;
@@ -629,14 +630,7 @@ function generateSpecificInfoMessage(slots,person){
   var info;
   var type;
 
-  if (slots.infoType.value == "git hub"){
-    infoTypeValue = "github";
-    console.log("resetting gith hub to github");
-  }
-  else{
-    console.log("no reset required for github");
-    infoTypeValue = slots.infoType.value;
-  }
+  infoTypeValue = slots.infoType.value;
 
   // sentence = person.firstName + "'s " + infoTypeValue.toLowerCase() + " is - " + person["say" + infoTypeValue.toLowerCase()] + " . Would you like to find another librarian? " + getGenericHelpMessage(data);
   // return optimizeForSpeech(sentence);
@@ -644,10 +638,22 @@ function generateSpecificInfoMessage(slots,person){
     info = person.email;
     type = "e-mail";
     sentence = person.firstName + "'s " + type + " is - " + person.sayemail + " <break time=\"0.5s\"/>at <break time=\"0.5s\"/> u<break time=\"0.05s\"/> w<break time=\"0.05s\"/> dot<break time=\"0.05s\"/> e <break time=\"0.05s\"/>d <break time=\"0.05s\"/>u.<break time=\"0.1s\"/>. Would you like to find more information? " + getGenericHelpMessage(data);
-  } else {
+
+  } else if (infoTypeValue == "phone") {
     info = person.phone;
     type = "phone number";
-    sentence = person.firstName + "'s " + type + " is - " + info + ". Would you like to find more information? " + getGenericHelpMessage(data);
+    sentence = person.firstName + "'s " + type + " is - " + info + ". <break time=\"0.5s\"/> Would you like to find more information? " + getGenericHelpMessage(data);
+
+  } else {
+    if (person.topics.length == 0) {
+      sentence = person.firstName + " does not specialize in any topic.";
+
+    } else if ((person.topics.length < 3) && (person.topics.length > 0)) {
+      sentence = person.firstName + " specializes in the topics of - "  + generateTopics(person) + ". <break time=\"0.5s\"/> Would you like to find more information? " + getGenericHelpMessage(data);
+
+    } else {
+      sentence = "Some of the topics that " + person.firstName + " specializes in are " + generateTopics(person) + "<break time=\"0.5s\"/> Would you like to find more information? " + getGenericHelpMessage(data);
+    }
   }
 
   return sentence;
@@ -707,7 +713,7 @@ function generateTopics(person) {
     if (person.topics.length == 1) {
       result += person.topics[0];
     } else {
-      result += " specialties are " + person.topics[0] + " and " + person.topics[1];
+      result += person.topics[0] + " and " + person.topics[1];
     }
 
   } else {
@@ -734,37 +740,37 @@ function generateTopics(person) {
   return result;
 }
 
-function generateLiasons(person) {
-  var liason1;
-  var liason2;
-  var liason3;
+function generateLiaisons(person) {
+  var liaison1;
+  var liaison2;
+  var liaison3;
 
   var result = "";
 
-  if ((person.liason.length < 3) && (person.liason.length > 0)) {
-    if (person.liason.length == 1) {
-      result += person.liason[0];
+  if ((person.liaison.length < 3) && (person.liaison.length > 0)) {
+    if (person.liaison.length == 1) {
+      result += person.liaison[0];
     } else {
-      result += person.liason[0] + " and " + person.liason[1];
+      result += person.liaison[0] + " and " + person.liaison[1];
     }
 
   } else {
     for (var i = 0; i < 3; i++) {
       if (i == 2) {
-        liason3 = person.liason[getRandom(0,person.liason.length - 1)];
-        while ((liason3 == liason2) || (liason3 == liason1)) {
-          liason3 = person.liason[getRandom(0,person.liason.length - 1)];
+        liaison3 = person.liaison[getRandom(0,person.liaison.length - 1)];
+        while ((liaison3 == liaison2) || (liaison3 == liaison1)) {
+          liaison3 = person.liaison[getRandom(0,person.liaison.length - 1)];
         }
-        result += liason3 + ". ";
+        result += liaison3 + ". ";
       } else if (i == 1) {
-        liason2 = person.liason[getRandom(0,person.liason.length - 1)];
-        while (liason2 == liason1) {
-          liason2 = person.liason[getRandom(0,person.liason.length - 1)];
+        liaison2 = person.liaison[getRandom(0,person.liaison.length - 1)];
+        while (liaison2 == liaison1) {
+          liaison2 = person.liaison[getRandom(0,person.liaison.length - 1)];
         }
-        result += liason2 + ", and ";
+        result += liaison2 + ", and ";
       } else {
-        liason1 = person.liason[getRandom(0,person.liason.length - 1)];
-        result += liason1 + ", ";
+        liaison1 = person.liaison[getRandom(0,person.liaison.length - 1)];
+        result += liaison1 + ", ";
       }
     }
   }
