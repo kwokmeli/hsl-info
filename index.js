@@ -13,7 +13,7 @@ var APP_ID = "amzn1.ask.skill.7a8eca68-7c79-431b-865a-dc27ca4d0135";
 // --------------------------------- Section 1. Data and Text strings  ---------------------------------
 // =====================================================================================================
 
-var data=[
+var data = [
     {firstName:"tania",lastName:"bardyn",title:"Associate Dean for University Libraries and Director of the Health Sciences Library",sayemail:slowSpell("bardyn"),email:"bardyn",phone:"206-543-0422",gender:"f",
     topics:["mobile app development","library and information services","technology support","informatics and education development"],liaison:[]},
 
@@ -497,6 +497,7 @@ function searchByInfoTypeIntentHandler(){
         this.handler.state = states.MULTIPLE_RESULTS; // change state to MULTIPLE_RESULTS
         this.attributes.lastSearch.lastSpeech = output;
         this.emit(":ask", output);
+
       } else if (searchResults.count == 1) { //one result found
           this.handler.state = states.DESCRIPTION; // change state to description
           console.log("one match was found");
@@ -511,6 +512,7 @@ function searchByInfoTypeIntentHandler(){
             this.handler.state = states.SEARCHMODE;
             this.emit(":askWithCard", speechOutput, repromptSpeech, cardContent.title, cardContent.body, cardContent.image);
             // this.emitWithState("TellMeThisIntent");
+
           } else {
             console.log("no infoType was provided.")
             output = generateSearchResultsMessage(searchQuery,searchResults.results)
@@ -599,7 +601,7 @@ function generateSearchHelpMessage(gender){
 }
 
 function generateTellMeMoreMessage(person){
-  var sentence = person.firstName + "'s e-mail address is " + person.sayemail + " <break time=\"0.5s\"/>at <break time=\"0.5s\"/> u<break time=\"0.05s\"/> w<break time=\"0.05s\"/> dot<break time=\"0.05s\"/> e <break time=\"0.05s\"/>d <break time=\"0.05s\"/>u.<break time=\"0.1s\"/>" +
+  var sentence = person.firstName + "'s e-mail address is " + person.sayemail + " <break time=\"0.5s\"/>at <break time=\"0.5s\"/> u<break time=\"0.025s\"/> w<break time=\"0.05s\"/> dot<break time=\"0.05s\"/> e <break time=\"0.04s\"/>d <break time=\"0.03s\"/>u.<break time=\"0.1s\"/>" +
   genderize("his-her", person.gender) + " phone number is " + person.phone;
 
   if (person.topics.length == 0) {
@@ -632,21 +634,19 @@ function generateSpecificInfoMessage(slots,person){
 
   infoTypeValue = slots.infoType.value;
 
-  // sentence = person.firstName + "'s " + infoTypeValue.toLowerCase() + " is - " + person["say" + infoTypeValue.toLowerCase()] + " . Would you like to find another librarian? " + getGenericHelpMessage(data);
-  // return optimizeForSpeech(sentence);
-  if (infoTypeValue == "email") {
+  if ((infoTypeValue == "email") || (infoTypeValue == "email address")) {
     info = person.email;
     type = "e-mail";
-    sentence = person.firstName + "'s " + type + " is - " + person.sayemail + " <break time=\"0.5s\"/>at <break time=\"0.5s\"/> u<break time=\"0.05s\"/> w<break time=\"0.05s\"/> dot<break time=\"0.05s\"/> e <break time=\"0.05s\"/>d <break time=\"0.05s\"/>u.<break time=\"0.1s\"/>. Would you like to find more information? " + getGenericHelpMessage(data);
+    sentence = person.firstName + "'s " + type + " is - " + person.sayemail + " <break time=\"0.5s\"/>at <break time=\"0.5s\"/> u<break time=\"0.025s\"/> w<break time=\"0.05s\"/> dot<break time=\"0.05s\"/> e <break time=\"0.04s\"/>d <break time=\"0.03s\"/>u.<break time=\"0.1s\"/>. Would you like to find more information? " + getGenericHelpMessage(data);
 
-  } else if (infoTypeValue == "phone") {
+  } else if ((infoTypeValue == "phone") || (infoTypeValue == "phone number") || (infoTypeValue == "number")) {
     info = person.phone;
     type = "phone number";
     sentence = person.firstName + "'s " + type + " is - " + info + ". <break time=\"0.5s\"/> Would you like to find more information? " + getGenericHelpMessage(data);
 
-  } else {
+  } else if ((infoTypeValue == "specialty") || (infoTypeValue == "specialties") || (infoTypeValue == "topics") || (infoTypeValue == "topic")) {
     if (person.topics.length == 0) {
-      sentence = person.firstName + " does not specialize in any topic.";
+      sentence = person.firstName + " does not specialize in any topic. <break time=\"0.5s\"/> Would you like to find more information? " + getGenericHelpMessage(data);
 
     } else if ((person.topics.length < 3) && (person.topics.length > 0)) {
       sentence = person.firstName + " specializes in the topics of - "  + generateTopics(person) + ". <break time=\"0.5s\"/> Would you like to find more information? " + getGenericHelpMessage(data);
@@ -654,6 +654,8 @@ function generateSpecificInfoMessage(slots,person){
     } else {
       sentence = "Some of the topics that " + person.firstName + " specializes in are " + generateTopics(person) + "<break time=\"0.5s\"/> Would you like to find more information? " + getGenericHelpMessage(data);
     }
+  } else {
+    sentence = "Sorry, I don't have that information about " + person.firstName + ". You can ask for " + genderize("his-her", person.gender) + " phone number, email address, or specialties.";
   }
 
   return sentence;
@@ -713,7 +715,7 @@ function generateTopics(person) {
     if (person.topics.length == 1) {
       result += person.topics[0];
     } else {
-      result += person.topics[0] + " and " + person.topics[1];
+      result += person.topics[0] + ", and " + person.topics[1];
     }
 
   } else {
@@ -823,7 +825,7 @@ function isInArray(value, array) {
 }
 
 function isInfoTypeValid(infoType){
-  var validTypes = ["phone number","e-mail", "email", "e mail", "phone"];
+  var validTypes = ["phone number","e-mail", "email", "e mail", "phone", "topics", "specialty", "specialties", "topic"];
   return isInArray(infoType,validTypes);
 }
 
