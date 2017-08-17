@@ -63,9 +63,7 @@
         "{infoType} {firstName} ",
         "{infoType} {lastName}",
         "{firstName} {lastName} {infoType}",
-        "{lastName} {firstName} {infoType}",
-        "{specialty}",
-        "{whoPhrase} {specialty}"
+        "{lastName} {firstName} {infoType}"
       ],
       "slots": [
         {
@@ -129,6 +127,32 @@
         {
           "name": "infoType",
           "type": "LIST_OF_INFO_TYPES",
+          "samples": []
+        },
+        {
+          "name": "whoPhrase",
+          "type": "WHO_PHRASE",
+          "samples": []
+        },
+        {
+          "name": "whatPhrase",
+          "type": "WHAT_PHRASE",
+          "samples": []
+        }
+      ]
+    },
+    {
+      "name": "SearchBySpecialtyIntent",
+      "samples": [
+        "{specialty}",
+        "{whoPhrase} {specialty}",
+        "{whatPhrase} {specialty}",
+        "{whatPhrase} {whoPhrase} {specialty}"
+      ],
+      "slots": [
+        {
+          "name": "specialty",
+          "type": "SPECIALTY",
           "samples": []
         },
         {
@@ -495,7 +519,10 @@
           "id": null,
           "name": {
             "value": "environmental and occupational health sciences",
-            "synonyms": []
+            "synonyms": [
+              "environmental health sciences",
+              "occupational health sciences"
+            ]
           }
         },
         {
@@ -538,9 +565,9 @@
           "name": {
             "value": "gerontology and geriatric medicine",
             "synonyms": [
-              "geriatric",
               "geriatric medicine",
-              "gerontology"
+              "gerontology",
+              "geriatrics"
             ]
           }
         },
@@ -641,7 +668,10 @@
           "id": null,
           "name": {
             "value": "maternal and child health program",
-            "synonyms": []
+            "synonyms": [
+              "maternal health program",
+              "child health program"
+            ]
           }
         },
         {
@@ -707,7 +737,9 @@
               "molecular biology",
               "cellular biology",
               "biology",
-              "biology program"
+              "biology program",
+              "molecular biology program",
+              "cellular biology program"
             ]
           }
         },
@@ -744,7 +776,8 @@
           "name": {
             "value": "n.i.h. k award recipients",
             "synonyms": [
-              "n.i.h."
+              "n.i.h.",
+              "award recipients"
             ]
           }
         },
@@ -776,8 +809,8 @@
           "name": {
             "value": "obstetrics and gynecology",
             "synonyms": [
-              "obstertrics",
-              "gynecology"
+              "gynecology",
+              "obstetrics"
             ]
           }
         },
@@ -820,7 +853,10 @@
           "id": null,
           "name": {
             "value": "oral and maxillofacial surgery",
-            "synonyms": []
+            "synonyms": [
+              "oral surgery",
+              "maxillofacial surgery"
+            ]
           }
         },
         {
@@ -925,7 +961,10 @@
           "id": null,
           "name": {
             "value": "physiology and biophysics",
-            "synonyms": []
+            "synonyms": [
+              "physiology",
+              "biophysics"
+            ]
           }
         },
         {
@@ -939,14 +978,20 @@
           "id": null,
           "name": {
             "value": "psychiatry and behavioral sciences",
-            "synonyms": []
+            "synonyms": [
+              "psychiatry sciences",
+              "behavioral sciences"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "psychosocial and community health",
-            "synonyms": []
+            "synonyms": [
+              "psychosocial health",
+              "community health"
+            ]
           }
         },
         {
@@ -967,7 +1012,10 @@
           "id": null,
           "name": {
             "value": "pulmonary and critical care medicine",
-            "synonyms": []
+            "synonyms": [
+              "pulmonary medicine",
+              "critical care medicine"
+            ]
           }
         },
         {
@@ -1240,6 +1288,20 @@
           "id": null,
           "name": {
             "value": "who does research in",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "who does",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "find me",
             "synonyms": []
           }
         }

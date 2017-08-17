@@ -14,39 +14,146 @@ var APP_ID = "amzn1.ask.skill.7a8eca68-7c79-431b-865a-dc27ca4d0135";
 // =====================================================================================================
 
 var data = [
-    {firstName:"tania",lastName:"bardyn",title:"Associate Dean for University Libraries and Director of the Health Sciences Library",sayemail:slowSpell("bardyn"),email:"bardyn",phone:"206-543-0422",gender:"f",
-    topics:["mobile app development","library and information services","technology support","informatics and education development"],liaison:[]},
+  {firstName:"tania",lastName:"bardyn",title:"Associate Dean for University Libraries and Director of the Health Sciences Library",sayemail:slowSpell("bardyn"),email:"bardyn",phone:"206-543-0422",gender:"f",
+  topics:["mobile app development","library and information services","technology support","informatics and education development"],liaison:[]},
 
-    {firstName:"andrea",lastName:"ball",title:"Care Management and Population Health Librarian",sayemail:slowSpell("alball"),email:"alball",phone:"206-616-6630",gender:"f",topics:[
-    "allergies and infectious diseases","anesthesiology","pain medicine","cardiology","dermatology","emergency medicine","gastroenterology","general internal medicine","gerontology","geriatric medicine",
-    "hematology","nephrology","oncology","orthopaedics","palliative care","pediatrics","physical therapy","pulmonary and critical care medicine",
-    "radiation oncology","rheumatology","surgery","urology"],liaison:["airlift northwest","harborview medical center","department of medicine","northwest hospital","u dub medical center"]},
+  {firstName:"andrea",lastName:"ball",title:"Care Management and Population Health Librarian",sayemail:slowSpell("alball"),email:"alball",phone:"206-616-6630",gender:"f",topics:[
+  "allergies and infectious diseases","anesthesiology","pain medicine","cardiology","dermatology","emergency medicine","gastroenterology","general internal medicine","gerontology","geriatric medicine",
+  "hematology","nephrology","oncology","orthopaedics","palliative care","pediatrics","physical therapy","pulmonary and critical care medicine",
+  "radiation oncology","rheumatology","surgery","urology"],liaison:["airlift northwest","harborview medical center","department of medicine","northwest hospital","u dub medical center"]},
 
-    {firstName:"frances",lastName:"chu",title:"Health Sciences Clinical liaison and Content Librarian",sayemail:slowSpell("chuf"),email:"chuf",phone:"206-616-1106",gender:"f",topics:["critical care medicine",
-    "laboratory medicine","medical laboratory science","metabolism","endocrinology and nutrition","neurology","ophthalmology","otolaryngology","pathology",
-    "psychiatry and behavioral sciences","radiology"],liaison:["hall health primary care center","harborview medical center","the school of nursing","u dub medical center"]},
+  {firstName:"frances",lastName:"chu",title:"Health Sciences Clinical liaison and Content Librarian",sayemail:slowSpell("chuf"),email:"chuf",phone:"206-616-1106",gender:"f",topics:["critical care medicine",
+  "laboratory medicine","medical laboratory science","metabolism","endocrinology and nutrition","neurology","ophthalmology","otolaryngology","pathology",
+  "psychiatry and behavioral sciences","radiology"],liaison:["hall health primary care center","harborview medical center","the school of nursing","u dub medical center"]},
 
-    {firstName:"nicole",lastName:"dettmar",title:"Health Sciences Curriculum Design Librarian",sayemail:slowSpell("snydern"),email:"snydern",phone:"206-543-3409",gender:"f",topics:["oral health services",
-    "oral medicine","oral and maxillofacial surgery","pediatric dentistry","periodontics","prosthodontics","restorative dentistry"],liaison:["the school of dentistry","the school of medicine","ride",
-    "the school of medicine","write","w.w.a.m.i"]},
+  {firstName:"nicole",lastName:"dettmar",title:"Health Sciences Curriculum Design Librarian",sayemail:slowSpell("snydern"),email:"snydern",phone:"206-543-3409",gender:"f",topics:["oral health services",
+  "oral medicine","oral and maxillofacial surgery","pediatric dentistry","periodontics","prosthodontics","restorative dentistry"],liaison:["the school of dentistry","the school of medicine","ride",
+  "the school of medicine","write","w.w.a.m.i"]},
 
-    {firstName:"stephen",lastName:"gabrielson",title:"Instruction and Research Librarian",sayemail:slowSpell("gabeswg"),email:"gabeswg",phone:"206-543-3437",gender:"m",topics:[],liaison:["the school of nursing",
-    "the school of dentistry"]},
+  {firstName:"stephen",lastName:"gabrielson",title:"Instruction and Research Librarian",sayemail:slowSpell("gabeswg"),email:"gabeswg",phone:"206-543-3437",gender:"m",topics:[],liaison:["the school of nursing",
+  "the school of dentistry"]},
 
-    {firstName:"diana",lastName:"louden",title:"Biomedical and Translational Sciences Librarian",sayemail:slowSpell("dknl"),email:"dknl",phone:"206-221-3480",gender:"f",topics:[
-    "biochemistry","bioengineering","bioethics and humanities","biological structures","biomedical informatics and medical education","comparative medicine","genome sciences","immunology",
-    "medical genetics","microbiology","molecular and cellular biology","molecular medicine","physiology and biophysics","public health genetics"],liaison:["the office of animal welfare",
-    "institute of translational health sciences","the molecular and cellular biology program","the graduate program in neuroscience","the school of pharmacy","the school of puclic health"]},
+  {firstName:"diana",lastName:"louden",title:"Biomedical and Translational Sciences Librarian",sayemail:slowSpell("dknl"),email:"dknl",phone:"206-221-3480",gender:"f",topics:[
+  "biochemistry","bioengineering","bioethics and humanities","biological structures","biomedical informatics and medical education","comparative medicine","genome sciences","immunology",
+  "medical genetics","microbiology","molecular and cellular biology","molecular medicine","physiology and biophysics","public health genetics"],liaison:["the office of animal welfare",
+  "institute of translational health sciences","the molecular and cellular biology program","the graduate program in neuroscience","the school of pharmacy","the school of puclic health"]},
 
-    {firstName:"emily",lastName:"patridge",title:"need to do",sayemail:slowSpell("ep001"),email:"ep001",phone:"206-221-3489",gender:"f",topics:["obstetrics and gynecology","occupational therapy"],
-    liaison:["harborview medical center","northwest hospital","u dub medical center","u dub neighborhood clinics"]},
+  {firstName:"emily",lastName:"patridge",title:"need to do",sayemail:slowSpell("ep001"),email:"ep001",phone:"206-221-3489",gender:"f",topics:["obstetrics and gynecology","occupational therapy"],
+  liaison:["harborview medical center","northwest hospital","u dub medical center","u dub neighborhood clinics"]},
 
-    {firstName:"joanne",lastName:"rich",title:"need to do",sayemail:slowSpell("jrich"),email:"jrich",phone:"206-616-6601",gender:"f",topics:["pharmaceutics","psychosocial and community health"],
-    liaison:["pharmacy services","the school of pharmacy"]},
+  {firstName:"joanne",lastName:"rich",title:"need to do",sayemail:slowSpell("jrich"),email:"jrich",phone:"206-616-6601",gender:"f",topics:["pharmaceutics","psychosocial and community health"],
+  liaison:["pharmacy services","the school of pharmacy"]},
 
-    {firstName:"sarah",lastName:"safranek",title:"Public Health and Primary Care Librarian",sayemail:slowSpell("safranek"),email:"safranek",phone:"206-543-3408",gender:"f",topics:["biostatistics",
-    "environmental and occupational health sciences","epidemiology","family medicine","global health","health services","nutritional sciences"],liaison:["health information administration program",
-    "institute for health metrics and evaluation","i tech","maternal and child health program","medex northwest","pathobiology doctoral program","the school of public health","w.w.a.m.i"]}
+  {firstName:"sarah",lastName:"safranek",title:"Public Health and Primary Care Librarian",sayemail:slowSpell("safranek"),email:"safranek",phone:"206-543-3408",gender:"f",topics:["biostatistics",
+  "environmental and occupational health sciences","epidemiology","family medicine","global health","health services","nutritional sciences"],liaison:["health information administration program",
+  "institute for health metrics and evaluation","i tech","maternal and child health program","medex northwest","pathobiology doctoral program","the school of public health","w.w.a.m.i"]}
+];
+
+/* NOTE: Synonyms not currently supported within interaction model; manually addressed in arrays below */
+var index = [
+  {subject:["airlift northwest"],person:["andrea ball"]},
+  {subject:["allergy and infectious diseases","allergy","allergies","infectious diseases","infections"],person:["andrea ball"]},
+  {subject:["anesthesiology and pain medicine","anesthesiology","pain medicine"],person:["andrea ball"]},
+  {subject:["office of animal welfare","the office of animal welfare","animal welfare","animal rights"],person:["diana louden"]},
+  {subject:["biochemistry"],person:["diana louden"]},
+  {subject:["bioengineering","bio e"],person:["diana louden"]},
+  {subject:["bioethics and humanities","bioethics","humanities","humanities and bioethics"],person:["diana louden"]},
+  {subject:["biological structures"],person:["diana louden"]},
+  {subject:["biomedical informatics and medical education","biomedical informatics","medical education"],person:["diana louden"]},
+  {subject:["biostatistics"],person:["sarah safranek"]},
+  {subject:["cardiology"],person:["andrea ball"]},
+  {subject:["comparative medicine"],person:["diana louden"]},
+  {subject:["critical care medicine"],person:["frances chu"]},
+  {subject:["school of dentistry"],person:["stephen gabrielson","nicole dettmar"]},
+  {subject:["dermatology"],person:["andrea ball"]},
+  {subject:["emergency medicine"],person:["andrea ball"]},
+  {subject:["environmental and occupational health sciences","environmental health sciences","occupational health sciences","occupational health","environmental health"],person:["sarah safranek"]},
+  {subject:["epidemiology"],person:["sarah safranek"]},
+  {subject:["family medicine"],person:["sarah safranek"]},
+  {subject:["gastroenterology"],person:["andrea ball"]},
+  {subject:["general internal medicine"],person:["andrea ball"]},
+  {subject:["genome sciences"],person:["diana louden"]},
+  {subject:["gerontology and geriatric medicine","gerontology","geriatric medicine","geriatrics"],person:["andrea ball"]},
+  {subject:["global health"],person:["sarah safranek"]},
+  {subject:["hall health primary care center","hall health"],person:["frances chu"]},
+  {subject:["harborview medical center"],person:["andrea ball","frances chu","emily patridge"]},
+  {subject:["health information administration program"],person:["sarah safranek"]},
+  {subject:["health services"],person:["sarah safranek"]},
+  {subject:["hematology"],person:["andrea ball"]},
+  {subject:["immunology"],person:["diana louden"]},
+  {subject:["institute for health metrics and evaluation"],person:["sarah safranek"]},
+  {subject:["institute of translational health sciences"],person:["diana louden"]},
+  {subject:["i tech"],person:["sarah safranek"]},
+  {subject:["laboratory medicine"],person:["frances chu"]},
+  {subject:["maternal and child health program","maternal health program","child health program","maternal health","child health","children's health"],person:["sarah safranek"]},
+  {subject:["medex northwest"],person:["sarah safranek"]},
+  {subject:["medical genetics"],person:["diana louden"]},
+  {subject:["medical laboratory science"],person:["frances chu"]},
+  {subject:["department of medicine"],person:["andrea ball"]},
+  {subject:["school of medicine"],person:["nicole dettmar"]},
+  {subject:["metabolism"],person:["frances chu"]},
+  {subject:["endocrinology"],person:["frances chu"]},
+  {subject:["nutrition"],person:["frances chu"]},
+  {subject:["microbiology"],person:["diana louden"]},
+  {subject:["molecular biology program"],person:["diana louden"]},
+  {subject:["cellular biology program"],person:["diana louden"]},
+  {subject:["molecular medicine"],person:["diana louden"]},
+  {subject:["nephrology"],person:["andrea ball"]},
+  {subject:["graduate program in neuroscience"],person:["diana louden"]},
+  {subject:["neurology"],person:["andrea ball"]},
+  {subject:["northwest hospital"],person:["emily patridge","andrea ball"]},
+  {subject:["school of nursing"],person:["frances chu","stephen gabrielson"]},
+  {subject:["nutritional sciences"],person:["sarah safranek"]},
+  {subject:["obstetrics"],person:["emily patridge"]},
+  {subject:["gynecology"],person:["emily patridge"]},
+  {subject:["occupational therapy"],person:["emily patridge"]},
+  {subject:["oncology"],person:["andrea ball"]},
+  {subject:["ophthalmology"],person:["frances chu"]},
+  {subject:["oral health services"],person:["nicole dettmar"]},
+  {subject:["oral medicine"],person:["nicole dettmar"]},
+  {subject:["oral surgery"],person:["nicole dettmar"]},
+  {subject:["maxillofacial surgery"],person:["nicole dettmar"]},
+  {subject:["orthodontics"],person:["nicole dettmar"]},
+  {subject:["orthopaedics"],person:["nicole dettmar"]},
+  {subject:["otolaryngology"],person:["frances chu"]},
+  {subject:["palliative care"],person:["andrea ball"]},
+  {subject:["paramedic training program"],person:["andrea ball"]},
+  {subject:["pathobiology doctoral program"],person:["sarah safranek"]},
+  {subject:["pathology"],person:["frances chu"]},
+  {subject:["pediatric dentistry"],person:["nicole dettmar"]},
+  {subject:["pediatrics"],person:["andrea ball"]},
+  {subject:["periodontics"],person:["nicole dettmar"]},
+  {subject:["pharmaceutics"],person:["joanne rich"]},
+  {subject:["pharmacy services"],person:["joanne rich"]},
+  {subject:["school of pharmacy"],person:["joanne rich","diana louden"]},
+  {subject:["physical therapy"],person:["andrea ball"]},
+  {subject:["physician assistant"],person:["sarah safranek"]},
+  {subject:["physiology"],person:["diana louden"]},
+  {subject:["biophysics"],person:["diana louden"]},
+  {subject:["prosthodontics"],person:["nicole dettmar"]},
+  {subject:["psychiatry"],person:["frances chu"]},
+  {subject:["behavioral sciences"],person:["frances chu"]},
+  {subject:["psychosocial health"],person:["joanne rich"]},
+  {subject:["community health"],person:["joanne rich"]},
+  {subject:["school of public health"],person:["sarah safranek"]},
+  {subject:["public health genetics"],person:["diana louden"]},
+  {subject:["pulmonary medicine"],person:["andrea ball"]},
+  {subject:["critical care medicine"],person:["andrea ball"]},
+  {subject:["radiation oncology"],person:["andrea ball"]},
+  {subject:["radiology"],person:["frances chu"]},
+  {subject:["rehabilitation medicine"],person:["andrea ball"]},
+  {subject:["rehabilitation sciences"],person:["andrea ball"]},
+  {subject:["restorative dentistry"],person:["nicole dettmar"]},
+  {subject:["rheumatology"],person:["andrea ball"]},
+  {subject:["ride"],person:["nicole dettmar"]},
+  {subject:["school of social work"],person:["joanne rich"]},
+  {subject:["social workers"],person:["emily patridge","andrea ball","frances chu"]},
+  {subject:["surgery"],person:["andrea ball"]},
+  {subject:["urology"],person:["andrea ball"]},
+  {subject:["university of washington medical center","u dub medical center"],person:["emily patridge","andrea ball","frances chu"]},
+  {subject:["university of washington neighborhood clinics","u dub neighborhood clinics","university of washington neighborhood clinic","u dub neighborhood clinic"],person:["emily patridge"]},
+  {subject:["write"],person:["nicole dettmar"]},
+  {subject:["w.w.a.m.i."],person:["nicole dettmar","sarah safranek"]}
 ];
 
 //======================================================================================================
@@ -100,6 +207,10 @@ const newSessionHandlers = {
         console.log("SEARCH INTENT");
         this.handler.state = states.SEARCHMODE;
         this.emitWithState("SearchByNameIntent");
+    },
+    "SearchBySpecialtyIntent": function() {
+        this.handler.state = states.SEARCHMODE;
+        this.emitWithState("SearchBySpecialtyIntent");
     },
     "TellMeMoreIntent": function() {
         this.handler.state = states.SEARCHMODE;
@@ -166,6 +277,9 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
     },
     "SearchByNameIntent": function() {
       searchByNameIntentHandler.call(this);
+    },
+    "SearchBySpecialtyIntent": function() {
+      searchBySpecialtyIntentHandler.call(this);
     },
     "SearchByInfoTypeIntent": function() {
       searchByInfoTypeIntentHandler.call(this);
@@ -259,10 +373,6 @@ var multipleSearchResultsHandlers = Alexa.CreateStateHandler(states.MULTIPLE_RES
                 this.emit(":ask", speechOutput);
             }
     },
-    "SearchByCityIntent": function() {
-      this.handler.state = states.SEARCHMODE;
-      this.emitWithState("SearchByCityIntent");
-    },
     "AMAZON.HelpIntent": function() {
         this.emit(":ask", MULTIPLE_RESULTS_STATE_HELP_MESSAGE, MULTIPLE_RESULTS_STATE_HELP_MESSAGE);
     },
@@ -332,6 +442,9 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
     },
     "SearchByNameIntent": function() {
         searchByNameIntentHandler.call(this);
+    },
+    "SearchBySpecialtyIntent": function() {
+        searchBySpecialtyIntentHandler.call(this);
     },
     "AMAZON.HelpIntent": function() {
         var slots = this.event.request.intent.slots;
@@ -411,7 +524,7 @@ function figureOutWhichSlotToSearchBy(firstName,lastName) {
   }
 }
 
-function searchByNameIntentHandler(){
+function searchByNameIntentHandler () {
   var firstName = isSlotValid(this.event.request, "firstName");
   var lastName = isSlotValid(this.event.request, "lastName");
   var infoType = isSlotValid(this.event.request, "infoType");
@@ -469,7 +582,71 @@ function searchByNameIntentHandler(){
     }
 }
 
-/* TODO: Add in search by specialty functionality */
+/* TODO */
+function searchBySpecialtyIntentHandler () {
+  var specialty = isSlotValid(this.event.request, "specialty");
+  var results = [];
+  var str = "";
+  var matchFound = false;
+
+  if (specialty) {
+    // For each entry
+    for (var i = 0; i < index.length; i++) {
+      // For each synonym within each entry
+      for (var j = 0; j < index[i].subject.length; j++) {
+        if (sanitizeSearchQuery(specialty) == index[i].subject[j]) {
+          // For each person associated with an entry
+          for (var k = 0; k < index[i].person.length; k++) {
+            results.push(index[i].person[k]);
+          }
+        matchFound = true;
+
+        for (var l = 0; l < results.length; l++) {
+          if (l != results.length - 1) {
+            str += results[l] + ", ";
+          } else {
+            str += results[l];
+          }
+        }
+
+        }
+      }
+
+    // for (var i = 0; i < index.length; i++) {
+    //   if (sanitizeSearchQuery(specialty) == index[i].subject) {
+    //     for (var j = 0; j < index[i].person.length; j++) {
+    //       results.push(index[i].person[j]);
+    //     }
+    //     matchFound = true;
+    //
+    //     for (var k = 0; k < results.length; k++) {
+    //       if (k != results.length - 1) {
+    //         str += results[k] + ", ";
+    //       } else {
+    //         str += results[k];
+    //       }
+    //     }
+    //
+    //   }
+    //   if ((i == index.length - 1) && (matchFound == false)) {
+    //     // this means that we are on the last record, and no match was found
+    //     matchFound = false;
+    //     str = "no match was found";
+    // }
+    }
+
+    if (matchFound == false) {
+      str = "no match found";
+    }
+
+    this.emit(":tell", str);
+
+  } else {
+    this.emit(":tell", "invalid slot");
+  }
+
+}
+
 function searchByInfoTypeIntentHandler(){
   var slots = this.event.request.intent.slots;
   var firstName = isSlotValid(this.event.request, "firstName");
@@ -583,8 +760,7 @@ function generateSearchResultsMessage(searchQuery,results){
         sentence = "I found " + results.length + " matching results";
         break;
     }
-  }
-  else{
+  } else {
     sentence = "Sorry, I didn't quite get that. Please try again. " + getGenericHelpMessage(data);
   }
   return sentence;
