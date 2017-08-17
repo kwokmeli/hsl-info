@@ -303,7 +303,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
     },
     "AMAZON.StartOverIntent": function() {
         this.handler.state = states.SEARCHMODE;
-        var output = "Ok, starting over." + getGenericHelpMessage(data);
+        var output = "Ok, starting over. " + getGenericHelpMessage(data);
         this.emit(":ask", output, output);
     },
     "SessionEndedRequest": function() {
@@ -318,7 +318,7 @@ var multipleSearchResultsHandlers = Alexa.CreateStateHandler(states.MULTIPLE_RES
 
     "AMAZON.StartOverIntent": function() {
         this.handler.state = states.SEARCHMODE;
-        var output = "Ok, starting over." + getGenericHelpMessage(data);
+        var output = "Ok, starting over. " + getGenericHelpMessage(data);
         this.emit(":ask", output, output);
     },
     "AMAZON.YesIntent": function() {
@@ -468,7 +468,7 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
     },
     "AMAZON.StartOverIntent": function() {
         this.handler.state = states.SEARCHMODE;
-        var output = "Ok, starting over." + getGenericHelpMessage(data);
+        var output = "Ok, starting over. " + getGenericHelpMessage(data);
         this.emit(":ask", output, output);
     },
     "SessionEndedRequest": function() {
@@ -588,6 +588,7 @@ function searchBySpecialtyIntentHandler () {
   var results = [];
   var str = "";
   var matchFound = false;
+  var subject;
 
   if (specialty) {
     // For each entry
@@ -600,10 +601,13 @@ function searchBySpecialtyIntentHandler () {
             results.push(index[i].person[k]);
           }
         matchFound = true;
+        subject = i;
 
         for (var l = 0; l < results.length; l++) {
           if (l != results.length - 1) {
             str += results[l] + ", ";
+          } else if (l == results.length - 2) {
+            str += results[l] + " and ";
           } else {
             str += results[l];
           }
@@ -611,38 +615,23 @@ function searchBySpecialtyIntentHandler () {
 
         }
       }
-
-    // for (var i = 0; i < index.length; i++) {
-    //   if (sanitizeSearchQuery(specialty) == index[i].subject) {
-    //     for (var j = 0; j < index[i].person.length; j++) {
-    //       results.push(index[i].person[j]);
-    //     }
-    //     matchFound = true;
-    //
-    //     for (var k = 0; k < results.length; k++) {
-    //       if (k != results.length - 1) {
-    //         str += results[k] + ", ";
-    //       } else {
-    //         str += results[k];
-    //       }
-    //     }
-    //
-    //   }
-    //   if ((i == index.length - 1) && (matchFound == false)) {
-    //     // this means that we are on the last record, and no match was found
-    //     matchFound = false;
-    //     str = "no match was found";
-    // }
     }
 
     if (matchFound == false) {
-      str = "no match found";
+      this.emit(":tell", "Sorry, I couldn't find anyone who is a liaison for that topic. <break time=\"0.5s\"/> Would you like to try again? " + getGenericHelpMessage(data));
     }
 
-    this.emit(":tell", str);
+    if (results.length > 1) {
+      str += " are the liaisons for your requested topic of " + index[subject].subject[0] + ". <break time=\"0.5s\"/> Would you like to do another search? " + getGenericHelpMessage(data);
+      this.emit(":tell", str);
+    } else {
+      str += " is the liaison for your requested topic of " + index[subject].subject[0] + ". <break time=\"0.5s\"/> Would you like to do another search? " + getGenericHelpMessage(data);
+      this.emit(":tell", str);
+    }
 
   } else {
-    this.emit(":tell", "invalid slot");
+    str = "I'm not sure what you're asking. " + getGenericHelpMessage(data);
+    this.emit(":tell", str);
   }
 
 }
@@ -767,7 +756,7 @@ function generateSearchResultsMessage(searchQuery,results){
 }
 
 function getGenericHelpMessage(data){
-var sentences = ["ask - who is " + getRandomName(data), "say the name of a librarian or say a topic of interest."];
+var sentences = ["ask - who is " + getRandomName(data), "say the name of a librarian or say a topic of interest.", "say a topic - " + getRandomSubject(index)];
 return "For example, you can " + sentences[getRandom(0,sentences.length-1)];
 }
 
@@ -820,7 +809,7 @@ function generateSpecificInfoMessage(slots,person){
     type = "phone number";
     sentence = person.firstName + "'s " + type + " is - " + info + ". <break time=\"0.5s\"/> Would you like to find more information? " + getGenericHelpMessage(data);
 
-  } else if ((infoTypeValue == "specialty") || (infoTypeValue == "specialties") || (infoTypeValue == "topics") || (infoTypeValue == "topic")) {
+  } else if ((infoTypeValue == "specialty") || (infoTypeValue == "specialties") || (infoTypeValue == "topics") || (infoTypeValue == "topic") || (infoTypeValue == "liaison") || (infoTypeValue == "specialize")) {
     if (person.topics.length == 0) {
       sentence = person.firstName + " does not specialize in any topic. <break time=\"0.5s\"/> Would you like to find more information? " + getGenericHelpMessage(data);
 
@@ -854,13 +843,14 @@ function getRandom(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function getRandomCity(arrayOfStrings) {
-  return arrayOfStrings[getRandom(0, data.length - 1)].cityName;
-}
-
 function getRandomName(arrayOfStrings) {
   var randomNumber = getRandom(0, data.length - 1)
   return arrayOfStrings[randomNumber].firstName + " " + arrayOfStrings[randomNumber].lastName;
+}
+
+function getRandomSubject(arrayOfStrings) {
+  var randomNumber = getRandom(0, index.length - 1)
+  return arrayOfStrings[randomNumber].subject[0];
 }
 
 function titleCase(str) {
@@ -1001,7 +991,7 @@ function isInArray(value, array) {
 }
 
 function isInfoTypeValid(infoType){
-  var validTypes = ["phone number","e-mail", "email", "e mail", "phone", "topics", "specialty", "specialties", "topic"];
+  var validTypes = ["phone number","e-mail", "email", "e mail", "phone", "topics", "specialty", "specialties", "topic", "liaison", "specialize"];
   return isInArray(infoType,validTypes);
 }
 

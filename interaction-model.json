@@ -111,7 +111,13 @@
         "{whatPhrase} {infoType} for {firstName} ",
         "{whatPhrase} {firstName} {lastName} {infoType} email",
         "{whatPhrase} {infoType} for {lastName}",
-        "{lastName} {firstName}"
+        "{lastName} {firstName}",
+        "{whatPhrase} information about {firstName}",
+        "{whatPhrase} information on {firstName}",
+        "{whatPhrase} information about {lastName}",
+        "{whatPhrase} information on {lastName}",
+        "{whatPhrase} information on {firstName} {lastName}",
+        "{whatPhrase} information about {firstName} {lastName}"
       ],
       "slots": [
         {
@@ -183,9 +189,27 @@
         "other contact information",
         "get more information",
         "get more details",
-        "get more info"
+        "get more info",
+        "{whatPhrase} is her contact information",
+        "{whatPhrase} is his contact information",
+        "{whatPhrase} contact information",
+        "{whatPhrase} contact info",
+        "{whatPhrase} is her contact info",
+        "{whatPhrase} is his contact info",
+        "{whatPhrase} information",
+        "{whatPhrase} details",
+        "{whatPhrase} the information",
+        "{whatPhrase} the details",
+        "{whatPhrase} her details",
+        "{whatPhrase} his details"
       ],
-      "slots": []
+      "slots": [
+        {
+          "name": "whatPhrase",
+          "type": "WHAT_PHRASE",
+          "samples": []
+        }
+      ]
     },
     {
       "name": "TellMeThisIntent",
@@ -379,7 +403,8 @@
             "synonyms": [
               "topic",
               "specialties",
-              "topics"
+              "topics",
+              "liaison"
             ]
           }
         }
@@ -1208,6 +1233,34 @@
             "value": "what's some of",
             "synonyms": []
           }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "tell me about",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "give me more",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "what",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "what are the",
+            "synonyms": []
+          }
         }
       ]
     },
@@ -1302,6 +1355,13 @@
           "id": null,
           "name": {
             "value": "find me",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "who is the librarian for",
             "synonyms": []
           }
         }
