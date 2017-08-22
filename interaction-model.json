@@ -63,7 +63,14 @@
         "{infoType} {firstName} ",
         "{infoType} {lastName}",
         "{firstName} {lastName} {infoType}",
-        "{lastName} {firstName} {infoType}"
+        "{lastName} {firstName} {infoType}",
+        "{whatPhrase} {firstName} a {infoType} for ",
+        "{whatPhrase} {firstName} {lastName} a {infoType} for",
+        "{whatPhrase} {firstName} {infoType} in",
+        "{whatPhrase} {lastName} {infoType} in",
+        "{whatPhrase} {lastName} a {infoType} for",
+        "{whatPhrase} {firstName} {lastName} a {infoType} in",
+        "{whatPhrase} {firstName} a {infoType} in"
       ],
       "slots": [
         {
@@ -153,7 +160,9 @@
         "{specialty}",
         "{whoPhrase} {specialty}",
         "{whatPhrase} {specialty}",
-        "{whatPhrase} {whoPhrase} {specialty}"
+        "{whatPhrase} {whoPhrase} {specialty}",
+        "{whoPhrase} liaison for {specialty}",
+        "{whoPhrase} a liaison for {specialty}"
       ],
       "slots": [
         {
@@ -228,7 +237,23 @@
         "tell me their {infoType}",
         "what's their {infoType}",
         "what is their {infoType}",
-        "{infoType}"
+        "{infoType}",
+        "{whatPhrase} she a {infoType} for",
+        "{whatPhrase} he a {infoType} for",
+        "{whatPhrase} she {infoType} in",
+        "{whatPhrase} he {infoType} in",
+        "{whatPhrase} {infoType} is she a liaison for",
+        "{whatPhrase} {infoType} is he a liaison for",
+        "{whatPhrase} {infoType} are she a liaison for",
+        "{whatPhrase} {infoType} are he a liaison for",
+        "{whatPhrase} {infoType} does she specialize in",
+        "{whatPhrase} {infoType} does he specialize in",
+        "{firstName} is a liaison for which {infoType}",
+        "{firstName} {lastName} is a liaison for which {infoType}",
+        "{lastName} is a liaison for which {infoType}",
+        "{firstName} is a liaison for what {infoType}",
+        "{firstName} {lastName} is a liaison for what {infoType}",
+        "{lastName} is a liaison for what {infoType}"
       ],
       "slots": [
         {
@@ -239,6 +264,16 @@
         {
           "name": "whatPhrase",
           "type": "WHAT_PHRASE",
+          "samples": []
+        },
+        {
+          "name": "firstName",
+          "type": "AMAZON.US_FIRST_NAME",
+          "samples": []
+        },
+        {
+          "name": "lastName",
+          "type": "LAST_NAME",
           "samples": []
         }
       ]
@@ -251,56 +286,63 @@
         {
           "id": null,
           "name": {
-            "value": "paul",
+            "value": "tania",
             "synonyms": []
           }
         },
         {
           "id": null,
           "name": {
-            "value": "jeff",
+            "value": "andrea",
             "synonyms": []
           }
         },
         {
           "id": null,
           "name": {
-            "value": "memo",
+            "value": "frances",
             "synonyms": []
           }
         },
         {
           "id": null,
           "name": {
-            "value": "rob",
+            "value": "nicole",
             "synonyms": []
           }
         },
         {
           "id": null,
           "name": {
-            "value": "dave",
+            "value": "stephen",
             "synonyms": []
           }
         },
         {
           "id": null,
           "name": {
-            "value": "amit",
+            "value": "diana",
             "synonyms": []
           }
         },
         {
           "id": null,
           "name": {
-            "value": "liz",
+            "value": "emily",
             "synonyms": []
           }
         },
         {
           "id": null,
           "name": {
-            "value": "dean",
+            "value": "joanne",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "sarah",
             "synonyms": []
           }
         }
@@ -404,7 +446,8 @@
               "topic",
               "specialties",
               "topics",
-              "liaison"
+              "liaison",
+              "specialize"
             ]
           }
         }
@@ -1362,6 +1405,69 @@
           "id": null,
           "name": {
             "value": "who is the librarian for",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "who is a",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "find the librarian",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "find the librarian for",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "find me the librarian",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "find me the librarian for",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "find me the liaison",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "find me the liaison for",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "find the liaison",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "find the liaison for",
             "synonyms": []
           }
         }
