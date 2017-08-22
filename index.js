@@ -1,5 +1,5 @@
 "use strict";
-const Alexa = require("alexa-sdk"); // import the library
+const Alexa = require("alexa-sdk");
 
 var APP_ID = "amzn1.ask.skill.7a8eca68-7c79-431b-865a-dc27ca4d0135";
 
@@ -195,18 +195,18 @@ var index = [
 
 var skillName = "HSL Library Helper";
 
-//This is the welcome message for when a user starts the skill without a specific intent.
+// This is the welcome message for when a user starts the skill without a specific intent.
 // var WELCOME_MESSAGE = "Welcome to  " + skillName + "! I can help you find Alexa Evangelists and Solutions Architects. " + getGenericHelpMessage(data);
 
 var WELCOME_MESSAGE = "Learn about the librarians of the Health Sciences Library, or search for a librarian by specialty. " + getGenericHelpMessage(data)
 
-//This is the message a user will hear when they ask Alexa for help in your skill.
+// This is the message a user will hear when they ask Alexa for help in your skill.
 var HELP_MESSAGE = "I can help you find a librarian. "
 
-//This is the message a user will hear when they begin a new search
+// This is the message a user will hear when they begin a new search
 var NEW_SEARCH_MESSAGE = "To start a new search, say the name of a librarian or a topic to search for. " + getGenericHelpMessage(data);
 
-//This is the message a user will hear when they ask Alexa for help while in the SEARCH state
+// This is the message a user will hear when they ask Alexa for help while in the SEARCH state
 var SEARCH_STATE_HELP_MESSAGE = "Say the name of a librarian or a topic to search for. " + getGenericHelpMessage(data);
 
 var DESCRIPTION_STATE_HELP_MESSAGE = "Here are some things you can say: Tell me more, or give me his or her contact info";
@@ -214,9 +214,9 @@ var DESCRIPTION_STATE_HELP_MESSAGE = "Here are some things you can say: Tell me 
 var MULTIPLE_RESULTS_STATE_HELP_MESSAGE = "Sorry, please say the first and last name of the person you'd like to learn more about";
 
 // This is the message use when the decides to end the search
-var SHUTDOWN_MESSAGE = "Ok.";
+var SHUTDOWN_MESSAGE = "Ok. ";
 
-//This is the message a user will hear when they try to cancel or stop the skill.
+// This is the message a user will hear when they try to cancel or stop the skill.
 var EXIT_SKILL_MESSAGE = "Ok. Have a nice day!";
 
 // =====================================================================================================
@@ -242,6 +242,10 @@ const newSessionHandlers = {
     "SearchBySpecialtyIntent": function() {
         this.handler.state = states.SEARCHMODE;
         this.emitWithState("SearchBySpecialtyIntent");
+    },
+    "SearchHoursIntent": function() {
+        this.handler.state = states.SEARCHMODE;
+        this.emitWithState("SearchHoursIntent");
     },
     "TellMeMoreIntent": function() {
         this.handler.state = states.SEARCHMODE;
@@ -287,6 +291,7 @@ const newSessionHandlers = {
         this.emitWithState("SearchByNameIntent");
     }
 };
+
 var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
     "AMAZON.YesIntent": function() {
         this.emit(":ask", NEW_SEARCH_MESSAGE, NEW_SEARCH_MESSAGE);
@@ -311,6 +316,9 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
     },
     "SearchBySpecialtyIntent": function() {
       searchBySpecialtyIntentHandler.call(this);
+    },
+    "SearchHoursIntent": function() {
+      searchHoursIntentHandler.call(this);
     },
     "SearchByInfoTypeIntent": function() {
       searchByInfoTypeIntentHandler.call(this);
@@ -345,8 +353,8 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
         this.emit(":ask", SEARCH_STATE_HELP_MESSAGE, SEARCH_STATE_HELP_MESSAGE);
     }
 });
-var multipleSearchResultsHandlers = Alexa.CreateStateHandler(states.MULTIPLE_RESULTS, {
 
+var multipleSearchResultsHandlers = Alexa.CreateStateHandler(states.MULTIPLE_RESULTS, {
     "AMAZON.StartOverIntent": function() {
         this.handler.state = states.SEARCHMODE;
         var output = "Ok, starting over. " + getGenericHelpMessage(data);
@@ -383,12 +391,12 @@ var multipleSearchResultsHandlers = Alexa.CreateStateHandler(states.MULTIPLE_RES
             var lastSearch;
             var output;
 
-            if (searchResults.count > 1) { //multiple results found again
+            if (searchResults.count > 1) { // Multiple results found again
                 console.log("multiple results were found again");
                 this.handler.state = states.MULTIPLE_RESULTS;
                 output = this.attributes.lastSearch.lastSpeech;
                 this.emit(":ask",output);
-            } else if (searchResults.count == 1) { //one result found
+            } else if (searchResults.count == 1) { // One result found
                 this.attributes.lastSearch = searchResults;
                 lastSearch = this.attributes.lastSearch;
                 this.handler.state = states.DESCRIPTION;
@@ -397,7 +405,7 @@ var multipleSearchResultsHandlers = Alexa.CreateStateHandler(states.MULTIPLE_RES
                 // this.emit(":ask", generateSearchResultsMessage(searchQuery,searchResults.results));
                 this.emit(":ask", output);
 
-            } else { //no match found
+            } else { // No match found
                 lastSearch = this.attributes.lastSearch;
                 var listOfPeopleFound = loopThroughArrayOfObjects(lastSearch.results);
                 speechOutput = MULTIPLE_RESULTS_STATE_HELP_MESSAGE + ", " + listOfPeopleFound;
@@ -421,6 +429,7 @@ var multipleSearchResultsHandlers = Alexa.CreateStateHandler(states.MULTIPLE_RES
         this.emit(":ask", MULTIPLE_RESULTS_STATE_HELP_MESSAGE, MULTIPLE_RESULTS_STATE_HELP_MESSAGE);
     }
 });
+
 var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
     "TellMeMoreIntent": function() {
       var person;
@@ -446,6 +455,7 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
         this.emit(":ask", speechOutput, repromptSpeech);
       }
     },
+
     "TellMeThisIntent": function() {
       var slots = this.event.request.intent.slots;
       var person = this.attributes.lastSearch.results[0];
@@ -471,40 +481,55 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
           this.emit(":ask", speechOutput, repromptSpeech);
         }
     },
+
     "SearchByNameIntent": function() {
         searchByNameIntentHandler.call(this);
     },
+
     "SearchBySpecialtyIntent": function() {
         searchBySpecialtyIntentHandler.call(this);
     },
+
+    "SearchHoursIntent": function() {
+        searchHoursIntentHandler.call(this);
+    },
+
     "AMAZON.HelpIntent": function() {
         var slots = this.event.request.intent.slots;
         var person = this.attributes.lastSearch.results[0];
         this.emit(":ask", generateNextPromptMessage(person,"current"), generateNextPromptMessage(person,"current"));
     },
+
     "AMAZON.StopIntent": function() {
         this.emit(":tell", EXIT_SKILL_MESSAGE);
     },
+
     "AMAZON.CancelIntent": function() {
         this.emit(":tell", EXIT_SKILL_MESSAGE);
     },
+
     "AMAZON.NoIntent": function() {
         this.emit(":tell", SHUTDOWN_MESSAGE);
     },
+
     "AMAZON.YesIntent": function() {
         this.emit("TellMeMoreIntent");
     },
+
     "AMAZON.RepeatIntent": function() {
         this.emit(":ask",this.attributes.lastSearch.lastSpeech, this.attributes.lastSearch.lastSpeech);
     },
+
     "AMAZON.StartOverIntent": function() {
         this.handler.state = states.SEARCHMODE;
         var output = "Ok, starting over. " + getGenericHelpMessage(data);
         this.emit(":ask", output, output);
     },
+
     "SessionEndedRequest": function() {
         this.emit("AMAZON.StopIntent");
     },
+    
     "Unhandled": function() {
         var slots = this.event.request.intent.slots;
         var person = this.attributes.lastSearch.results[0];
@@ -611,7 +636,7 @@ function searchByNameIntentHandler () {
     }
 }
 
-/* TODO */
+/* REVIEW */
 function searchBySpecialtyIntentHandler () {
   var specialty = isSlotValid(this.event.request, "specialty");
   var results = [];
@@ -673,6 +698,11 @@ function searchBySpecialtyIntentHandler () {
     str = "I'm not sure what you're asking. " + getGenericHelpMessage(data);
     this.emit(":tell", str);
   }
+
+}
+
+/* TODO */
+function searchHoursIntentHandler() {
 
 }
 
