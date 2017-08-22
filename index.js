@@ -1,17 +1,52 @@
 "use strict";
 const Alexa = require("alexa-sdk"); // import the library
 
-//=========================================================================================================================================
-//TODO: The items below this comment need your attention
-//=========================================================================================================================================
-
-//Replace with your app ID (OPTIONAL).  You can find this value at the top of your skill's page on http://developer.amazon.com.
-//Make sure to enclose your value in quotes, like this:  var APP_ID = "amzn1.ask.skill.bb4045e6-b3e8-4133-b650-72923c5980f1";
 var APP_ID = "amzn1.ask.skill.7a8eca68-7c79-431b-865a-dc27ca4d0135";
 
 // =====================================================================================================
 // --------------------------------- Section 1. Data and Text strings  ---------------------------------
 // =====================================================================================================
+var a = "7:30am to 7:00pm";
+var b = "7:30am to 9:00pm";
+var c = "7:30am to 5:00pm";
+var d = "9:00am to 5:00pm";
+var e = "10:00am to 7:00pm";
+var f = "12:00pm to 5:00pm";
+var g = "12:00pm to 7:00pm";
+var h = "1:00pm to 5:00pm";
+var i = "closed";
+
+var hours = [
+  {year: "2017",
+  month: [["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""],
+          ["","","","","","","","","","","","","","","","","","","","","","","","","","","",""], // Feb
+          ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""], // Mar
+          ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""], // Apr
+          ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""], // May
+          ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""], // Jun
+          ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""], // Jul
+          [a,a,a,a,i,i,a,a,a,a,a,i,i,a,a,a,a,a,i,i,a,a,a,a,a,i,i,a,a,a,a], // Aug
+          [a,i,i,i,a,a,a,a,i,i,a,a,a,a,a,i,i,a,e,a,a,a,i,i,b,b,b,b,a,f], // Sep
+          [g,b,b,b,b,a,f,g,b,b,b,b,a,f,g,b,b,b,b,a,f,g,b,b,b,b,a,f,g,b,b], // Oct
+          [b,b,a,f,g,b,b,b,b,h,f,g,b,b,b,b,a,f,g,b,b,c,i,i,i,g,b,b,b,b], // Nov
+          [a,f,g,b,b,b,b,a,f,g,b,b,b,b,a,i,i,d,d,d,d,d,i,i,i,d,d,d,d,i,i]] // Dec
+  },
+
+  {year: "2018",
+  month: [[i,d,b,b,a,f,g,b,b,b,b,a,f,g,h,b,b,b,a,f,g,b,b,b,b,a,f,g,b,b,b],
+          [b,a,f,g,b,b,b,b,a,f,g,b,b,b,b,a,f,g,h,b,b,b,a,f,g,b,b,b], // Feb
+          [b,a,f,g,b,b,b,b,a,f,g,b,b,b,b,a,i,i,a,a,a,a,a,i,i,b,b,b,b,a,f], // Mar
+          [g,b,b,b,b,a,f,g,b,b,b,b,a,f,g,b,b,b,b,a,f,g,b,b,b,b,a,f,g,b], // Apr
+          [b,b,b,a,f,g,b,b,b,b,a,f,g,b,b,b,b,a,f,g,b,b,b,b,a,f,g,h,b,b,b], // May
+          [a,f,g,b,b,b,b,a,i,i,a,a,a,a,a,i,i,"","","","","","","","","","","","",""], // Jun
+          ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""], // Jul
+          ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""], // Aug
+          ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""], // Sep
+          ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""], // Oct
+          ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""], // Nov
+          ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""]] // Dec
+  }
+];
 
 var data = [
   {firstName:"tania",lastName:"bardyn",title:"Associate Dean for University Libraries and Director of the Health Sciences Library",sayemail:slowSpell("bardyn"),email:"bardyn",phone:"206-543-0422",gender:"f",
@@ -38,9 +73,11 @@ var data = [
   "medical genetics","microbiology","molecular and cellular biology","molecular medicine","physiology and biophysics","public health genetics"],liaison:["the office of animal welfare",
   "institute of translational health sciences","the molecular and cellular biology program","the graduate program in neuroscience","the school of pharmacy","the school of puclic health"]},
 
+/* TODO: Find Emily's title */
   {firstName:"emily",lastName:"patridge",title:"need to do",sayemail:slowSpell("ep001"),email:"ep001",phone:"206-221-3489",gender:"f",topics:["obstetrics and gynecology","occupational therapy"],
   liaison:["harborview medical center","northwest hospital","u dub medical center","u dub neighborhood clinics"]},
 
+/* TODO: Find Joanne's title */
   {firstName:"joanne",lastName:"rich",title:"need to do",sayemail:slowSpell("jrich"),email:"jrich",phone:"206-616-6601",gender:"f",topics:["pharmaceutics","psychosocial and community health"],
   liaison:["pharmacy services","the school of pharmacy"]},
 
@@ -156,10 +193,6 @@ var index = [
   {subject:["w.w.a.m.i."],person:["nicole dettmar","sarah safranek"],first:["nicole","sarah"],last:["dettmar","safranek"]}
 ];
 
-//======================================================================================================
-//TODO: Replace these text strings to edit the welcome and help messages
-//======================================================================================================
-
 var skillName = "HSL Library Helper";
 
 //This is the welcome message for when a user starts the skill without a specific intent.
@@ -189,8 +222,6 @@ var EXIT_SKILL_MESSAGE = "Ok. Have a nice day!";
 // =====================================================================================================
 // ------------------------------ Section 2. Skill Code - Intent Handlers  -----------------------------
 // =====================================================================================================
-// CAUTION: Editing anything below this line might break your skill.
-//======================================================================================================
 
 var states = {
     SEARCHMODE: "_SEARCHMODE",
@@ -489,17 +520,17 @@ function searchDatabase(dataset, searchQuery, searchType) {
   var matchFound = false;
   var results = [];
 
-  //beginning search
+  // Beginning search
   for (var i = 0; i < dataset.length; i++) {
     if (sanitizeSearchQuery(searchQuery) == dataset[i][searchType]) {
         results.push(dataset[i]);
         matchFound = true;
     }
     if ((i == dataset.length - 1) && (matchFound == false)) {
-    //this means that we are on the last record, and no match was found
+    // This means that we are on the last record, and no match was found
         matchFound = false;
         console.log("no match was found using " + searchType);
-    //if more than searchable items were provided, set searchType to the next item, and set i=0
+    // If more than searchable items were provided, set searchType to the next item, and set i=0
     }
   }
   return {
@@ -535,25 +566,25 @@ function searchByNameIntentHandler () {
       var searchQuery = this.event.request.intent.slots[canSearch].value;
       var searchResults = searchDatabase(data, searchQuery, canSearch);
 
-      //saving lastSearch results to the current session
+      // Saving lastSearch results to the current session
       var lastSearch = this.attributes.lastSearch = searchResults;
       var output;
 
-      //saving last intent to session attributes
+      // Saving last intent to session attributes
       this.attributes.lastSearch.lastIntent = "SearchByNameIntent";
 
-      if (searchResults.count > 1) { //multiple results found
+      if (searchResults.count > 1) { // Multiple results found
         console.log("Search complete. Multiple results were found");
         var listOfPeopleFound = loopThroughArrayOfObjects(lastSearch.results);
         output = generateSearchResultsMessage(searchQuery,searchResults.results) + listOfPeopleFound + ". Who would you like to learn more about?";
         this.handler.state = states.MULTIPLE_RESULTS; // change state to MULTIPLE_RESULTS
         this.attributes.lastSearch.lastSpeech = output;
         this.emit(":ask", output);
-      } else if (searchResults.count == 1) { //one result found
-          this.handler.state = states.DESCRIPTION; // change state to description
+      } else if (searchResults.count == 1) { // One result found
+          this.handler.state = states.DESCRIPTION; // Change state to description
           console.log("one match was found");
           if (infoType) {
-              //if a specific infoType was requested, redirect to specificInfoIntent
+              // If a specific infoType was requested, redirect to specificInfoIntent
               console.log("infoType was provided as well")
               this.emitWithState("TellMeThisIntent");
           } else {
@@ -562,7 +593,7 @@ function searchByNameIntentHandler () {
             this.attributes.lastSearch.lastSpeech = output;
             this.emit(":ask", output);
           }
-      } else { //no match found
+      } else { // No match found
         console.log("no match found");
         console.log("searchQuery was  = " + searchQuery);
         console.log("searchResults.results was  = " + searchResults);
@@ -606,8 +637,8 @@ function searchBySpecialtyIntentHandler () {
           if (results.length == 1) {
             var searchResults = searchDatabase(data, index[subject].last[0], "lastName");
 
-            // saving lastSearch results to the current session
-            // follow up questions (e.g. "what is her email") only apply if there is one result
+            // Saving lastSearch results to the current session
+            // Follow-up questions (e.g. "what is her email") only apply if there is one result
             var lastSearch = this.attributes.lastSearch = searchResults;
             this.attributes.lastSearch.lastIntent = "SearchBySpecialtyIntent";
           }
@@ -658,26 +689,26 @@ function searchByInfoTypeIntentHandler(){
       var searchQuery = slots[canSearch].value;
       var searchResults = searchDatabase(data, searchQuery, canSearch);
 
-      //saving lastSearch results to the current session
+      // Saving lastSearch results to the current session
       var lastSearch = this.attributes.lastSearch = searchResults;
       var output;
 
-      //saving last intent to session attributes
+      // Saving last intent to session attributes
       this.attributes.lastSearch.lastIntent = "SearchByNameIntent";
 
-      if (searchResults.count > 1) { //multiple results found
+      if (searchResults.count > 1) { // Multiple results found
         console.log("multiple results were found");
         var listOfPeopleFound = loopThroughArrayOfObjects(lastSearch.results);
         output = generateSearchResultsMessage(searchQuery,searchResults.results) + listOfPeopleFound + ". Who would you like to learn more about?";
-        this.handler.state = states.MULTIPLE_RESULTS; // change state to MULTIPLE_RESULTS
+        this.handler.state = states.MULTIPLE_RESULTS; // Change state to MULTIPLE_RESULTS
         this.attributes.lastSearch.lastSpeech = output;
         this.emit(":ask", output);
 
-      } else if (searchResults.count == 1) { //one result found
-          this.handler.state = states.DESCRIPTION; // change state to description
+      } else if (searchResults.count == 1) { // One result found
+          this.handler.state = states.DESCRIPTION; // Change state to description
           console.log("one match was found");
           if (infoType) {
-            //if a specific infoType was requested, redirect to specificInfoIntent
+            // If a specific infoType was requested, redirect to specificInfoIntent
             console.log("infoType or specialty was provided as well")
             var person = this.attributes.lastSearch.results[0];
             var cardContent = generateCard(person);
@@ -713,6 +744,7 @@ function searchByInfoTypeIntentHandler(){
       this.emit(":ask", generateSearchResultsMessage(searchQuery,false));
     }
 }
+
 // =====================================================================================================
 // ------------------------------- Section 3. Generating Speech Messages -------------------------------
 // =====================================================================================================
@@ -765,8 +797,8 @@ function generateSearchResultsMessage(searchQuery,results){
 }
 
 function getGenericHelpMessage(data){
-var sentences = ["ask - who is " + getRandomName(data), "say the name of a librarian or say a topic of interest.", "say a topic, such as - " + getRandomSubject(index)];
-return "For example, you can " + sentences[getRandom(0,sentences.length-1)];
+var sentences = ["things you can ask include - who is " + getRandomName(data), "you can say the name of a librarian or say a topic of interest.", "you can say a topic, such as - " + getRandomSubject(index)];
+return "For example, " + sentences[getRandom(0,sentences.length-1)];
 }
 
 function generateSearchHelpMessage(gender){
@@ -846,8 +878,6 @@ exports.handler = function(event, context, callback) {
 // =====================================================================================================
 // ------------------------------------ Section 4. Helper Functions  -----------------------------------
 // =====================================================================================================
-// For more helper functions, visit the Alexa cookbook at https://github.com/alexa/alexa-cookbook
-//======================================================================================================
 
 function getRandom(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -960,7 +990,7 @@ function loopThroughArrayOfObjects(arrayOfStrings) {
   var joinedResult = "";
   // Looping through the each object in the array
   for (var i = 0; i < arrayOfStrings.length; i++) {
-  //concatenating names (firstName + lastName ) for each item
+  // Concatenating names (firstName + lastName ) for each item
       joinedResult = joinedResult + ", " + arrayOfStrings[i].firstName + " " + arrayOfStrings[i].lastName;
   }
   return joinedResult;
@@ -982,16 +1012,16 @@ function sanitizeSearchQuery(searchQuery){
 
 function isSlotValid(request, slotName){
   var slot = request.intent.slots[slotName];
-  //console.log("request = "+JSON.stringify(request)); //uncomment if you want to see the request
+  // console.log("request = "+JSON.stringify(request)); //uncomment if you want to see the request
   var slotValue;
 
-  //if we have a slot, get the text and store it into speechOutput
+  // If we have a slot, get the text and store it into speechOutput
   if (slot && slot.value) {
-      //we have a value in the slot
+      // We have a value in the slot
       slotValue = slot.value.toLowerCase();
       return slotValue;
   } else {
-      //we didn't get a value in the slot.
+      // We didn't get a value in the slot.
       return false;
   }
 }
