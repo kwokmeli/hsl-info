@@ -529,7 +529,7 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
     "SessionEndedRequest": function() {
         this.emit("AMAZON.StopIntent");
     },
-    
+
     "Unhandled": function() {
         var slots = this.event.request.intent.slots;
         var person = this.attributes.lastSearch.results[0];
@@ -703,7 +703,14 @@ function searchBySpecialtyIntentHandler () {
 
 /* TODO */
 function searchHoursIntentHandler() {
+  var date = isSlotValid(this.event.request, "date");
 
+  if (date) {
+    var test = "The date is: " + date + ". The type of the data is " + typeof date + ". ";
+    this.emit(":tell", test);
+  } else {
+    this.emit(":tell", "Couldn't get date.");
+  }
 }
 
 function searchByInfoTypeIntentHandler(){
