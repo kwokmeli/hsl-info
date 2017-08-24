@@ -49,7 +49,7 @@ var year;
 var yearIndex;
 var status;
 
-var test = "2017-W35";
+var test = "2018-11-27";
 var currentDate = new Date();
 
 if (test == "PRESENT_REF") {
@@ -133,6 +133,12 @@ if (test == "PRESENT_REF") {
           console.log("The library is not open on Saturday, but it is open on Sunday from " + returnHours(sun) + ". ");
         } else if (sun == "closed") {
           console.log("The library is open on Saturday from " + returnHours(sat) + ", but it is not open on Sunday.");
+        } else if (sat == "" && sun == "") {
+          console.log("The library hours have not been determined yet. ");
+        } else if (sat == "") {
+          console.log("The library hours have not been determined for Saturday yet. But the library is open on Sunday from " + returnHours(sun));
+        } else if (sun == "") {
+          console.log("The library hours have not been determined for Sunday yet. But the library is open on Saturday from " + returnHours(sat));
         } else {
           if (sat == sun) {
             console.log("The library is open on Saturday and Sunday from " + returnHours(sat));
@@ -269,7 +275,7 @@ if (test == "PRESENT_REF") {
           }
         }
 
-        var str2 = "The library is closed on the follow days: ";
+        var str2 = "The library is closed on the following days: ";
         if (closed.length != 0) {
           // If there are any days that are closed, state them
           for (var i = 0; i < closed.length; i++) {
@@ -297,30 +303,28 @@ if (test == "PRESENT_REF") {
   } else {
     if (date[0] == "201X") {
       // Asked for this decade
-      console.log("")
+      console.log("Yes, the library will most likely be open for the next decade. Future hours have yet to be decided.");
     } else if (date[0] == "20XX") {
       // Asked for this century
-      console.log("I don't have my crystal ball with me, but I'm pretty sure the library will be around for the next century. Will you?")
+      console.log("I don't have my crystal ball with me, but I'm pretty sure the library will be around for the next century. Future hours have yet to be decided.");
     } else {
       if (date[0] == YEAR1) {
         // Asked for this year
+        console.log("Yes, the library is open this year. Please specify a date or week for more detailed opening hours.");
       } else if (date[0] == YEAR2) {
         // Asked for next year
+        console.log("Yes, the library will be open next year. Please specify a date or week for more detailed opening hours.");
       } else if (Number(date[0]) < YEAR1) {
         // Asked for years in the past
-        console.log("Yes, the library was open last year. Are you a time traveler?")
+        console.log("Yes, the library was open last year. Are you a time traveler?");
       } else {
         // Asked for years in the future
-        console.log()
+        console.log("Yes, the library will most likely be open in the future. Future hours have yet to be decided. Please specify a date or week for more detailed opening hours.")
       }
     }
 
   }
 
-}
-
-function isInArray(value, array) {
-  return array.indexOf(value) > -1;
 }
 
 // Given a date and a number of days, returns the date of the given date plus the given number of days
@@ -612,4 +616,8 @@ function libraryStatusGivenTime (constraints, hour, minutes) {
 
   return status;
 
+}
+
+function isInArray(value, array) {
+  return array.indexOf(value) > -1;
 }
