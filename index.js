@@ -53,6 +53,61 @@ var hours = [
   }
 ];
 
+// NOTE: 2017-2018 quarter dates
+// Dates are in form dd/mm/yyyy
+var period = [
+  ["27/9/2017","15/12/2017"],
+  ["16/12/2017","2/1/2018"],
+  ["3/1/2018","16/3/2018"],
+  ["17/3/2018","25/3/2018"],
+  ["26/3/2018","8/6/2018"],
+  ["9/6/2018","17/6/2018"],
+  ["19/6/2017","18/8/2017"],
+  ["19/8/2017","26/9/2017"]
+];
+
+// NOTE: Update these dates for each new school year
+var autumnHours = "The opening hours for autumn quarter are: Monday through Thursday, from 7:30am to 9:00pm - Fridays from 7:30am to 7:00pm - Saturdays from 12:00pm to 5:00pm - and Sundays from 12:00pm to 7:00pm.";
+var autumnWinterHours = "The opening hours for the autumn winter interim are: Monday through Friday, from 9:00am to 5:00pm. The library is closed on Saturdays and Sundays.";
+var winterHours = "The opening hours for winter quarter are: Monday through Thursday, from 7:30am to 9:00pm - Fridays from 7:30am to 7:00pm - Saturdays from 12:00pm to 5:00pm - and Sundays from 12:00pm to 7:00pm.";
+var winterSpringHours = "The opening hours for the winter spring interim are: Monday through Friday, from 7:30am to 7:00pm. The library is closed on Saturdays and Sundays.";
+var springHours = "The opening hours for spring quarter are: Monday through Thursday, from 7:30am to 9:00pm - Fridays from 7:30am to 7:00pm - Saturdays from 12:00pm to 5:00pm - and Sundays from 12:00pm to 7:00pm.";
+var springSummerHours = "The opening hours for the spring summer interim are: Monday through Friday, from 7:30am to 7:00pm. The library is closed on Saturdays and Sundays.";
+var summerHours = "The opening hours for summer quarter are: Monday through Friday, from 7:30am to 7:00pm - Sundays from 1:00pm to 5:00pm. The library is closed on Saturdays.";
+var summerAutumnHours = "The opening hours for the summer autumn interim are: Monday through Friday, from 7:30am to 7:00pm. The library is closed on Saturdays and Sundays.";
+
+// NOTE: Update these extra hours for each new school year
+var autumnExtra = "The library is also closed on November 23rd, November 24th, and November 25th. The adjusted library hours for November 10th are 1:00pm to 5:00pm, and the hours for November 22nd are 7:30am to 5:00pm.";
+var autumnWinterExtra = "The library is also closed on December 25th, and January 1st.";
+var winterExtra = "The adjusted library hours for January 15th and February 19th are 1:00pm to 5:00pm.";
+var winterSpringExtra = "";
+var springExtra = "The adjusted library hours for May 28th are 1:00pm to 5:00pm.";
+var springSummerExtra = "";
+var summerExtra = "The library is also closed on July 4th. The adjusted library hours for July 3rd are 7:30am to 5:00pm.";
+var summerAutumnExtra = "The library is also closed on September 4th. The adjusted library hours for August 21st are 3:00pm - 7:00pm. The hours for September 19th are 10:00am to 7:00pm. And the hours for September 25th and September 26th are 7:30am to 9:00pm.";
+
+var extraHours = [
+  autumnExtra,
+  autumnWinterExtra,
+  winterExtra,
+  winterSpringExtra,
+  springExtra,
+  springSummerExtra,
+  summerExtra,
+  summerAutumnExtra
+];
+
+var periodHours = [
+  autumnHours,
+  autumnWinterHours,
+  winterHours,
+  winterSpringHours,
+  springHours,
+  springSummerHours,
+  summerHours,
+  summerAutumnHours
+];
+
 var data = [
   {firstName:"tania",lastName:"bardyn",title:"Associate Dean for University Libraries and Director of the Health Sciences Library",sayemail:slowSpell("bardyn"),email:"bardyn",phone:"206-543-0422",gender:"f",
   topics:["mobile app development","library and information services","technology support","informatics and education development"],liaison:[]},
@@ -240,7 +295,7 @@ const newSessionHandlers = {
         this.emit(":ask", WELCOME_MESSAGE, getGenericHelpMessage(data));
     },
     "SearchByNameIntent": function() {
-        console.log("SEARCH INTENT");
+        // console.log("SEARCH INTENT");
         this.handler.state = states.SEARCHMODE;
         this.emitWithState("SearchByNameIntent");
     },
@@ -256,6 +311,10 @@ const newSessionHandlers = {
         this.handler.state = states.SEARCHMODE;
         // this.emitWithState("SearchByNameIntent");
         this.emit(":ask", WELCOME_MESSAGE, getGenericHelpMessage(data));
+    },
+    "TellHoursIntent": function() {
+      this.handler.state = states.SEARCHMODE;
+      this.emitWithState("TellHoursIntent");
     },
     "TellMeThisIntent": function() {
         this.handler.state = states.SEARCHMODE;
@@ -308,11 +367,11 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
       var output;
       if(this.attributes.lastSearch){
         output = this.attributes.lastSearch.lastSpeech;
-        console.log("repeating last speech");
+        // console.log("repeating last speech");
       }
       else{
         output = getGenericHelpMessage(data);
-        console.log("no last speech availble. outputting standard help message.");
+        // console.log("no last speech availble. outputting standard help message.");
       }
       this.emit(":ask",output, output);
     },
@@ -327,6 +386,9 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
     },
     "SearchByInfoTypeIntent": function() {
       searchByInfoTypeIntentHandler.call(this);
+    },
+    "TellHoursIntent" : function() {
+      tellHoursIntentHandler.call(this);
     },
     "TellMeThisIntent": function() {
         this.handler.state = states.DESCRIPTION;
@@ -354,7 +416,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
         this.emit("AMAZON.StopIntent");
     },
     "Unhandled": function() {
-        console.log("Unhandled intent in startSearchHandlers");
+        // console.log("Unhandled intent in startSearchHandlers");
         this.emit(":ask", SEARCH_STATE_HELP_MESSAGE, SEARCH_STATE_HELP_MESSAGE);
     }
 });
@@ -381,13 +443,13 @@ var multipleSearchResultsHandlers = Alexa.CreateStateHandler(states.MULTIPLE_RES
         var lastName = isSlotValid(this.event.request, "lastName");
         var infoType = isSlotValid(this.event.request, "infoType");
 
-        console.log("firstName:" + firstName);
-        console.log("firstName:" + lastName);
-        console.log("firstName:" + infoType);
-        console.log("Intent Name:" + this.event.request.intent.name);
+        // console.log("firstName:" + firstName);
+        // console.log("firstName:" + lastName);
+        // console.log("firstName:" + infoType);
+        // console.log("Intent Name:" + this.event.request.intent.name);
 
         var canSearch = figureOutWhichSlotToSearchBy(firstName,lastName);
-        console.log("Multiple results found. canSearch is set to = " + canSearch);
+        // console.log("Multiple results found. canSearch is set to = " + canSearch);
         var speechOutput;
 
         if (canSearch)
@@ -397,7 +459,7 @@ var multipleSearchResultsHandlers = Alexa.CreateStateHandler(states.MULTIPLE_RES
             var output;
 
             if (searchResults.count > 1) { // Multiple results found again
-                console.log("multiple results were found again");
+                // console.log("multiple results were found again");
                 this.handler.state = states.MULTIPLE_RESULTS;
                 output = this.attributes.lastSearch.lastSpeech;
                 this.emit(":ask",output);
@@ -430,7 +492,7 @@ var multipleSearchResultsHandlers = Alexa.CreateStateHandler(states.MULTIPLE_RES
         this.emit("AMAZON.StopIntent");
     },
     "Unhandled": function() {
-        console.log("Unhandled intent in multipleSearchResultsHandlers");
+        // console.log("Unhandled intent in multipleSearchResultsHandlers");
         this.emit(":ask", MULTIPLE_RESULTS_STATE_HELP_MESSAGE, MULTIPLE_RESULTS_STATE_HELP_MESSAGE);
     }
 });
@@ -448,7 +510,7 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
         speechOutput = generateTellMeMoreMessage(person);
         repromptSpeech = "Would you like more information? Say yes or no";
 
-        console.log("the contact you're trying to find more info about is " + person.firstName);
+        // console.log("the contact you're trying to find more info about is " + person.firstName);
         this.handler.state = states.SEARCHMODE;
         this.attributes.lastSearch.lastSpeech = speechOutput;
         this.emit(":askWithCard", speechOutput, repromptSpeech, cardContent.title, cardContent.body, cardContent.image);
@@ -485,6 +547,9 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
           this.handler.state = states.SEARCHMODE;
           this.emit(":ask", speechOutput, repromptSpeech);
         }
+    },
+    "TellHoursIntent": function() {
+      tellHoursIntentHandler.call(this);
     },
 
     "SearchByNameIntent": function() {
@@ -539,7 +604,7 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
         var slots = this.event.request.intent.slots;
         var person = this.attributes.lastSearch.results[0];
 
-        console.log("Unhandled intent in DESCRIPTION state handler");
+        // console.log("Unhandled intent in DESCRIPTION state handler");
         this.emit(":ask", "Sorry, I don't know that" + generateNextPromptMessage(person,"general"), "Sorry, I don't know that" + generateNextPromptMessage(person,"general"));
     }
 });
@@ -559,7 +624,7 @@ function searchDatabase(dataset, searchQuery, searchType) {
     if ((i == dataset.length - 1) && (matchFound == false)) {
     // This means that we are on the last record, and no match was found
         matchFound = false;
-        console.log("no match was found using " + searchType);
+        // console.log("no match was found using " + searchType);
     // If more than searchable items were provided, set searchType to the next item, and set i=0
     }
   }
@@ -571,16 +636,16 @@ function searchDatabase(dataset, searchQuery, searchType) {
 
 function figureOutWhichSlotToSearchBy(firstName,lastName) {
   if (lastName){
-    console.log("search by lastName");
+    // console.log("search by lastName");
     return "lastName";
   }
   else if (!lastName && firstName){
-    console.log("search by firstName")
+    // console.log("search by firstName")
     return "firstName";
   }
   else{
     return false;
-    console.log("no valid slot provided. can't search.")
+    // console.log("no valid slot provided. can't search.")
   }
 }
 
@@ -590,7 +655,7 @@ function searchByNameIntentHandler () {
   var infoType = isSlotValid(this.event.request, "infoType");
 
   var canSearch = figureOutWhichSlotToSearchBy(firstName,lastName);
-  console.log("canSearch is set to = " + canSearch);
+  // console.log("canSearch is set to = " + canSearch);
 
     if (canSearch) {
       var searchQuery = this.event.request.intent.slots[canSearch].value;
@@ -612,30 +677,26 @@ function searchByNameIntentHandler () {
         this.emit(":ask", output);
       } else if (searchResults.count == 1) { // One result found
           this.handler.state = states.DESCRIPTION; // Change state to description
-          console.log("one match was found");
           if (infoType) {
               // If a specific infoType was requested, redirect to specificInfoIntent
-              console.log("infoType was provided as well")
+              // infoType was provided
               this.emitWithState("TellMeThisIntent");
-          } else {
-            console.log("no infoType was provided.")
+          } else { // No infoType was provided
             output = generateSearchResultsMessage(searchQuery,searchResults.results)
             this.attributes.lastSearch.lastSpeech = output;
             this.emit(":ask", output);
           }
       } else { // No match found
-        console.log("no match found");
-        console.log("searchQuery was  = " + searchQuery);
-        console.log("searchResults.results was  = " + searchResults);
+        // console.log("searchQuery was  = " + searchQuery);
+        // console.log("searchResults.results was  = " + searchResults);
         output = generateSearchResultsMessage(searchQuery,searchResults.results)
         this.attributes.lastSearch.lastSpeech = output;
         // this.emit(":ask", generateSearchResultsMessage(searchQuery,searchResults.results));
         this.emit(":ask", output);
       }
-    } else {
-        console.log("no searchable slot was provided");
-        console.log("searchQuery was  = " + searchQuery);
-        console.log("searchResults.results was  = " + searchResults);
+    } else { // No searchable slot was provided
+        // console.log("searchQuery was  = " + searchQuery);
+        // console.log("searchResults.results was  = " + searchResults);
 
         this.emit(":ask", generateSearchResultsMessage(searchQuery,false));
     }
@@ -782,7 +843,8 @@ function searchHoursIntentHandler() {
         } else {
           // Library hours for a specific weekend have been requested
           if ((date[0] == YEAR1) || (date[0] == YEAR2)) {
-            var week = date[1].replace("W", "");
+            var week = date[1].toUpperCase().replace("W", "");
+console.log("week after scrubbing: " + week);
             var ISODate = getDateOfISOWeek (week, date[0]);
 
             if (date[0] == YEAR1) {
@@ -853,6 +915,7 @@ function searchHoursIntentHandler() {
           }
         } else {
           // Asked for a week, e.g. "next week": 2017-W44
+console.log("asked for a week");
           if ((date[0] == YEAR1) || (date[0] == YEAR2)) {
             if (date[0] == YEAR1) {
               yearIndex = 0;
@@ -867,7 +930,8 @@ function searchHoursIntentHandler() {
             var todayDate = currentDate.getDate();
             var todayMonth = Number(currentDate.getMonth()) + 1;
             var todayYear = currentDate.getFullYear();
-
+console.log("ISODate.getMonth(): " + ISODate.getMonth() + ", type: " + typeof ISODate.getMonth());
+console.log("ISODate.getDate(): " + ISODate.getDate() + ", type: " + typeof ISODate.getDate());
             function newDate (days) {
               this.year = Number(date[0]);
               this.month = Number(ISODate.getMonth()) + 1;
@@ -882,93 +946,96 @@ function searchHoursIntentHandler() {
             var satDate = returnDate(new newDate(5));
             var sunDate = returnDate(new newDate(6));
 
-            // Dates of the requested week
-            var days = [Number(ISODate.getDate()), tueDate.date, wedDate.date, thuDate.date,
-                        friDate.date, satDate.date, sunDate.date];
-
-            var months = [Number(ISODate.getMonth()) + 1, tueDate.month, wedDate.month, thuDate.month,
-                          friDate.month, satDate.month, sunDate.month];
-
-            var years = [Number(ISODate.getFullYear()), tueDate.year, wedDate.year, thuDate.year,
-                         friDate.year, satDate.year, sunDate.year];
-
-            // Compare today's date with the requested week's dates
-            // Only tell the user the opening hours of the remainder of the week
-            if (((Number(ISODate.getMonth()) + 1) == todayMonth) && (date[0] == todayYear)) {
-              if (todayDate == days[0] || todayDate == days[1] || todayDate == days[2] ||
-                  todayDate == days[3] || todayDate == days[4] || todayDate == days[5] ||
-                  todayDate == days[6]) {
-
-                // Check which day you should start listing hours for
-                for (var i = 0; i < days.length; i++) {
-                  if (todayDate == days[i]) {
-                    // Found today's date
-                    start = i;
-                  }
-                }
-
-              } else {
-                // List all opening hours for the entire week
-                start = 0;
-              }
-            } else {
-              // List all opening hours for the entire week
-              start = 0;
-            }
-
-            var closed = [];
-            // Find the opening hours for the requested week
-            // Find any days that are closed
-            if (hours[yearIndex].month[months[0] - 1][days[0] - 1] == "closed") {
-              closed.push(0);
-            }
-            if (hours[yearIndex].month[months[1] - 1][days[1] - 1] == "closed") {
-              closed.push(1);
-            }
-            if (hours[yearIndex].month[months[2] - 1][days[2] - 1] == "closed") {
-              closed.push(2);
-            }
-            if (hours[yearIndex].month[months[3] - 1][days[3] - 1] == "closed") {
-              closed.push(3);
-            }
-            if (hours[yearIndex].month[months[4] - 1][days[4] - 1] == "closed") {
-              closed.push(4);
-            }
-            if (hours[yearIndex].month[months[5] - 1][days[5] - 1] == "closed") {
-              closed.push(5);
-            }
-            if (hours[yearIndex].month[months[6] - 1][days[6] - 1] == "closed") {
-              closed.push(6);
-            }
-
-            var str1 = "The library is open on the following days and hours: ";
-
-            for (var i = start; i < days.length; i++) {
-              if (!isInArray(i, closed)) {
-                // If the library isn't closed, list the open hours for that day
-                str1 += returnDay(i) + ", " + returnMonth(months[i]) + " " + days[i] + "th, from " + returnHours(hours[yearIndex].month[months[i] - 1][days[i] - 1]) + " - ";
-              }
-            }
-
-            var str2 = "The library is closed on the following days: ";
-            if (closed.length != 0) {
-              // If there are any days that are closed, state them
-              for (var i = 0; i < closed.length; i++) {
-                if (i == closed.length - 2) {
-                  str2 += returnDay(closed[i]) + ", " + returnMonth(months[closed[i]]) + " " + days[closed[i]] + "th - and ";
-                } else if (i == closed.length - 1) {
-                  str2 += returnDay(closed[i]) + ", " + returnMonth(months[closed[i]]) + " " + days[closed[i]] + "th. ";
-                } else {
-                  str2 += returnDay(closed[i]) + ", " + returnMonth(months[closed[i]]) + " " + days[closed[i]] + "th - ";
-                }
-              }
-
-              strEmit = str1 + str2;
-              this.emit(":tell", strEmit);
-
-            } else {
-              this.emit(":tell", str1);
-            }
+            // var test = tueDate.month + "/" + tueDate.date + "/" + tueDate.year;
+            this.emit(":tell", "hello");
+console.log("asynchronous?");
+            // // Dates of the requested week
+            // var days = [Number(ISODate.getDate()), tueDate.date, wedDate.date, thuDate.date,
+            //             friDate.date, satDate.date, sunDate.date];
+            //
+            // var months = [Number(ISODate.getMonth()) + 1, tueDate.month, wedDate.month, thuDate.month,
+            //               friDate.month, satDate.month, sunDate.month];
+            //
+            // var years = [Number(ISODate.getFullYear()), tueDate.year, wedDate.year, thuDate.year,
+            //              friDate.year, satDate.year, sunDate.year];
+            //
+            // // Compare today's date with the requested week's dates
+            // // Only tell the user the opening hours of the remainder of the week
+            // if (((Number(ISODate.getMonth()) + 1) == todayMonth) && (date[0] == todayYear)) {
+            //   if (todayDate == days[0] || todayDate == days[1] || todayDate == days[2] ||
+            //       todayDate == days[3] || todayDate == days[4] || todayDate == days[5] ||
+            //       todayDate == days[6]) {
+            //
+            //     // Check which day you should start listing hours for
+            //     for (var i = 0; i < days.length; i++) {
+            //       if (todayDate == days[i]) {
+            //         // Found today's date
+            //         start = i;
+            //       }
+            //     }
+            //
+            //   } else {
+            //     // List all opening hours for the entire week
+            //     start = 0;
+            //   }
+            // } else {
+            //   // List all opening hours for the entire week
+            //   start = 0;
+            // }
+            //
+            // var closed = [];
+            // // Find the opening hours for the requested week
+            // // Find any days that are closed
+            // if (hours[yearIndex].month[months[0] - 1][days[0] - 1] == "closed") {
+            //   closed.push(0);
+            // }
+            // if (hours[yearIndex].month[months[1] - 1][days[1] - 1] == "closed") {
+            //   closed.push(1);
+            // }
+            // if (hours[yearIndex].month[months[2] - 1][days[2] - 1] == "closed") {
+            //   closed.push(2);
+            // }
+            // if (hours[yearIndex].month[months[3] - 1][days[3] - 1] == "closed") {
+            //   closed.push(3);
+            // }
+            // if (hours[yearIndex].month[months[4] - 1][days[4] - 1] == "closed") {
+            //   closed.push(4);
+            // }
+            // if (hours[yearIndex].month[months[5] - 1][days[5] - 1] == "closed") {
+            //   closed.push(5);
+            // }
+            // if (hours[yearIndex].month[months[6] - 1][days[6] - 1] == "closed") {
+            //   closed.push(6);
+            // }
+            //
+            // var str1 = "The library is open on the following days and hours: ";
+            //
+            // for (var i = start; i < days.length; i++) {
+            //   if (!isInArray(i, closed)) {
+            //     // If the library isn't closed, list the open hours for that day
+            //     str1 += returnDay(i) + ", " + returnMonth(months[i]) + " " + days[i] + "th, from " + returnHours(hours[yearIndex].month[months[i] - 1][days[i] - 1]) + " - ";
+            //   }
+            // }
+            //
+            // var str2 = "The library is closed on the following days: ";
+            // if (closed.length != 0) {
+            //   // If there are any days that are closed, state them
+            //   for (var i = 0; i < closed.length; i++) {
+            //     if (i == closed.length - 2) {
+            //       str2 += returnDay(closed[i]) + ", " + returnMonth(months[closed[i]]) + " " + days[closed[i]] + "th - and ";
+            //     } else if (i == closed.length - 1) {
+            //       str2 += returnDay(closed[i]) + ", " + returnMonth(months[closed[i]]) + " " + days[closed[i]] + "th. ";
+            //     } else {
+            //       str2 += returnDay(closed[i]) + ", " + returnMonth(months[closed[i]]) + " " + days[closed[i]] + "th - ";
+            //     }
+            //   }
+            //
+            //   strEmit = str1 + str2;
+            //   this.emit(":tell", strEmit);
+            //
+            // } else {
+            //   this.emit(":tell", str1);
+            // }
 
           } else {
             this.emit(":tell", "The library hours have not been determined for that year.");
@@ -979,23 +1046,23 @@ function searchHoursIntentHandler() {
       } else {
         if (date[0] == "201X") {
           // Asked for this decade
-          console.log("Yes, the library will most likely be open for the next decade. Future hours have yet to be decided.");
+          this.emit(":tell", "Yes, the library will most likely be open for the next decade. Future hours have yet to be decided.");
         } else if (date[0] == "20XX") {
           // Asked for this century
-          console.log("I don't have my crystal ball with me, but I'm pretty sure the library will be around for the next century. Future hours have yet to be decided.");
+          this.emit(":tell", "Yes, the library will most likely be open for the next century. Future hours have yet to be decided.");
         } else {
           if (date[0] == YEAR1) {
             // Asked for this year
-            console.log("Yes, the library is open this year. Please specify a date or week for more detailed opening hours.");
+            this.emit(":tell", "Yes, the library is open this year. Please specify a date, week, or weekend for more detailed opening hours.");
           } else if (date[0] == YEAR2) {
             // Asked for next year
-            console.log("Yes, the library will be open next year. Please specify a date or week for more detailed opening hours.");
+            this.emit(":tell", "Yes, the library will be open next year. Please specify a date or week for more detailed opening hours.");
           } else if (Number(date[0]) < YEAR1) {
             // Asked for years in the past
-            console.log("Yes, the library was open last year. Are you a time traveler?");
+            this.emit(":tell", "Yes, the library was open last year. Please specify a present or future date, week, or weekend for more detailed opening hours.");
           } else {
-            // Asked for years in the future
-            console.log("Yes, the library will most likely be open in the future. Future hours have yet to be decided. Please specify a date or week for more detailed opening hours.")
+            // Asked for other years in the future
+            this.emit(":tell", "Yes, the library will most likely be open in the future. Future hours have yet to be decided. Please specify a date or week for more detailed opening hours.")
           }
         }
 
@@ -1016,7 +1083,7 @@ function searchByInfoTypeIntentHandler(){
   var infoType = isSlotValid(this.event.request, "infoType");
 
   var canSearch = figureOutWhichSlotToSearchBy(firstName,lastName);
-  console.log("canSearch is set to = " + canSearch);
+  // console.log("canSearch is set to = " + canSearch);
 
     if (canSearch) {
       var searchQuery = slots[canSearch].value;
@@ -1030,7 +1097,6 @@ function searchByInfoTypeIntentHandler(){
       this.attributes.lastSearch.lastIntent = "SearchByNameIntent";
 
       if (searchResults.count > 1) { // Multiple results found
-        console.log("multiple results were found");
         var listOfPeopleFound = loopThroughArrayOfObjects(lastSearch.results);
         output = generateSearchResultsMessage(searchQuery,searchResults.results) + listOfPeopleFound + ". Who would you like to learn more about?";
         this.handler.state = states.MULTIPLE_RESULTS; // Change state to MULTIPLE_RESULTS
@@ -1039,10 +1105,9 @@ function searchByInfoTypeIntentHandler(){
 
       } else if (searchResults.count == 1) { // One result found
           this.handler.state = states.DESCRIPTION; // Change state to description
-          console.log("one match was found");
           if (infoType) {
             // If a specific infoType was requested, redirect to specificInfoIntent
-            console.log("infoType or specialty was provided as well")
+            // infoType or specialty was provided as well
             var person = this.attributes.lastSearch.results[0];
             var cardContent = generateCard(person);
             var speechOutput = generateSpecificInfoMessage(slots,person);
@@ -1052,30 +1117,60 @@ function searchByInfoTypeIntentHandler(){
             this.emit(":askWithCard", speechOutput, repromptSpeech, cardContent.title, cardContent.body, cardContent.image);
             // this.emitWithState("TellMeThisIntent");
 
-          } else {
-            console.log("no infoType was provided.")
+          } else { // No infoType was provided
             output = generateSearchResultsMessage(searchQuery,searchResults.results)
             this.attributes.lastSearch.lastSpeech = output;
             // this.emit(":ask", generateSearchResultsMessage(searchQuery,searchResults.results));
             this.emit(":ask", output);
           }
 
-      } else { //no match found
-        console.log("no match found");
-        console.log("searchQuery was  = " + searchQuery);
-        console.log("searchResults.results was  = " + searchResults);
+      } else { // No match found
+        // console.log("searchQuery was  = " + searchQuery);
+        // console.log("searchResults.results was  = " + searchResults);
         output = generateSearchResultsMessage(searchQuery,searchResults.results)
         this.attributes.lastSearch.lastSpeech = output;
         // this.emit(":ask", generateSearchResultsMessage(searchQuery,searchResults.results));
         this.emit(":ask", output);
       }
-    } else {
-      console.log("no searchable slot was provided");
-      console.log("searchQuery was  = " + searchQuery);
-      console.log("searchResults.results was  = " + searchResults);
+    } else { // No searchable slot was provided
+      // console.log("searchQuery was  = " + searchQuery);
+      // console.log("searchResults.results was  = " + searchResults);
 
       this.emit(":ask", generateSearchResultsMessage(searchQuery,false));
     }
+}
+
+function tellHoursIntentHandler() {
+  var currentDate = new Date();
+  var d1, d2, c;
+  var date1, date2, check;
+  var currentPeriod;
+  var validDate = false;
+  var today = currentDate.getDate() + "/" + (currentDate.getMonth() + 1) + "/" + currentDate.getFullYear();
+
+  // Check date to see if it falls within one of the current school year's quarters/interims
+  for (var i = 0; i < period.length; i++) {
+    d1 = period[i][0].split("/");
+    d2 = period[i][1].split("/");
+    c = today.split("/");
+
+    date1 = new Date(d1[2], parseInt(d1[1]) - 1, d1[0]);
+    date2 = new Date(d2[2], parseInt(d2[1]) - 1, d2[0]);
+    check = new Date(c[2], parseInt(c[1]) - 1, c[0]);
+
+    if ((check >= date1) && (check <= date2)) {
+      currentPeriod = i;
+      validDate = true;
+    }
+  }
+
+  if (validDate) {
+    var str = periodHours[currentPeriod] + " " + extraHours[currentPeriod];
+    this.emit(":tell", str);
+  } else {
+    this.emit(":tell", "The hours for this quarter have not been determined yet.");
+  }
+
 }
 
 // =====================================================================================================
@@ -1117,7 +1212,7 @@ function generateSearchResultsMessage(searchQuery,results){
         details = person.firstName + " " + person.lastName + " is the " + person.title
         prompt = generateNextPromptMessage(person,"current");
         sentence = details + prompt
-        console.log(sentence);
+        // console.log(sentence);
         break;
     case (results.length > 1):
         sentence = "I found " + results.length + " matching results";
@@ -1373,12 +1468,14 @@ function isInfoTypeValid (infoType) {
 // date should be the actual date number (e.g. 10 for August 10)
 
 // All information should be passed in as an object
+// NOTE: Function is only meant for positive numbers of days
 function returnDate (dateObject) {
   var isLeapYear;
   var newMonth, newDate, newYear, newDays;
   var daysInMonth;
   var newDateObject;
-
+console.log("object passed in: " + dateObject.year + ", " + dateObject.month + ", " + dateObject.date + ", " + dateObject.days);
+console.log("returnDate called");
   // Check if it is a leap year
   if ((dateObject.year % 4) == 0) {
     if ((dateObject.year % 100) == 0) {
@@ -1452,7 +1549,7 @@ function returnDate (dateObject) {
 
   // Check to see if the number of days exceeds the number of days in a month
   // e.g. Adding 10 days to March 31st
-  if ((Math.floor((dateObject.date + dateObject.days) / daysInMonth) > 0) && ((dateObject.date + dateObject.days) / daysInMonth) != 1) {
+  if ((Math.floor((dateObject.date + Math.abs(dateObject.days)) / daysInMonth) > 0) && ((dateObject.date + Math.abs(dateObject.days)) / daysInMonth) != 1) {
     // Number of days exceeds number of days in a month
     // Advance one month, recursively call returnDate again
     if (dateObject.month != 12) {
@@ -1465,7 +1562,7 @@ function returnDate (dateObject) {
     }
 
     newDate = 1;
-    newDays = dateObject.days - (daysInMonth - dateObject.date + 1);
+    newDays = Math.abs(dateObject.days) - (daysInMonth - dateObject.date + 1);
 
     newDateObject = {
       year: newYear,
@@ -1480,9 +1577,9 @@ function returnDate (dateObject) {
     // Number of days won't exceed number of days in a month, can just add the days
     newYear = dateObject.year;
     newMonth = dateObject.month;
-    newDate = dateObject.date + dateObject.days;
+    newDate = dateObject.date + Math.abs(dateObject.days);
     newDays = 0;
-
+console.log("about to return: " + newMonth + "/" + newDate + "/" + newYear);
   }
 
   return newDateObject = {
@@ -1578,6 +1675,7 @@ function returnHours (raw) {
 
 // Given a week number and year, returns the date of the start of that week
 function getDateOfISOWeek (week, year) {
+console.log("getDateOfISOWeek passed in: " + week + ", " + year);
   var date = new Date(year, 0, 1 + (week - 1) * 7);
   var ISOWeekStart = date;
   if (date.getDay() <= 4) {
@@ -1585,7 +1683,7 @@ function getDateOfISOWeek (week, year) {
   } else {
     ISOWeekStart.setDate(date.getDate() + 8 - date.getDay());
   }
-
+console.log("ISOWeekStart: " + ISOWeekStart.getMonth() + "/" + ISOWeekStart.getDate() + "/" + ISOWeekStart.getFullYear());
   return ISOWeekStart;
 }
 

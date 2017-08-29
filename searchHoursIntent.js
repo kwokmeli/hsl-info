@@ -49,7 +49,7 @@ var year;
 var yearIndex;
 var status;
 
-var test = "2018-11-27";
+var test = "2017-W35";
 var currentDate = new Date();
 
 if (test == "PRESENT_REF") {
@@ -337,7 +337,7 @@ function returnDate (dateObject) {
   var newMonth, newDate, newYear, newDays;
   var daysInMonth;
   var newDateObject;
-
+console.log("object passed in: " + dateObject.year + ", " + dateObject.month + ", " + dateObject.date + ", " + dateObject.days);
   // Check if it is a leap year
   if ((dateObject.year % 4) == 0) {
     if ((dateObject.year % 100) == 0) {
@@ -411,7 +411,7 @@ function returnDate (dateObject) {
 
   // Check to see if the number of days exceeds the number of days in a month
   // e.g. Adding 10 days to March 31st
-  if ((Math.floor((dateObject.date + dateObject.days) / daysInMonth) > 0) && ((dateObject.date + dateObject.days) / daysInMonth) != 1) {
+  if ((Math.floor((dateObject.date + Math.abs(dateObject.days)) / daysInMonth) > 0) && ((dateObject.date + Math.abs(dateObject.days)) / daysInMonth) != 1) {
     // Number of days exceeds number of days in a month
     // Advance one month, recursively call returnDate again
     if (dateObject.month != 12) {
@@ -424,7 +424,7 @@ function returnDate (dateObject) {
     }
 
     newDate = 1;
-    newDays = dateObject.days - (daysInMonth - dateObject.date + 1);
+    newDays = Math.abs(dateObject.days) - (daysInMonth - dateObject.date + 1);
 
     newDateObject = {
       year: newYear,
@@ -439,7 +439,7 @@ function returnDate (dateObject) {
     // Number of days won't exceed number of days in a month, can just add the days
     newYear = dateObject.year;
     newMonth = dateObject.month;
-    newDate = dateObject.date + dateObject.days;
+    newDate = dateObject.date + Math.abs(dateObject.days);
     newDays = 0;
 
   }
