@@ -67,24 +67,24 @@ var period = [
 ];
 
 // NOTE: Update these dates for each new school year
-var autumnHours = "The opening hours for autumn quarter are: Monday through Thursday, from 7:30am to 9:00pm - Fridays from 7:30am to 7:00pm - Saturdays from 12:00pm to 5:00pm - and Sundays from 12:00pm to 7:00pm.";
-var autumnWinterHours = "The opening hours for the autumn winter interim are: Monday through Friday, from 9:00am to 5:00pm. The library is closed on Saturdays and Sundays.";
-var winterHours = "The opening hours for winter quarter are: Monday through Thursday, from 7:30am to 9:00pm - Fridays from 7:30am to 7:00pm - Saturdays from 12:00pm to 5:00pm - and Sundays from 12:00pm to 7:00pm.";
-var winterSpringHours = "The opening hours for the winter spring interim are: Monday through Friday, from 7:30am to 7:00pm. The library is closed on Saturdays and Sundays.";
-var springHours = "The opening hours for spring quarter are: Monday through Thursday, from 7:30am to 9:00pm - Fridays from 7:30am to 7:00pm - Saturdays from 12:00pm to 5:00pm - and Sundays from 12:00pm to 7:00pm.";
-var springSummerHours = "The opening hours for the spring summer interim are: Monday through Friday, from 7:30am to 7:00pm. The library is closed on Saturdays and Sundays.";
-var summerHours = "The opening hours for summer quarter are: Monday through Friday, from 7:30am to 7:00pm - Sundays from 1:00pm to 5:00pm. The library is closed on Saturdays.";
-var summerAutumnHours = "The opening hours for the summer autumn interim are: Monday through Friday, from 7:30am to 7:00pm. The library is closed on Saturdays and Sundays.";
+var autumnHours = "The opening hours for autumn quarter are: <prosody rate=\"slow\"> Monday through Thursday, from 7:30am to 9:00pm - Fridays from 7:30am to 7:00pm - Saturdays from 12:00pm to 5:00pm - and Sundays from 12:00pm to 7:00pm. </prosody>";
+var autumnWinterHours = "The opening hours for the autumn winter interim are: <prosody rate=\"slow\"> Monday through Friday, from 9:00am to 5:00pm. The library is closed on Saturdays and Sundays. </prosody>";
+var winterHours = "The opening hours for winter quarter are: <prosody rate=\"slow\"> Monday through Thursday, from 7:30am to 9:00pm - Fridays from 7:30am to 7:00pm - Saturdays from 12:00pm to 5:00pm - and Sundays from 12:00pm to 7:00pm. </prosody>";
+var winterSpringHours = "The opening hours for the winter spring interim are: <prosody rate=\"slow\"> Monday through Friday, from 7:30am to 7:00pm. The library is closed on Saturdays and Sundays. </prosody>";
+var springHours = "The opening hours for spring quarter are: <prosody rate=\"slow\"> Monday through Thursday, from 7:30am to 9:00pm - Fridays from 7:30am to 7:00pm - Saturdays from 12:00pm to 5:00pm - and Sundays from 12:00pm to 7:00pm. </prosody>";
+var springSummerHours = "The opening hours for the spring summer interim are: <prosody rate=\"slow\"> Monday through Friday, from 7:30am to 7:00pm. The library is closed on Saturdays and Sundays. </prosody>";
+var summerHours = "The opening hours for summer quarter are: <prosody rate=\"slow\"> Monday through Friday, from 7:30am to 7:00pm - Sundays from 1:00pm to 5:00pm. The library is closed on Saturdays. </prosody>";
+var summerAutumnHours = "The opening hours for the summer autumn interim are: <prosody rate=\"slow\"> Monday through Friday, from 7:30am to 7:00pm. The library is closed on Saturdays and Sundays. </prosody>";
 
 // NOTE: Update these extra hours for each new school year
-var autumnExtra = "The library is also closed on November 23rd, November 24th, and November 25th. The adjusted library hours for November 10th are 1:00pm to 5:00pm, and the hours for November 22nd are 7:30am to 5:00pm.";
-var autumnWinterExtra = "The library is also closed on December 25th, and January 1st.";
-var winterExtra = "The adjusted library hours for January 15th and February 19th are 1:00pm to 5:00pm.";
+var autumnExtra = "The library is also closed on <prosody rate=\"slow\"> November 23rd, November 24th, and November 25th. The adjusted library hours for November 10th are 1:00pm to 5:00pm, and the hours for November 22nd are 7:30am to 5:00pm. </prosody>";
+var autumnWinterExtra = "The library is also closed on <prosody rate=\"slow\"> December 25th, and January 1st. </prosody>";
+var winterExtra = "The adjusted library hours for <prosody rate=\"slow\"> January 15th and February 19th are 1:00pm to 5:00pm. </prosody>";
 var winterSpringExtra = "";
-var springExtra = "The adjusted library hours for May 28th are 1:00pm to 5:00pm.";
+var springExtra = "The adjusted library hours for <prosody rate=\"slow\"> May 28th are 1:00pm to 5:00pm. </prosody>";
 var springSummerExtra = "";
-var summerExtra = "The library is also closed on July 4th. The adjusted library hours for July 3rd are 7:30am to 5:00pm.";
-var summerAutumnExtra = "The library is also closed on September 4th. The adjusted library hours for August 21st are 3:00pm - 7:00pm. The hours for September 19th are 10:00am to 7:00pm. And the hours for September 25th and September 26th are 7:30am to 9:00pm.";
+var summerExtra = "The library is also closed on <prosody rate=\"slow\"> July 4th. The adjusted library hours for July 3rd are 7:30am to 5:00pm. </prosody>";
+var summerAutumnExtra = "The library is also closed on <prosody rate=\"slow\"> September 4th. The adjusted library hours for August 21st are 3:00pm - 7:00pm. The hours for September 19th are 10:00am to 7:00pm. And the hours for September 25th and September 26th are 7:30am to 9:00pm. </prosody>";
 
 var extraHours = [
   autumnExtra,
@@ -258,7 +258,7 @@ var skillName = "HSL Library Helper";
 // This is the welcome message for when a user starts the skill without a specific intent.
 // var WELCOME_MESSAGE = "Welcome to  " + skillName + "! I can help you find Alexa Evangelists and Solutions Architects. " + getGenericHelpMessage(data);
 
-var WELCOME_MESSAGE = "Learn about the librarians of the Health Sciences Library, or search for a librarian by specialty. " + getGenericHelpMessage(data)
+var WELCOME_MESSAGE = "Learn about the librarians of the Health Sciences Library, or search for a librarian by specialty. You can also ask about the opening hours of the library. " + getGenericHelpMessage(data)
 
 // This is the message a user will hear when they ask Alexa for help in your skill.
 var HELP_MESSAGE = "I can help you find a librarian. "
@@ -767,7 +767,7 @@ function searchBySpecialtyIntentHandler () {
 
 }
 
-/* TODO */
+/* REVIEW */
 function searchHoursIntentHandler() {
   var requestedDate = isSlotValid(this.event.request, "date");
 
@@ -860,17 +860,17 @@ function searchHoursIntentHandler() {
               this.days = days;
             }
 
-            var satDate = returnDate(new newDate(4));
-            var sunDate = returnDate(new newDate(5));
+            var satDate = returnDate(new newDate(5));
+            var sunDate = returnDate(new newDate(6));
 
             var sat = hours[yearIndex].month[satDate.month - 1][satDate.date];
             var sun = hours[yearIndex].month[sunDate.month - 1][sunDate.date];
 
             if (sat == "closed" && sun == "closed") {
-              strEmit = "The library is not open that weekend, on " + returnMonth(satDate.month) + " " + satDate.date + "th and " + returnMonth(sunDate.month) + " " + sunDate.date + "th. ";
+              strEmit = "The library is not open on the weekend of " + returnMonth(satDate.month) + " " + satDate.date + "th and " + returnMonth(sunDate.month) + " " + sunDate.date + "th. ";
               this.emit(":tell", strEmit);
             } else if (sat == "closed") {
-              strEmit = "The library is not open on Saturday, but it is open on Sunday from " + returnHours(sun) + ". "
+              strEmit = "The library is not open on Saturday, but it is open on Sunday from " + returnHours(sun) + ". ";
               this.emit(":tell", strEmit);
             } else if (sun == "closed") {
               strEmit = "The library is open on Saturday from " + returnHours(sat) + ", but it is not open on Sunday.";
@@ -888,7 +888,7 @@ function searchHoursIntentHandler() {
                 strEmit = "The library is open on Saturday and Sunday from " + returnHours(sat);
                 this.emit(":tell", strEmit);
               } else {
-                strEmit = "The library is open on Saturday from " + returnHours(sat) + ", and open on Sunday from " + returnHours(sun) + ". "
+                strEmit = "The library is open on Saturday from " + returnHours(sat) + ", and open on Sunday from " + returnHours(sun) + ". ";
                 this.emit(":tell", strEmit);
               }
             }
@@ -902,7 +902,7 @@ function searchHoursIntentHandler() {
       } else if (date.length == 2) {
         if (!isNaN(date[1])) {
           // Asked for a month, e.g. "this month": 2017-08
-          strEmit = "Yes, the library is open during the month of " + returnMonth(date[1]) + ". Please specify a date or week for more detailed opening hours.";
+          strEmit = "Yes, the library is open during the month of " + returnMonth(date[1]) + ". <break time=\"0.25s\"/> Please specify a date or week for more detailed opening hours.";
           this.emit(":tell", strEmit);
 
         } else if ((date[1].toUpperCase() == "WI") || (date[1].toUpperCase() == "SP") || (date[1].toUpperCase() == "SU") || (date[1].toUpperCase() == "FA")) {
@@ -924,7 +924,7 @@ function searchHoursIntentHandler() {
               currentPeriod = 0;
             }
 
-            strEmit = "Yes, the library will be open during " + season + " quarter. <prosody rate=\"slow\">" + periodHours[currentPeriod] + " <break time=\"0.5s\"/>" + extraHours[currentPeriod] + "</prosody>";
+            strEmit = "Yes, the library will be open during " + season + " quarter. " + periodHours[currentPeriod] + " <break time=\"0.5s\"/>" + extraHours[currentPeriod];
             this.emit(":tell", strEmit);
 
           } else {
@@ -961,7 +961,6 @@ function searchHoursIntentHandler() {
             var satDate = returnDate(new newDate(5));
             var sunDate = returnDate(new newDate(6));
 
-            // var test = tueDate.month + "/" + tueDate.date + "/" + tueDate.year;
             // Dates of the requested week
             var days = [Number(ISODate.getDate()), tueDate.date, wedDate.date, thuDate.date,
                         friDate.date, satDate.date, sunDate.date];
@@ -1178,7 +1177,7 @@ function tellHoursIntentHandler() {
   }
 
   if (validDate) {
-    var str = "<prosody rate=\"slow\">" + periodHours[currentPeriod] + " <break time=\"0.5s\"/>" + extraHours[currentPeriod] + "</prosody>";
+    var str = periodHours[currentPeriod] + " <break time=\"0.25s\"/>" + extraHours[currentPeriod];
     this.emit(":tell", str);
   } else {
     this.emit(":tell", "The hours for this quarter have not been determined yet.");
@@ -1196,7 +1195,7 @@ function generateNextPromptMessage(person,mode){
 
   if (mode == "current"){
     // if the mode is current, we should give more informaiton about the current contact
-    prompt = ". Would you like more information? For example, things you can say are - tell me more, or tell me " + genderize("his-her", person.gender) + " " + infoTypes[getRandom(0,infoTypes.length-1)];
+    prompt = ". <break time=\"0.5s\"/> Would you like more information? For example, things you can say are - tell me more, or tell me " + genderize("his-her", person.gender) + " " + infoTypes[getRandom(0,infoTypes.length-1)];
   }
   //if the mode is general, we should provide general help information
   else if (mode == "general") {
@@ -1238,7 +1237,7 @@ function generateSearchResultsMessage(searchQuery,results){
 }
 
 function getGenericHelpMessage(data){
-var sentences = ["things you can ask include - who is " + getRandomName(data), "you can say the name of a librarian or say a topic of interest.", "you can say a topic, such as - " + getRandomSubject(index)];
+var sentences = ["things you can ask include - who is " + getRandomName(data), "you can say the name of a librarian or say a topic of interest.", "you can say a topic, such as - " + getRandomSubject(index), "you can ask me - what are the library's hours"];
 return "For example, " + sentences[getRandom(0,sentences.length-1)];
 }
 
@@ -1487,8 +1486,7 @@ function returnDate (dateObject) {
   var newMonth, newDate, newYear, newDays;
   var daysInMonth;
   var newDateObject;
-console.log("object passed in: " + dateObject.year + ", " + dateObject.month + ", " + dateObject.date + ", " + dateObject.days);
-console.log("returnDate called");
+
   // Check if it is a leap year
   if ((dateObject.year % 4) == 0) {
     if ((dateObject.year % 100) == 0) {
@@ -1592,7 +1590,6 @@ console.log("returnDate called");
     newMonth = dateObject.month;
     newDate = dateObject.date + Math.abs(dateObject.days);
     newDays = 0;
-console.log("about to return: " + newMonth + "/" + newDate + "/" + newYear);
   }
 
   return newDateObject = {
@@ -1688,7 +1685,6 @@ function returnHours (raw) {
 
 // Given a week number and year, returns the date of the start of that week
 function getDateOfISOWeek (week, year) {
-console.log("getDateOfISOWeek passed in: " + week + ", " + year);
   var date = new Date(year, 0, 1 + (week - 1) * 7);
   var ISOWeekStart = date;
   if (date.getDay() <= 4) {
@@ -1696,7 +1692,7 @@ console.log("getDateOfISOWeek passed in: " + week + ", " + year);
   } else {
     ISOWeekStart.setDate(date.getDate() + 8 - date.getDay());
   }
-console.log("ISOWeekStart: " + ISOWeekStart.getMonth() + "/" + ISOWeekStart.getDate() + "/" + ISOWeekStart.getFullYear());
+
   return ISOWeekStart;
 }
 
