@@ -183,6 +183,70 @@
       ]
     },
     {
+      "name": "SearchHoursIntent",
+      "samples": [
+        "is the library {libraryStatus} {date}",
+        "is the library {libraryStatus} on {date}",
+        "will the library {libraryStatus} {date}",
+        "will the library be {libraryStatus} on {date}",
+        "will the library be {libraryStatus} {date}",
+        "will the library {libraryStatus} on {date}",
+        "are you {libraryStatus} {date}",
+        "are you {libraryStatus} on {date}",
+        "will you be {libraryStatus} {date}",
+        "will you be {libraryStatus} on {date}",
+        "{libraryStatus} {date}",
+        "{date}"
+      ],
+      "slots": [
+        {
+          "name": "libraryStatus",
+          "type": "LIBRARY_STATUS",
+          "samples": []
+        },
+        {
+          "name": "date",
+          "type": "AMAZON.DATE",
+          "samples": []
+        }
+      ]
+    },
+    {
+      "name": "TellHoursIntent",
+      "samples": [
+        "{whatPhrase} hours",
+        "{whatPhrase} library hours",
+        "{whatPhrase} your hours",
+        "{whatPhrase} the hours",
+        "{whatPhrase} the library hours",
+        "when are you {libraryStatus}",
+        "when is the library {libraryStatus}",
+        "{whatPhrase} your library hours",
+        "{whatPhrase} the opening hours ",
+        "{whatPhrase} your opening hours",
+        "{whatPhrase} the library's opening hours",
+        "{whatPhrase} your library's opening hours",
+        "{whatPhrase} the library opening hours",
+        "{whatPhrase} your library opening hours",
+        "{whatPhrase} the hours for the library",
+        "{whatPhrase} your hours for the library",
+        "library hours",
+        "hours"
+      ],
+      "slots": [
+        {
+          "name": "whatPhrase",
+          "type": "WHAT_PHRASE",
+          "samples": []
+        },
+        {
+          "name": "libraryStatus",
+          "type": "LIBRARY_STATUS",
+          "samples": []
+        }
+      ]
+    },
+    {
       "name": "TellMeMoreIntent",
       "samples": [
         "contact info",
@@ -412,6 +476,31 @@
           "name": {
             "value": "safranek",
             "synonyms": []
+          }
+        }
+      ]
+    },
+    {
+      "name": "LIBRARY_STATUS",
+      "values": [
+        {
+          "id": null,
+          "name": {
+            "value": "open",
+            "synonyms": [
+              "not closed",
+              "opening"
+            ]
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "closed",
+            "synonyms": [
+              "not open",
+              "closing"
+            ]
           }
         }
       ]
@@ -1302,6 +1391,20 @@
           "id": null,
           "name": {
             "value": "what are the",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "give me information",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "give me information about",
             "synonyms": []
           }
         }

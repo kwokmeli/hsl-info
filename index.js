@@ -829,7 +829,8 @@ function searchHoursIntentHandler() {
             status = hours[yearIndex].month[Number(date[1]) - 1][Number(date[2]) - 1];
 
             if (status == "closed") {
-              this.emit(":tell", "closed");
+              strEmit = "The library is closed on " + returnMonth(date[1]) + " " + date[2] + "th.";
+              this.emit(":tell", strEmit);
             } else if (status == "") {
               this.emit(":tell", "The library hours have not been determined for that day.");
             } else {
@@ -844,7 +845,6 @@ function searchHoursIntentHandler() {
           // Library hours for a specific weekend have been requested
           if ((date[0] == YEAR1) || (date[0] == YEAR2)) {
             var week = date[1].toUpperCase().replace("W", "");
-console.log("week after scrubbing: " + week);
             var ISODate = getDateOfISOWeek (week, date[0]);
 
             if (date[0] == YEAR1) {
@@ -853,11 +853,22 @@ console.log("week after scrubbing: " + week);
               yearIndex = 1;
             }
 
-            var sat = hours[yearIndex].month[ISODate.getMonth()][ISODate.getDate() + 4];
-            var sun = hours[yearIndex].month[ISODate.getMonth()][ISODate.getDate() + 5];
+            function newDate (days) {
+              this.year = Number(date[0]);
+              this.month = Number(ISODate.getMonth()) + 1;
+              this.date = Number(ISODate.getDate());
+              this.days = days;
+            }
+
+            var satDate = returnDate(new newDate(4));
+            var sunDate = returnDate(new newDate(5));
+
+            var sat = hours[yearIndex].month[satDate.month - 1][satDate.date];
+            var sun = hours[yearIndex].month[sunDate.month - 1][sunDate.date];
 
             if (sat == "closed" && sun == "closed") {
-              this.emit(":tell", "The library is not open this/that weekend.");
+              strEmit = "The library is not open that weekend, on " + returnMonth(satDate.month) + " " + satDate.date + "th and " + returnMonth(sunDate.month) + " " + sunDate.date + "th. ";
+              this.emit(":tell", strEmit);
             } else if (sat == "closed") {
               strEmit = "The library is not open on Saturday, but it is open on Sunday from " + returnHours(sun) + ". "
               this.emit(":tell", strEmit);
@@ -894,20 +905,26 @@ console.log("week after scrubbing: " + week);
           strEmit = "Yes, the library is open during the month of " + returnMonth(date[1]) + ". Please specify a date or week for more detailed opening hours.";
           this.emit(":tell", strEmit);
 
-        } else if ((date[1] == "WI") || (date[1] == "SP") || (date[1] == "SU") || (date[1] == "FA")) {
+        } else if ((date[1].toUpperCase() == "WI") || (date[1].toUpperCase() == "SP") || (date[1].toUpperCase() == "SU") || (date[1].toUpperCase() == "FA")) {
           // Asked for a season, e.g. "next winter": 2017-WI
+          var season, currentPeriod;
+
           if (date[0] == YEAR1 || date[0] == YEAR2) {
-            if (date[1] == "WI") {
-              var season = "winter";
-            } else if (date[1] == "SP") {
-              var season = "spring";
-            } else if (date[1] == "SU") {
-              var season = "summer";
+            if (date[1].toUpperCase() == "WI") {
+              season = "winter";
+              currentPeriod = 2;
+            } else if (date[1].toUpperCase() == "SP") {
+              season = "spring";
+              currentPeriod = 4;
+            } else if (date[1].toUpperCase() == "SU") {
+              season = "summer";
+              currentPeriod = 6;
             } else {
-              var season = "fall";
+              season = "autumn";
+              currentPeriod = 0;
             }
 
-            strEmit = "Yes, the library will be open in the " + season + ". Please specify a date or week for more detailed opening hours.";
+            strEmit = "Yes, the library will be open during " + season + " quarter. <prosody rate=\"slow\">" + periodHours[currentPeriod] + " <break time=\"0.5s\"/>" + extraHours[currentPeriod] + "</prosody>";
             this.emit(":tell", strEmit);
 
           } else {
@@ -915,7 +932,6 @@ console.log("week after scrubbing: " + week);
           }
         } else {
           // Asked for a week, e.g. "next week": 2017-W44
-console.log("asked for a week");
           if ((date[0] == YEAR1) || (date[0] == YEAR2)) {
             if (date[0] == YEAR1) {
               yearIndex = 0;
@@ -924,14 +940,13 @@ console.log("asked for a week");
             }
 
             var start;
-            var week = date[1].replace("W", "");
+            var week = date[1].toUpperCase().replace("W", "");
             var ISODate = getDateOfISOWeek(week, date[0]);
 
             var todayDate = currentDate.getDate();
             var todayMonth = Number(currentDate.getMonth()) + 1;
             var todayYear = currentDate.getFullYear();
-console.log("ISODate.getMonth(): " + ISODate.getMonth() + ", type: " + typeof ISODate.getMonth());
-console.log("ISODate.getDate(): " + ISODate.getDate() + ", type: " + typeof ISODate.getDate());
+
             function newDate (days) {
               this.year = Number(date[0]);
               this.month = Number(ISODate.getMonth()) + 1;
@@ -947,95 +962,93 @@ console.log("ISODate.getDate(): " + ISODate.getDate() + ", type: " + typeof ISOD
             var sunDate = returnDate(new newDate(6));
 
             // var test = tueDate.month + "/" + tueDate.date + "/" + tueDate.year;
-            this.emit(":tell", "hello");
-console.log("asynchronous?");
-            // // Dates of the requested week
-            // var days = [Number(ISODate.getDate()), tueDate.date, wedDate.date, thuDate.date,
-            //             friDate.date, satDate.date, sunDate.date];
-            //
-            // var months = [Number(ISODate.getMonth()) + 1, tueDate.month, wedDate.month, thuDate.month,
-            //               friDate.month, satDate.month, sunDate.month];
-            //
-            // var years = [Number(ISODate.getFullYear()), tueDate.year, wedDate.year, thuDate.year,
-            //              friDate.year, satDate.year, sunDate.year];
-            //
-            // // Compare today's date with the requested week's dates
-            // // Only tell the user the opening hours of the remainder of the week
-            // if (((Number(ISODate.getMonth()) + 1) == todayMonth) && (date[0] == todayYear)) {
-            //   if (todayDate == days[0] || todayDate == days[1] || todayDate == days[2] ||
-            //       todayDate == days[3] || todayDate == days[4] || todayDate == days[5] ||
-            //       todayDate == days[6]) {
-            //
-            //     // Check which day you should start listing hours for
-            //     for (var i = 0; i < days.length; i++) {
-            //       if (todayDate == days[i]) {
-            //         // Found today's date
-            //         start = i;
-            //       }
-            //     }
-            //
-            //   } else {
-            //     // List all opening hours for the entire week
-            //     start = 0;
-            //   }
-            // } else {
-            //   // List all opening hours for the entire week
-            //   start = 0;
-            // }
-            //
-            // var closed = [];
-            // // Find the opening hours for the requested week
-            // // Find any days that are closed
-            // if (hours[yearIndex].month[months[0] - 1][days[0] - 1] == "closed") {
-            //   closed.push(0);
-            // }
-            // if (hours[yearIndex].month[months[1] - 1][days[1] - 1] == "closed") {
-            //   closed.push(1);
-            // }
-            // if (hours[yearIndex].month[months[2] - 1][days[2] - 1] == "closed") {
-            //   closed.push(2);
-            // }
-            // if (hours[yearIndex].month[months[3] - 1][days[3] - 1] == "closed") {
-            //   closed.push(3);
-            // }
-            // if (hours[yearIndex].month[months[4] - 1][days[4] - 1] == "closed") {
-            //   closed.push(4);
-            // }
-            // if (hours[yearIndex].month[months[5] - 1][days[5] - 1] == "closed") {
-            //   closed.push(5);
-            // }
-            // if (hours[yearIndex].month[months[6] - 1][days[6] - 1] == "closed") {
-            //   closed.push(6);
-            // }
-            //
-            // var str1 = "The library is open on the following days and hours: ";
-            //
-            // for (var i = start; i < days.length; i++) {
-            //   if (!isInArray(i, closed)) {
-            //     // If the library isn't closed, list the open hours for that day
-            //     str1 += returnDay(i) + ", " + returnMonth(months[i]) + " " + days[i] + "th, from " + returnHours(hours[yearIndex].month[months[i] - 1][days[i] - 1]) + " - ";
-            //   }
-            // }
-            //
-            // var str2 = "The library is closed on the following days: ";
-            // if (closed.length != 0) {
-            //   // If there are any days that are closed, state them
-            //   for (var i = 0; i < closed.length; i++) {
-            //     if (i == closed.length - 2) {
-            //       str2 += returnDay(closed[i]) + ", " + returnMonth(months[closed[i]]) + " " + days[closed[i]] + "th - and ";
-            //     } else if (i == closed.length - 1) {
-            //       str2 += returnDay(closed[i]) + ", " + returnMonth(months[closed[i]]) + " " + days[closed[i]] + "th. ";
-            //     } else {
-            //       str2 += returnDay(closed[i]) + ", " + returnMonth(months[closed[i]]) + " " + days[closed[i]] + "th - ";
-            //     }
-            //   }
-            //
-            //   strEmit = str1 + str2;
-            //   this.emit(":tell", strEmit);
-            //
-            // } else {
-            //   this.emit(":tell", str1);
-            // }
+            // Dates of the requested week
+            var days = [Number(ISODate.getDate()), tueDate.date, wedDate.date, thuDate.date,
+                        friDate.date, satDate.date, sunDate.date];
+
+            var months = [Number(ISODate.getMonth()) + 1, tueDate.month, wedDate.month, thuDate.month,
+                          friDate.month, satDate.month, sunDate.month];
+
+            var years = [Number(ISODate.getFullYear()), tueDate.year, wedDate.year, thuDate.year,
+                         friDate.year, satDate.year, sunDate.year];
+
+            // Compare today's date with the requested week's dates
+            // Only tell the user the opening hours of the remainder of the week
+            if (((Number(ISODate.getMonth()) + 1) == todayMonth) && (date[0] == todayYear)) {
+              if (todayDate == days[0] || todayDate == days[1] || todayDate == days[2] ||
+                  todayDate == days[3] || todayDate == days[4] || todayDate == days[5] ||
+                  todayDate == days[6]) {
+
+                // Check which day you should start listing hours for
+                for (var i = 0; i < days.length; i++) {
+                  if (todayDate == days[i]) {
+                    // Found today's date
+                    start = i;
+                  }
+                }
+
+              } else {
+                // List all opening hours for the entire week
+                start = 0;
+              }
+            } else {
+              // List all opening hours for the entire week
+              start = 0;
+            }
+
+            var closed = [];
+            // Find the opening hours for the requested week
+            // Find any days that are closed
+            if (hours[yearIndex].month[months[0] - 1][days[0] - 1] == "closed") {
+              closed.push(0);
+            }
+            if (hours[yearIndex].month[months[1] - 1][days[1] - 1] == "closed") {
+              closed.push(1);
+            }
+            if (hours[yearIndex].month[months[2] - 1][days[2] - 1] == "closed") {
+              closed.push(2);
+            }
+            if (hours[yearIndex].month[months[3] - 1][days[3] - 1] == "closed") {
+              closed.push(3);
+            }
+            if (hours[yearIndex].month[months[4] - 1][days[4] - 1] == "closed") {
+              closed.push(4);
+            }
+            if (hours[yearIndex].month[months[5] - 1][days[5] - 1] == "closed") {
+              closed.push(5);
+            }
+            if (hours[yearIndex].month[months[6] - 1][days[6] - 1] == "closed") {
+              closed.push(6);
+            }
+
+            var str1 = "The library is open on the following days and hours: ";
+
+            for (var i = start; i < days.length; i++) {
+              if (!isInArray(i, closed)) {
+                // If the library isn't closed, list the open hours for that day
+                str1 += returnDay(i) + ", " + returnMonth(months[i]) + " " + days[i] + "th, from " + returnHours(hours[yearIndex].month[months[i] - 1][days[i] - 1]) + " - ";
+              }
+            }
+
+            var str2 = "The library is closed on the following days: ";
+            if (closed.length != 0) {
+              // If there are any days that are closed, state them
+              for (var i = 0; i < closed.length; i++) {
+                if (i == closed.length - 2) {
+                  str2 += returnDay(closed[i]) + ", " + returnMonth(months[closed[i]]) + " " + days[closed[i]] + "th - and ";
+                } else if (i == closed.length - 1) {
+                  str2 += returnDay(closed[i]) + ", " + returnMonth(months[closed[i]]) + " " + days[closed[i]] + "th. ";
+                } else {
+                  str2 += returnDay(closed[i]) + ", " + returnMonth(months[closed[i]]) + " " + days[closed[i]] + "th - ";
+                }
+              }
+
+              strEmit = str1 + str2;
+              this.emit(":tell", strEmit);
+
+            } else {
+              this.emit(":tell", str1);
+            }
 
           } else {
             this.emit(":tell", "The library hours have not been determined for that year.");
@@ -1071,7 +1084,7 @@ console.log("asynchronous?");
     }
 
   } else {
-    this.emit(":tell", "Couldn't get date.");
+    this.emit(":tell", "Couldn't get date. Please try again.");
   }
 
 }
@@ -1165,7 +1178,7 @@ function tellHoursIntentHandler() {
   }
 
   if (validDate) {
-    var str = periodHours[currentPeriod] + " " + extraHours[currentPeriod];
+    var str = "<prosody rate=\"slow\">" + periodHours[currentPeriod] + " <break time=\"0.5s\"/>" + extraHours[currentPeriod] + "</prosody>";
     this.emit(":tell", str);
   } else {
     this.emit(":tell", "The hours for this quarter have not been determined yet.");
