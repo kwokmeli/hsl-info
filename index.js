@@ -1,8 +1,11 @@
 "use strict";
 const Alexa = require("alexa-sdk");
 
-var APP_ID = "amzn1.ask.skill.7a8eca68-7c79-431b-865a-dc27ca4d0135";
+// App ID for mkwok account
+// var APP_ID = "amzn1.ask.skill.7a8eca68-7c79-431b-865a-dc27ca4d0135";
 
+// App ID for trailq account
+var APP_ID = "amzn1.ask.skill.f70210e4-4669-4528-8f58-89025d4723d0";
 // =====================================================================================================
 // --------------------------------- Section 1. Data and Text strings  ---------------------------------
 // =====================================================================================================
@@ -148,109 +151,109 @@ var data = [
 
 /* NOTE: Synonyms not currently supported within interaction model; manually addressed in arrays below */
 var index = [
-  {subject:["airlift northwest"],person:["andrea ball"],first:["andrea"],last:["ball"]},
-  {subject:["allergy and infectious diseases","allergy","allergies","infectious diseases","infections"],person:["andrea ball"],first:["andrea"],last:["ball"]},
-  {subject:["anesthesiology and pain medicine","anesthesiology","pain medicine"],person:["andrea ball"],first:["andrea"],last:["ball"]},
-  {subject:["office of animal welfare","the office of animal welfare","animal welfare","animal rights"],person:["diana louden"],first:["diana"],last:["louden"]},
-  {subject:["biochemistry"],person:["diana louden"],first:["diana"],last:["louden"]},
-  {subject:["bioengineering","bio e"],person:["diana louden"],first:["diana"],last:["louden"]},
-  {subject:["bioethics and humanities","bioethics","humanities","humanities and bioethics"],person:["diana louden"],first:["diana"],last:["louden"]},
-  {subject:["biological structures"],person:["diana louden"],first:["diana"],last:["louden"]},
-  {subject:["biomedical informatics and medical education","biomedical informatics","medical education"],person:["diana louden"],first:["diana"],last:["louden"]},
-  {subject:["biostatistics"],person:["sarah safranek"],first:["sarah"],last:["safranek"]},
-  {subject:["cardiology"],person:["andrea ball"],first:["andrea"],last:["ball"]},
-  {subject:["comparative medicine"],person:["diana louden"],first:["diana"],last:["louden"]},
-  {subject:["critical care medicine"],person:["frances chu"],first:["frances"],last:["chu"]},
-  {subject:["school of dentistry"],person:["stephen gabrielson","nicole dettmar"],first:["stephen","nicole"],last:["gabrielson","dettmar"]},
-  {subject:["dermatology"],person:["andrea ball"],first:["andrea"],last:["ball"]},
-  {subject:["emergency medicine"],person:["andrea ball"],first:["andrea"],last:["ball"]},
-  {subject:["environmental and occupational health sciences","environmental health sciences","occupational health sciences","occupational health","environmental health"],person:["sarah safranek"],first:["sarah"],last:["safranek"]},
-  {subject:["epidemiology"],person:["sarah safranek"],first:["sarah"],last:["safranek"]},
-  {subject:["family medicine"],person:["sarah safranek"],first:["sarah"],last:["safranek"]},
-  {subject:["gastroenterology"],person:["andrea ball"],first:["andrea"],last:["ball"]},
-  {subject:["general internal medicine"],person:["andrea ball"],first:["andrea"],last:["ball"]},
-  {subject:["genome sciences"],person:["diana louden"],first:["diana"],last:["louden"]},
-  {subject:["gerontology and geriatric medicine","gerontology","geriatric medicine","geriatrics"],person:["andrea ball"],first:["andrea"],last:["ball"]},
-  {subject:["global health"],person:["sarah safranek"],first:["sarah"],last:["safranek"]},
-  {subject:["hall health primary care center","hall health"],person:["frances chu"],first:["frances"],last:["chu"]},
-  {subject:["harborview medical center"],person:["andrea ball","frances chu","emily patridge"],first:["andrea","frances","emily"],last:["ball","chu","patridge"]},
-  {subject:["health information administration program"],person:["sarah safranek"],first:["sarah"],last:["safranek"]},
-  {subject:["health services"],person:["sarah safranek"],first:["sarah"],last:["safranek"]},
-  {subject:["hematology"],person:["andrea ball"],first:["andrea"],last:["ball"]},
-  {subject:["immunology"],person:["diana louden"],first:["diana"],last:["louden"]},
-  {subject:["institute for health metrics and evaluation"],person:["sarah safranek"],first:["sarah"],last:["safranek"]},
-  {subject:["institute of translational health sciences"],person:["diana louden"],first:["diana"],last:["louden"]},
-  {subject:["i tech"],person:["sarah safranek"],first:["sarah"],last:["safranek"]},
-  {subject:["laboratory medicine"],person:["frances chu"],first:["frances"],last:["chu"]},
-  {subject:["maternal and child health program","maternal health program","child health program","maternal health","child health","children's health"],person:["sarah safranek"],first:["sarah"],last:["safranek"]},
-  {subject:["medex northwest"],person:["sarah safranek"],first:["sarah"],last:["safranek"]},
-  {subject:["medical genetics"],person:["diana louden"],first:["diana"],last:["louden"]},
-  {subject:["medical laboratory science"],person:["frances chu"],first:["frances"],last:["chu"]},
-  {subject:["department of medicine"],person:["andrea ball"],first:["andrea"],last:["ball"]},
-  {subject:["school of medicine"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"]},
-  {subject:["metabolism"],person:["frances chu"],first:["frances"],last:["chu"]},
-  {subject:["endocrinology"],person:["frances chu"],first:["frances"],last:["chu"]},
-  {subject:["nutrition"],person:["frances chu"],first:["frances"],last:["chu"]},
-  {subject:["microbiology"],person:["diana louden"],first:["diana"],last:["louden"]},
-  {subject:["molecular biology program"],person:["diana louden"],first:["diana"],last:["louden"]},
-  {subject:["cellular biology program"],person:["diana louden"],first:["diana"],last:["louden"]},
-  {subject:["molecular medicine"],person:["diana louden"],first:["diana"],last:["louden"]},
-  {subject:["nephrology"],person:["andrea ball"],first:["andrea"],last:["ball"]},
-  {subject:["graduate program in neuroscience"],person:["diana louden"],first:["diana"],last:["louden"]},
-  {subject:["neurology"],person:["andrea ball"],first:["andrea"],last:["ball"]},
-  {subject:["northwest hospital"],person:["emily patridge","andrea ball"],first:["emily","andrea"],last:["patridge","ball"]},
-  {subject:["school of nursing"],person:["frances chu","stephen gabrielson"],first:["frances","stephen"],last:["chu","gabrielson"]},
-  {subject:["nutritional sciences"],person:["sarah safranek"],first:["sarah"],last:["safranek"]},
-  {subject:["obstetrics"],person:["emily patridge"],first:["emily"],last:["patridge"]},
-  {subject:["gynecology"],person:["emily patridge"],first:["emily"],last:["patridge"]},
-  {subject:["occupational therapy"],person:["emily patridge"],first:["emily"],last:["patridge"]},
-  {subject:["oncology"],person:["andrea ball"],first:["andrea"],last:["ball"]},
-  {subject:["ophthalmology"],person:["frances chu"],first:["frances"],last:["chu"]},
-  {subject:["oral health services"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"]},
-  {subject:["oral medicine"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"]},
-  {subject:["oral surgery"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"]},
-  {subject:["maxillofacial surgery"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"]},
-  {subject:["orthodontics"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"]},
-  {subject:["orthopaedics"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"]},
-  {subject:["otolaryngology"],person:["frances chu"],first:["frances"],last:["chu"]},
-  {subject:["palliative care"],person:["andrea ball"],first:["andrea"],last:["ball"]},
-  {subject:["paramedic training program"],person:["andrea ball"],first:["andrea"],last:["ball"]},
-  {subject:["pathobiology doctoral program"],person:["sarah safranek"],first:["sarah"],last:["safranek"]},
-  {subject:["pathology"],person:["frances chu"],first:["frances"],last:["chu"]},
-  {subject:["pediatric dentistry"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"]},
-  {subject:["pediatrics"],person:["andrea ball"],first:["andrea"],last:["ball"]},
-  {subject:["periodontics"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"]},
-  {subject:["pharmaceutics"],person:["joanne rich"],first:["joanne"],last:["rich"]},
-  {subject:["pharmacy services"],person:["joanne rich"],first:["joanne"],last:["rich"]},
-  {subject:["school of pharmacy"],person:["joanne rich","diana louden"],first:["joanne","diana"],last:["rich","louden"]},
-  {subject:["physical therapy"],person:["andrea ball"],first:["andrea"],last:["ball"]},
-  {subject:["physician assistant"],person:["sarah safranek"],first:["sarah"],last:["safranek"]},
-  {subject:["physiology"],person:["diana louden"],first:["diana"],last:["louden"]},
-  {subject:["biophysics"],person:["diana louden"],first:["diana"],last:["louden"]},
-  {subject:["prosthodontics"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"]},
-  {subject:["psychiatry"],person:["frances chu"],first:["frances"],last:["chu"]},
-  {subject:["behavioral sciences"],person:["frances chu"],first:["frances"],last:["chu"]},
-  {subject:["psychosocial health"],person:["joanne rich"],first:["joanne"],last:["rich"]},
-  {subject:["community health"],person:["joanne rich"],first:["joanne"],last:["rich"]},
-  {subject:["school of public health"],person:["sarah safranek"],first:["sarah"],last:["safranek"]},
-  {subject:["public health genetics"],person:["diana louden"],first:["diana"],last:["louden"]},
-  {subject:["pulmonary medicine"],person:["andrea ball"],first:["andrea"],last:["ball"]},
-  {subject:["critical care medicine"],person:["andrea ball"],first:["andrea"],last:["ball"]},
-  {subject:["radiation oncology"],person:["andrea ball"],first:["andrea"],last:["ball"]},
-  {subject:["radiology"],person:["frances chu"],first:["frances"],last:["chu"]},
-  {subject:["rehabilitation medicine"],person:["andrea ball"],first:["andrea"],last:["ball"]},
-  {subject:["rehabilitation sciences"],person:["andrea ball"],first:["andrea"],last:["ball"]},
-  {subject:["restorative dentistry"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"]},
-  {subject:["rheumatology"],person:["andrea ball"],first:["andrea"],last:["ball"]},
-  {subject:["ride"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"]},
-  {subject:["school of social work"],person:["joanne rich"],first:["joanne"],last:["rich"]},
-  {subject:["social workers"],person:["emily patridge","andrea ball","frances chu"],first:["emily","andrea","frances"],last:["patridge","ball","chu"]},
-  {subject:["surgery"],person:["andrea ball"],first:["andrea"],last:["ball"]},
-  {subject:["urology"],person:["andrea ball"],first:["andrea"],last:["ball"]},
-  {subject:["university of washington medical center","u dub medical center"],person:["emily patridge","andrea ball","frances chu"],first:["emily","andrea","frances"],last:["patridge","ball","chu"]},
-  {subject:["university of washington neighborhood clinics","u dub neighborhood clinics","university of washington neighborhood clinic","u dub neighborhood clinic"],person:["emily patridge"],first:["emily"],last:["patridge"]},
-  {subject:["write"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"]},
-  {subject:["w.w.a.m.i."],person:["nicole dettmar","sarah safranek"],first:["nicole","sarah"],last:["dettmar","safranek"]}
+  {subject:["airlift northwest"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["allergy and infectious diseases","allergy","allergies","infectious diseases","infections"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["anesthesiology and pain medicine","anesthesiology","pain medicine"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["office of animal welfare","the office of animal welfare","animal welfare","animal rights"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
+  {subject:["biochemistry"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
+  {subject:["bioengineering","bio e"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
+  {subject:["bioethics and humanities","bioethics","humanities","humanities and bioethics"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
+  {subject:["biological structures"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
+  {subject:["biomedical informatics and medical education","biomedical informatics","medical education"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
+  {subject:["biostatistics"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
+  {subject:["cardiology"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["comparative medicine"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
+  {subject:["critical care medicine","critical care"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f"},
+  {subject:["school of dentistry","dentistry"],person:["stephen gabrielson","nicole dettmar"],first:["stephen","nicole"],last:["gabrielson","dettmar"],gender:""},
+  {subject:["dermatology"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["emergency medicine","emergencies","emergency"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["environmental and occupational health sciences","environmental health sciences","occupational health sciences","occupational health","environmental health"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
+  {subject:["epidemiology"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
+  {subject:["family medicine"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
+  {subject:["gastroenterology"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["general internal medicine","internal medicine"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["genome sciences","genomics","genome"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
+  {subject:["gerontology and geriatric medicine","gerontology","geriatric medicine","geriatrics"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["global health"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
+  {subject:["hall health primary care center","hall health"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f"},
+  {subject:["harborview medical center"],person:["andrea ball","frances chu","emily patridge"],first:["andrea","frances","emily"],last:["ball","chu","patridge"],gender:""},
+  {subject:["health information administration program"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
+  {subject:["health services"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
+  {subject:["hematology"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["immunology"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
+  {subject:["institute for health metrics and evaluation","health metrics and evaluation","health metrics"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
+  {subject:["institute of translational health sciences","translational health sciences"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
+  {subject:["i tech"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
+  {subject:["laboratory medicine","lab medicine"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f"},
+  {subject:["maternal and child health program","maternal health program","child health program","maternal health","child health","children's health"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
+  {subject:["medex northwest"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
+  {subject:["medical genetics","genetics"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
+  {subject:["medical laboratory science","medical lab science","lab science"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f"},
+  {subject:["department of medicine","medicine"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["school of medicine","medicine school"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f"},
+  {subject:["metabolism"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f"},
+  {subject:["endocrinology"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f"},
+  {subject:["nutrition"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f"},
+  {subject:["microbiology"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
+  {subject:["molecular biology program","molecular biology"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
+  {subject:["cellular biology program","cellular biology"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
+  {subject:["molecular medicine"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
+  {subject:["nephrology"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["graduate program in neuroscience","grad program in neuroscience"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
+  {subject:["neurology"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["northwest hospital"],person:["emily patridge","andrea ball"],first:["emily","andrea"],last:["patridge","ball"],gender:""},
+  {subject:["school of nursing"],person:["frances chu","stephen gabrielson"],first:["frances","stephen"],last:["chu","gabrielson"],gender:""},
+  {subject:["nutritional sciences"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
+  {subject:["obstetrics"],person:["emily patridge"],first:["emily"],last:["patridge"],gender:"f"},
+  {subject:["gynecology"],person:["emily patridge"],first:["emily"],last:["patridge"],gender:"f"},
+  {subject:["occupational therapy"],person:["emily patridge"],first:["emily"],last:["patridge"],gender:"f"},
+  {subject:["oncology"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["ophthalmology"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f"},
+  {subject:["oral health services","oral health"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f"},
+  {subject:["oral medicine"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f"},
+  {subject:["oral surgery"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f"},
+  {subject:["maxillofacial surgery"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f"},
+  {subject:["orthodontics"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f"},
+  {subject:["orthopaedics"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f"},
+  {subject:["otolaryngology"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f"},
+  {subject:["palliative care"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["paramedic training program"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["pathobiology doctoral program"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
+  {subject:["pathology"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f"},
+  {subject:["pediatric dentistry"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f"},
+  {subject:["pediatrics"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["periodontics"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f"},
+  {subject:["pharmaceutics"],person:["joanne rich"],first:["joanne"],last:["rich"],gender:"f"},
+  {subject:["pharmacy services"],person:["joanne rich"],first:["joanne"],last:["rich"],gender:"f"},
+  {subject:["school of pharmacy","pharmacy"],person:["joanne rich","diana louden"],first:["joanne","diana"],last:["rich","louden"],gender:""},
+  {subject:["physical therapy"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["physician assistant"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
+  {subject:["physiology"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
+  {subject:["biophysics"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
+  {subject:["prosthodontics"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f"},
+  {subject:["psychiatry"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f"},
+  {subject:["behavioral sciences"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f"},
+  {subject:["psychosocial health"],person:["joanne rich"],first:["joanne"],last:["rich"],gender:"f"},
+  {subject:["community health"],person:["joanne rich"],first:["joanne"],last:["rich"],gender:"f"},
+  {subject:["school of public health"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
+  {subject:["public health genetics"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
+  {subject:["pulmonary medicine"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["critical care medicine"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["radiation oncology"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["radiology"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f"},
+  {subject:["rehabilitation medicine"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["rehabilitation sciences"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["restorative dentistry"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f"},
+  {subject:["rheumatology"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["ride"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f"},
+  {subject:["school of social work"],person:["joanne rich"],first:["joanne"],last:["rich"],gender:"f"},
+  {subject:["social workers"],person:["emily patridge","andrea ball","frances chu"],first:["emily","andrea","frances"],last:["patridge","ball","chu"],gender:""},
+  {subject:["surgery"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["urology"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["university of washington medical center","u dub medical center"],person:["emily patridge","andrea ball","frances chu"],first:["emily","andrea","frances"],last:["patridge","ball","chu"],gender:""},
+  {subject:["university of washington neighborhood clinics","u dub neighborhood clinics","university of washington neighborhood clinic","u dub neighborhood clinic"],person:["emily patridge"],first:["emily"],last:["patridge"],gender:"f"},
+  {subject:["write"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f"},
+  {subject:["w.w.a.m.i."],person:["nicole dettmar","sarah safranek"],first:["nicole","sarah"],last:["dettmar","safranek"],gender:""}
 ];
 
 var skillName = "HSL Library Helper";
@@ -261,13 +264,13 @@ var skillName = "HSL Library Helper";
 var WELCOME_MESSAGE = "Learn about the librarians of the Health Sciences Library, or search for a librarian by specialty. You can also ask about the opening hours of the library. " + getGenericHelpMessage(data)
 
 // This is the message a user will hear when they ask Alexa for help in your skill.
-var HELP_MESSAGE = "I can help you find a librarian. "
+var HELP_MESSAGE = "I can help you find a librarian, or find library hours for a specific date, week, or weekend. "
 
 // This is the message a user will hear when they begin a new search
 var NEW_SEARCH_MESSAGE = "To start a new search, say the name of a librarian or a topic to search for. " + getGenericHelpMessage(data);
 
 // This is the message a user will hear when they ask Alexa for help while in the SEARCH state
-var SEARCH_STATE_HELP_MESSAGE = "Say the name of a librarian or a topic to search for. " + getGenericHelpMessage(data);
+var SEARCH_STATE_HELP_MESSAGE = "Say the name of a librarian or a topic to search for. Or, you can ask for library hours. " + getGenericHelpMessage(data);
 
 var DESCRIPTION_STATE_HELP_MESSAGE = "Here are some things you can say: Tell me more, or give me his or her contact info";
 
@@ -341,7 +344,7 @@ const newSessionHandlers = {
     },
     "AMAZON.StartOverIntent": function() {
         this.handler.state = states.SEARCHMODE;
-        var output = "Ok, starting over. " + getGenericHelpMessage(data);
+        var output = "Ok, starting over. Can I help you find a librarian, or our opening hours? " + getGenericHelpMessage(data);
         this.emit(":ask", output, output);
     },
     "AMAZON.HelpIntent": function() {
@@ -409,7 +412,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
     },
     "AMAZON.StartOverIntent": function() {
         this.handler.state = states.SEARCHMODE;
-        var output = "Ok, starting over. " + getGenericHelpMessage(data);
+        var output = "Ok, starting over. Can I help you find a librarian, or our opening hours? " + getGenericHelpMessage(data);
         this.emit(":ask", output, output);
     },
     "SessionEndedRequest": function() {
@@ -424,7 +427,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 var multipleSearchResultsHandlers = Alexa.CreateStateHandler(states.MULTIPLE_RESULTS, {
     "AMAZON.StartOverIntent": function() {
         this.handler.state = states.SEARCHMODE;
-        var output = "Ok, starting over. " + getGenericHelpMessage(data);
+        var output = "Ok, starting over. Can I help you find a librarian, or our opening hours? " + getGenericHelpMessage(data);
         this.emit(":ask", output, output);
     },
     "AMAZON.YesIntent": function() {
@@ -506,7 +509,7 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
 
       if(this.attributes.lastSearch){
         person = this.attributes.lastSearch.results[0];
-        cardContent = generateCard(person); //calling the helper function to generate the card content that will be sent to the Alexa app.
+        cardContent = generateCard(person); // Calling the helper function to generate the card content that will be sent to the Alexa app.
         speechOutput = generateTellMeMoreMessage(person);
         repromptSpeech = "Would you like more information? Say yes or no";
 
@@ -540,9 +543,9 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
           this.attributes.lastSearch.lastSpeech = speechOutput;
           this.emit(":askWithCard", speechOutput, repromptSpeech, cardContent.title, cardContent.body, cardContent.image);
         } else {
-          //not a valid slot. no card needs to be set up. respond with simply a voice response.
+          // Not a valid slot, no card needs to be set up, respond with simply a voice response
           speechOutput = generateSearchHelpMessage(person.gender);
-          repromptSpeech = "You can ask me - what's " + genderize("his-her", person.gender) + " e-mail, or give me " + genderize("his-her", person.gender) + " phone number";
+          repromptSpeech = "You can ask me - what's " + genderize("his-her", person.gender) + " e-mail, or give me " + genderize("his-her", person.gender) + " phone number. ";
           this.attributes.lastSearch.lastSpeech = speechOutput;
           this.handler.state = states.SEARCHMODE;
           this.emit(":ask", speechOutput, repromptSpeech);
@@ -592,7 +595,7 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
 
     "AMAZON.StartOverIntent": function() {
         this.handler.state = states.SEARCHMODE;
-        var output = "Ok, starting over. " + getGenericHelpMessage(data);
+        var output = "Ok, starting over. Can I help you find a librarian, or our opening hours? " + getGenericHelpMessage(data);
         this.emit(":ask", output, output);
     },
 
@@ -669,10 +672,9 @@ function searchByNameIntentHandler () {
       this.attributes.lastSearch.lastIntent = "SearchByNameIntent";
 
       if (searchResults.count > 1) { // Multiple results found
-        console.log("Search complete. Multiple results were found");
         var listOfPeopleFound = loopThroughArrayOfObjects(lastSearch.results);
         output = generateSearchResultsMessage(searchQuery,searchResults.results) + listOfPeopleFound + ". Who would you like to learn more about?";
-        this.handler.state = states.MULTIPLE_RESULTS; // change state to MULTIPLE_RESULTS
+        this.handler.state = states.MULTIPLE_RESULTS; // Change state to MULTIPLE_RESULTS
         this.attributes.lastSearch.lastSpeech = output;
         this.emit(":ask", output);
       } else if (searchResults.count == 1) { // One result found
@@ -732,6 +734,8 @@ function searchBySpecialtyIntentHandler () {
             // Follow-up questions (e.g. "what is her email") only apply if there is one result
             var lastSearch = this.attributes.lastSearch = searchResults;
             this.attributes.lastSearch.lastIntent = "SearchBySpecialtyIntent";
+
+
           }
 
           for (var l = 0; l < results.length; l++) {
@@ -753,10 +757,11 @@ function searchBySpecialtyIntentHandler () {
     }
 
     if (results.length > 1) {
-      str += " are the liaisons for your requested topic of " + index[subject].subject[0] + ". <break time=\"0.5s\"/> Would you like to do another search? " + getGenericHelpMessage(data);
+      str += " are the liaisons for your requested topic of " + index[subject].subject[0] + ". You can ask for their email, phone number, or contact information. Or, you can start a new search. " + getGenericHelpMessage(data);
       this.emit(":tell", str);
     } else {
-      str += " is the liaison for your requested topic of " + index[subject].subject[0] + ". <break time=\"0.5s\"/> Would you like to do another search? " + getGenericHelpMessage(data);
+      str += " is the liaison for your requested topic of " + index[subject].subject[0] + ". You can ask for " + genderize("his-her", index[subject].gender) +
+             " email, phone number, or contact information. Or, you can start a new search. " + getGenericHelpMessage(data);
       this.emit(":tell", str);
     }
 
@@ -867,7 +872,7 @@ function searchHoursIntentHandler() {
             var sun = hours[yearIndex].month[sunDate.month - 1][sunDate.date];
 
             if (sat == "closed" && sun == "closed") {
-              strEmit = "The library is not open on the weekend of " + returnMonth(satDate.month) + " " + satDate.date + "th and " + returnMonth(sunDate.month) + " " + sunDate.date + "th. ";
+              strEmit = "Sorry. The library is not open on the weekend of " + returnMonth(satDate.month) + " " + satDate.date + "th and " + returnMonth(sunDate.month) + " " + sunDate.date + "th. ";
               this.emit(":tell", strEmit);
             } else if (sat == "closed") {
               strEmit = "The library is not open on Saturday, but it is open on Sunday from " + returnHours(sun) + ". ";
@@ -930,6 +935,27 @@ function searchHoursIntentHandler() {
           } else {
             this.emit(":tell", "The library hours have not been determined for that year.");
           }
+        } else if ((date[1].toUpperCase() == "Q1") || (date[1].toUpperCase() == "Q2") || (date[1].toUpperCase() == "Q3") || (date[1].toUpperCase() == "Q4")) {
+          // Asked for a calendar quarter
+          strEmit = "Yes, the library is open during ";
+
+          if (date[1].toUpperCase() == "Q1") {
+            // January 1 - March 31
+            strEmit += " the first calendar quarter, from January 1st to March 31st. ";
+          } else if (date[1].toUpperCase() == "Q2") {
+            // April 1 - June 30
+            strEmit += " the second calendar quarter, from April 1st to June 30th. ";
+          } else if (date[1].toUpperCase() == "Q3") {
+            // July 1 - September 30
+            strEmit += " the third calendar quarter, from July 1st to September 30th. ";
+          } else {
+            // October 1 - December 31
+            strEmit += " the fourth calendar quarter, from October 1st to December 31st. ";
+          }
+
+          strEmit += "For more detailed opening hours, please ask for the hours on a specific date. Or - for opening hours for school quarters, please ask for the hours of a season. "
+          this.emit(":tell", strEmit);
+
         } else {
           // Asked for a week, e.g. "next week": 2017-W44
           if ((date[0] == YEAR1) || (date[0] == YEAR2)) {
@@ -1083,7 +1109,7 @@ function searchHoursIntentHandler() {
     }
 
   } else {
-    this.emit(":tell", "Couldn't get date. Please try again.");
+    this.emit(":tell", "I'm sorry. I couldn't understand the date you asked for. Please ask me again.");
   }
 
 }
@@ -1237,7 +1263,7 @@ function generateSearchResultsMessage(searchQuery,results){
 }
 
 function getGenericHelpMessage(data){
-var sentences = ["things you can ask include - who is " + getRandomName(data), "you can say the name of a librarian or say a topic of interest.", "you can say a topic, such as - " + getRandomSubject(index), "you can ask me - what are the library's hours"];
+var sentences = ["things you can ask include - who is " + getRandomName(data), "you can say the name of a librarian or say a topic of interest.", "you can say - " + " who is the liaison for " + getRandomSubject(index), "you can ask me - what are the library's hours"];
 return "For example, " + sentences[getRandom(0,sentences.length-1)];
 }
 
@@ -1247,8 +1273,8 @@ function generateSearchHelpMessage(gender){
 }
 
 function generateTellMeMoreMessage(person){
-  var sentence = person.firstName + " is the " + person.title + ". "
-  + genderize("his-her", person.gender) + " e-mail address is " + person.sayemail + " <break time=\"0.5s\"/>at <break time=\"0.5s\"/> u<break time=\"0.025s\"/> w<break time=\"0.05s\"/> dot<break time=\"0.05s\"/> e <break time=\"0.04s\"/>d <break time=\"0.03s\"/>u.<break time=\"0.1s\"/>" +
+  var sentence = person.firstName
+  + "'s e-mail address is " + person.sayemail + " <break time=\"0.5s\"/>at <break time=\"0.5s\"/> u<break time=\"0.025s\"/> w<break time=\"0.05s\"/> dot<break time=\"0.05s\"/> e <break time=\"0.04s\"/>d <break time=\"0.03s\"/>u.<break time=\"0.1s\"/>" +
   genderize("his-her", person.gender) + " phone number is " + person.phone;
 
   if (person.topics.length == 0) {

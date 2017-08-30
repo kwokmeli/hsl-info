@@ -162,7 +162,10 @@
         "{whatPhrase} {specialty}",
         "{whatPhrase} {whoPhrase} {specialty}",
         "{whoPhrase} liaison for {specialty}",
-        "{whoPhrase} a liaison for {specialty}"
+        "{whoPhrase} a liaison for {specialty}",
+        "{whoPhrase} liaison for the topic of {specialty}",
+        "{whoPhrase} a liaison for the topic of {specialty}",
+        "{whatPhrase} {whoPhrase} for the topic of {specialty}"
       ],
       "slots": [
         {
