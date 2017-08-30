@@ -118,7 +118,7 @@ var data = [
   {firstName:"andrea",lastName:"ball",title:"Care Management and Population Health Librarian",sayemail:slowSpell("alball"),email:"alball",phone:"206-616-6630",gender:"f",topics:[
   "allergies and infectious diseases","anesthesiology","pain medicine","cardiology","dermatology","emergency medicine","gastroenterology","general internal medicine","gerontology","geriatric medicine",
   "hematology","nephrology","oncology","orthopaedics","palliative care","pediatrics","physical therapy","pulmonary and critical care medicine",
-  "radiation oncology","rheumatology","surgery","urology"],liaison:["airlift northwest","harborview medical center","department of medicine","northwest hospital","u dub medical center"]},
+  "radiation oncology","rheumatology","surgery","urology"],liaison:["airlift northwest","harborview medical center","the department of medicine","northwest hospital","u dub medical center"]},
 
   {firstName:"frances",lastName:"chu",title:"Health Sciences Clinical liaison and Content Librarian",sayemail:slowSpell("chuf"),email:"chuf",phone:"206-616-1106",gender:"f",topics:["critical care medicine",
   "laboratory medicine","medical laboratory science","metabolism","endocrinology and nutrition","neurology","ophthalmology","otolaryngology","pathology",
@@ -145,8 +145,8 @@ var data = [
   liaison:["pharmacy services","the school of pharmacy"]},
 
   {firstName:"sarah",lastName:"safranek",title:"Public Health and Primary Care Librarian",sayemail:slowSpell("safranek"),email:"safranek",phone:"206-543-3408",gender:"f",topics:["biostatistics",
-  "environmental and occupational health sciences","epidemiology","family medicine","global health","health services","nutritional sciences"],liaison:["health information administration program",
-  "institute for health metrics and evaluation","i tech","maternal and child health program","medex northwest","pathobiology doctoral program","the school of public health","w.w.a.m.i"]}
+  "environmental and occupational health sciences","epidemiology","family medicine","global health","health services","nutritional sciences"],liaison:["the health information administration program",
+  "the institute for health metrics and evaluation","i tech","the maternal and child health program","medex northwest","the pathobiology doctoral program","the school of public health","w.w.a.m.i"]}
 ];
 
 /* NOTE: Synonyms not currently supported within interaction model; manually addressed in arrays below */
@@ -261,10 +261,10 @@ var skillName = "HSL Library Helper";
 // This is the welcome message for when a user starts the skill without a specific intent.
 // var WELCOME_MESSAGE = "Welcome to  " + skillName + "! I can help you find Alexa Evangelists and Solutions Architects. " + getGenericHelpMessage(data);
 
-var WELCOME_MESSAGE = "Learn about the librarians of the Health Sciences Library, or search for a librarian by specialty. You can also ask about the opening hours of the library. " + getGenericHelpMessage(data)
+var WELCOME_MESSAGE = "Learn about the librarians of the Health Sciences Library, or search for a librarian by specialty. You can also ask about the opening hours of the library. " + getGenericHelpMessage(data);
 
 // This is the message a user will hear when they ask Alexa for help in your skill.
-var HELP_MESSAGE = "I can help you find a librarian, or find library hours for a specific date, week, or weekend. "
+var HELP_MESSAGE = "I can help you find a librarian, or find library hours for a specific date, week, or weekend. ";
 
 // This is the message a user will hear when they begin a new search
 var NEW_SEARCH_MESSAGE = "To start a new search, say the name of a librarian or a topic to search for. " + getGenericHelpMessage(data);
@@ -470,7 +470,7 @@ var multipleSearchResultsHandlers = Alexa.CreateStateHandler(states.MULTIPLE_RES
                 this.attributes.lastSearch = searchResults;
                 lastSearch = this.attributes.lastSearch;
                 this.handler.state = states.DESCRIPTION;
-                output = generateSearchResultsMessage(searchQuery,searchResults.results)
+                output = generateSearchResultsMessage(searchQuery,searchResults.results);
                 this.attributes.lastSearch.lastSpeech = output;
                 // this.emit(":ask", generateSearchResultsMessage(searchQuery,searchResults.results));
                 this.emit(":ask", output);
@@ -684,14 +684,14 @@ function searchByNameIntentHandler () {
               // infoType was provided
               this.emitWithState("TellMeThisIntent");
           } else { // No infoType was provided
-            output = generateSearchResultsMessage(searchQuery,searchResults.results)
+            output = generateSearchResultsMessage(searchQuery,searchResults.results);
             this.attributes.lastSearch.lastSpeech = output;
             this.emit(":ask", output);
           }
       } else { // No match found
         // console.log("searchQuery was  = " + searchQuery);
         // console.log("searchResults.results was  = " + searchResults);
-        output = generateSearchResultsMessage(searchQuery,searchResults.results)
+        output = generateSearchResultsMessage(searchQuery,searchResults.results);
         this.attributes.lastSearch.lastSpeech = output;
         // this.emit(":ask", generateSearchResultsMessage(searchQuery,searchResults.results));
         this.emit(":ask", output);
@@ -734,8 +734,6 @@ function searchBySpecialtyIntentHandler () {
             // Follow-up questions (e.g. "what is her email") only apply if there is one result
             var lastSearch = this.attributes.lastSearch = searchResults;
             this.attributes.lastSearch.lastIntent = "SearchBySpecialtyIntent";
-
-
           }
 
           for (var l = 0; l < results.length; l++) {
@@ -753,7 +751,7 @@ function searchBySpecialtyIntentHandler () {
     }
 
     if (matchFound == false) {
-      this.emit(":tell", "Sorry, I couldn't find anyone who is a liaison for that topic. <break time=\"0.5s\"/> Would you like to try again? " + getGenericHelpMessage(data));
+      this.emit(":tell", "Sorry, I couldn't find anyone who is a liaison for that topic. <break time=\"0.5s\"/> Would you like to try again? " + getLibrariansHelpMessage(data, index));
     }
 
     if (results.length > 1) {
@@ -766,7 +764,7 @@ function searchBySpecialtyIntentHandler () {
     }
 
   } else {
-    str = "I'm not sure what you're asking. " + getGenericHelpMessage(data);
+    str = "I'm not sure what you're asking. Please ask me again. " + getGenericHelpMessage(data);
     this.emit(":tell", str);
   }
 
@@ -801,7 +799,8 @@ function searchHoursIntentHandler() {
         if (status == "closed") {
           this.emit(":tell", "Sorry, the library is not currently open.");
         } else if (status == "") {
-          this.emit(":tell", "The library hours have not been determined yet.");
+          strEmit = "The library hours for that date have not been determined yet. Would you like to find opening hours for other dates? " + getHoursHelpMessage();
+          this.emit(":tell", strEmit);
         } else {
           var currentStatus = libraryStatusGivenTime(status, currentDate.getHours(), currentDate.getMinutes());
 
@@ -815,7 +814,8 @@ function searchHoursIntentHandler() {
         }
 
       } else {
-        this.emit(":tell", "The library hours have not been determined yet.");
+        strEmit = "The current library hours have not been determined yet. Would you like to find opening hours for other dates? " + getHoursHelpMessage();
+        this.emit(":tell", strEmit);
       }
 
     } else {
@@ -837,13 +837,15 @@ function searchHoursIntentHandler() {
               strEmit = "The library is closed on " + returnMonth(date[1]) + " " + date[2] + "th.";
               this.emit(":tell", strEmit);
             } else if (status == "") {
-              this.emit(":tell", "The library hours have not been determined for that day.");
+              strEmit = "The library hours have not been determined for that day. Would you like to find opening hours for other dates? " + getHoursHelpMessage();
+              this.emit(":tell", strEmit);
             } else {
               strEmit = "Yes, the library is open on " + returnMonth(date[1]) + " " + date[2] + "th, from " + returnHours(status);
               this.emit(":tell", strEmit);
             }
           } else {
-            this.emit(":tell", "The library hours have not been determined for that year.");
+            strEmit = "The library hours have not been determined for that year. Would you like to find opening hours for other dates? " + getHoursHelpMessage();
+            this.emit(":tell", strEmit);
           }
 
         } else {
@@ -872,34 +874,43 @@ function searchHoursIntentHandler() {
             var sun = hours[yearIndex].month[sunDate.month - 1][sunDate.date];
 
             if (sat == "closed" && sun == "closed") {
-              strEmit = "Sorry. The library is not open on the weekend of " + returnMonth(satDate.month) + " " + satDate.date + "th and " + returnMonth(sunDate.month) + " " + sunDate.date + "th. ";
+              strEmit = "Sorry. The library is not open on the weekend of " + returnMonth(satDate.month) + " " + satDate.date + "th and " +
+                        returnMonth(sunDate.month) + " " + sunDate.date + "th. ";
               this.emit(":tell", strEmit);
             } else if (sat == "closed") {
-              strEmit = "The library is not open on Saturday, but it is open on Sunday from " + returnHours(sun) + ". ";
+              strEmit = "The library is not open on Saturday, " + returnMonth(satDate.month) + " " + satDate.date + "th, but it is open on Sunday, " +
+                        returnMonth(sunDate.month) + " " + sunDate.date + "th from " + returnHours(sun) + ". ";
               this.emit(":tell", strEmit);
             } else if (sun == "closed") {
-              strEmit = "The library is open on Saturday from " + returnHours(sat) + ", but it is not open on Sunday.";
+              strEmit = "The library is open on Saturday, " + returnHours(satDate.month) + " " + satDate.date + "th, from " + returnHours(sat) +
+                        ". The library is not open on Sunday, " + returnMonth(sunDate.month) + " " + sunDate.date + "th. ";
               this.emit(":tell", strEmit);
             } else if (sat == "" && sun == "") {
-              this.emit(":tell", "The library hours have not been determined yet. ");
+              this.emit(":tell", "The library hours for " + returnMonth(satDate.month) + " " + satDate.date + ", " + satDate.year + " and " +
+                                 returnMonth(sunDate.month) + " " + sunDate.date + ", " + sunDate.year + " have not been determined yet. ");
             } else if (sat == "") {
-              strEmit = "The library hours have not been determined for Saturday yet. But the library is open on Sunday from " + returnHours(sun);
+              strEmit = "The library hours have not yet been determined for Saturday, " + returnHours(satDate.month) + " " + satDate.date + ", " + satDate.year +
+                        ". But the library is open on Sunday, " + returnMonth(sunDate.month) + " " + sunDate.date + "th, from " + returnHours(sun) + ". ";
               this.emit(":tell", strEmit);
             } else if (sun == "") {
-              strEmit = "The library hours have not been determined for Sunday yet. But the library is open on Saturday from " + returnHours(sat);
+              strEmit = "The library hours have not yet been determined for Sunday, " + returnMonth(sunDate.month) + " " + sunDate.date + ", " + sunDate.year +
+                        ". But the library is open on Saturday, " + returnMonth(satDate.month) + " " + satDate.date + "th, from " + returnHours(sat) + ". ";
               this.emit(":tell", strEmit);
             } else {
               if (sat == sun) {
-                strEmit = "The library is open on Saturday and Sunday from " + returnHours(sat);
+                strEmit = "The library is open on Saturday and Sunday, " + returnMonth(satDate.month) + " " + satDate.date + "th and " + returnMonth(sunDate.month) +
+                          " " + sunDate.date + "th, from " + returnHours(sat); + ". ";
                 this.emit(":tell", strEmit);
               } else {
-                strEmit = "The library is open on Saturday from " + returnHours(sat) + ", and open on Sunday from " + returnHours(sun) + ". ";
+                strEmit = "The library is open on Saturday, " + returnMonth(satDate.month) + " " + satDate.date + "th, from " + returnHours(sat) +
+                          ". The library is also open on Sunday, " + returnMonth(sunDate.month) + " " + sunDate.date + "th, from " + returnHours(sun) + ". ";
                 this.emit(":tell", strEmit);
               }
             }
 
           } else {
-            this.emit(":tell", "The library hours have not been determined for that year.");
+            strEmit = "The library hours have not been determined for that year. Would you like to find opening hours for other dates? " + getHoursHelpMessage();
+            this.emit(":tell", strEmit);
           }
 
         }
@@ -907,7 +918,7 @@ function searchHoursIntentHandler() {
       } else if (date.length == 2) {
         if (!isNaN(date[1])) {
           // Asked for a month, e.g. "this month": 2017-08
-          strEmit = "Yes, the library is open during the month of " + returnMonth(date[1]) + ". <break time=\"0.25s\"/> Please specify a date or week for more detailed opening hours.";
+          strEmit = "Yes, the library is open during the month of " + returnMonth(date[1]) + ". <break time=\"0.25s\"/> Please specify a date or week for more detailed opening hours." + getHoursHelpMessage();
           this.emit(":tell", strEmit);
 
         } else if ((date[1].toUpperCase() == "WI") || (date[1].toUpperCase() == "SP") || (date[1].toUpperCase() == "SU") || (date[1].toUpperCase() == "FA")) {
@@ -933,8 +944,9 @@ function searchHoursIntentHandler() {
             this.emit(":tell", strEmit);
 
           } else {
-            this.emit(":tell", "The library hours have not been determined for that year.");
+            this.emit(":tell", "The library hours have not yet been determined for that year.");
           }
+
         } else if ((date[1].toUpperCase() == "Q1") || (date[1].toUpperCase() == "Q2") || (date[1].toUpperCase() == "Q3") || (date[1].toUpperCase() == "Q4")) {
           // Asked for a calendar quarter
           strEmit = "Yes, the library is open during ";
@@ -953,7 +965,7 @@ function searchHoursIntentHandler() {
             strEmit += " the fourth calendar quarter, from October 1st to December 31st. ";
           }
 
-          strEmit += "For more detailed opening hours, please ask for the hours on a specific date. Or - for opening hours for school quarters, please ask for the hours of a season. "
+          strEmit += "For more detailed opening hours, please ask for the hours on a specific date. Or - for opening hours for school quarters, please ask for the hours of a season. ";
           this.emit(":tell", strEmit);
 
         } else {
@@ -1076,7 +1088,8 @@ function searchHoursIntentHandler() {
             }
 
           } else {
-            this.emit(":tell", "The library hours have not been determined for that year.");
+            strEmit = "The library hours have not been determined for that year. Would you like to find opening hours for other dates? " + getHoursHelpMessage();
+            this.emit(":tell", strEmit);
           }
 
         }
@@ -1084,23 +1097,29 @@ function searchHoursIntentHandler() {
       } else {
         if (date[0] == "201X") {
           // Asked for this decade
-          this.emit(":tell", "Yes, the library will most likely be open for the next decade. Future hours have yet to be decided.");
+          strEmit = "Yes, the library will most likely be open for the next decade. Future hours have yet to be decided. To get current hours, please specify a date, week, or weekend. " + getHoursHelpMessage();
+          this.emit(":tell", strEmit);
         } else if (date[0] == "20XX") {
           // Asked for this century
-          this.emit(":tell", "Yes, the library will most likely be open for the next century. Future hours have yet to be decided.");
+          strEmit = "Yes, the library will most likely be open for the next century. Future hours have yet to be decided. Please specify a date, week, or weekend for more detailed opening hours. " + getHoursHelpMessage();
+          this.emit(":tell", strEmit);
         } else {
           if (date[0] == YEAR1) {
             // Asked for this year
-            this.emit(":tell", "Yes, the library is open this year. Please specify a date, week, or weekend for more detailed opening hours.");
+            strEmit = "Yes, the library is open this year. Please specify a date, week, or weekend for more detailed opening hours. " + getHoursHelpMessage();
+            this.emit(":tell", strEmit);
           } else if (date[0] == YEAR2) {
             // Asked for next year
-            this.emit(":tell", "Yes, the library will be open next year. Please specify a date or week for more detailed opening hours.");
+            strEmit = "Yes, the library will be open next year. Please specify a date or week for more detailed opening hours. " + getHoursHelpMessage();
+            this.emit(":tell", strEmit);
           } else if (Number(date[0]) < YEAR1) {
             // Asked for years in the past
-            this.emit(":tell", "Yes, the library was open last year. Please specify a present or future date, week, or weekend for more detailed opening hours.");
+            strEmit = "Yes, the library was open last year. Please specify a present or future date, week, or weekend for more detailed opening hours. " + getHoursHelpMessage();
+            this.emit(":tell", strEmit);
           } else {
             // Asked for other years in the future
-            this.emit(":tell", "Yes, the library will most likely be open in the future. Future hours have yet to be decided. Please specify a date or week for more detailed opening hours.")
+            strEmit = "Yes, the library will most likely be open in the future. Future hours have yet to be decided. Please specify a date or week for more detailed opening hours. " + getHoursHelpMessage();
+            this.emit(":tell", strEmit);
           }
         }
 
@@ -1109,7 +1128,8 @@ function searchHoursIntentHandler() {
     }
 
   } else {
-    this.emit(":tell", "I'm sorry. I couldn't understand the date you asked for. Please ask me again.");
+    strEmit = "I'm sorry. I couldn't understand the date you asked for. Please ask me again. " + getHoursHelpMessage();
+    this.emit(":tell", strEmit);
   }
 
 }
@@ -1183,6 +1203,7 @@ function tellHoursIntentHandler() {
   var d1, d2, c;
   var date1, date2, check;
   var currentPeriod;
+  var strEmit;
   var validDate = false;
   var today = currentDate.getDate() + "/" + (currentDate.getMonth() + 1) + "/" + currentDate.getFullYear();
 
@@ -1203,10 +1224,11 @@ function tellHoursIntentHandler() {
   }
 
   if (validDate) {
-    var str = periodHours[currentPeriod] + " <break time=\"0.25s\"/>" + extraHours[currentPeriod];
-    this.emit(":tell", str);
+    strEmit = periodHours[currentPeriod] + " <break time=\"0.25s\"/>" + extraHours[currentPeriod];
+    this.emit(":tell", strEmit);
   } else {
-    this.emit(":tell", "The hours for this quarter have not been determined yet.");
+    strEmit = "The hours for this quarter have not been determined yet. For current hours, please specify a date, week, or weekend. " + getHoursHelpMessage();
+    this.emit(":tell", strEmit);
   }
 
 }
@@ -1262,9 +1284,44 @@ function generateSearchResultsMessage(searchQuery,results){
   return sentence;
 }
 
+// Returns general help messages about finding library hours and finding librarians
 function getGenericHelpMessage(data){
-var sentences = ["things you can ask include - who is " + getRandomName(data), "you can say the name of a librarian or say a topic of interest.", "you can say - " + " who is the liaison for " + getRandomSubject(index), "you can ask me - what are the library's hours"];
-return "For example, " + sentences[getRandom(0,sentences.length-1)];
+  var sentences = ["things you can ask include - who is " + getRandomName(data), "you can say the name of a librarian or say a topic of interest.", "you can say - " +
+                   " who is the liaison for " + getRandomSubject(index), "you can ask me - what are the library's hours"];
+
+  return "For example, " + sentences[getRandom(0, sentences.length - 1)];
+}
+
+// Returns help messages that are specifically about finding library hours
+function getHoursHelpMessage() {
+  var sentences = [
+    "when is the library open? ",
+    "what are the library hours? ",
+    "is the library open tomorrow? ",
+    "is the library open this weekend? ",
+    "is the library open this winter? ",
+    "will the library be open next week? ",
+    "is the library open on " + returnMonth(getRandom(1, 12)) + getRandom(1, 28) + "th? ",
+    "what are the library hours? ",
+    "is the library open right now?"
+  ];
+
+  return "For example, you can say - " + sentences[getRandom(0, sentences.length - 1)];
+}
+
+// Returns help messages that are specifically about finding librarians
+function getLibrariansHelpMessage(data, index) {
+  var sentences = [
+    "For example, you can say - give me " + getRandomName(data) + "'s phone number. ",
+    "For example, you can say - give me " + getRandomName(data) + "'s email address.",
+    "For example, you can say - what topics is " + getRandomName(data) + " a liaison for?",
+    "For example, you can ask - who is " + getRandomName(data) + "? ",
+    "For example, you can say - tell me about " + getRandomName(data) + ". ",
+    "For example, you can ask - who is the liaison for " + getRandomSubject(index) + "? ",
+    "For example, you can ask - tell me the contact information of " + getRandomName(data) + ". "
+  ];
+
+  return sentences[getRandom(0, sentences.length - 1)];
 }
 
 function generateSearchHelpMessage(gender){
@@ -1315,20 +1372,70 @@ function generateSpecificInfoMessage(slots,person){
   } else if ((infoTypeValue == "phone") || (infoTypeValue == "phone number") || (infoTypeValue == "number")) {
     info = person.phone;
     type = "phone number";
-    sentence = person.firstName + "'s " + type + " is - " + info + ". <break time=\"0.5s\"/> Would you like to find more information? " + getGenericHelpMessage(data);
+    sentence = person.firstName + "'s " + type + " is - " + info + ". <break time=\"0.5s\"/> Would you like to find more information? " + getLibrariansHelpMessage(data, index);
 
   } else if ((infoTypeValue == "specialty") || (infoTypeValue == "specialties") || (infoTypeValue == "topics") || (infoTypeValue == "topic") || (infoTypeValue == "liaison") || (infoTypeValue == "specialize")) {
     if (person.topics.length == 0) {
-      sentence = person.firstName + " does not specialize in any topic. <break time=\"0.5s\"/> Would you like to find more information? " + getGenericHelpMessage(data);
+      sentence = person.firstName + " does not specialize in any topic. ";
+
+      if (person.liaison.length != 0) {
+        sentence += "However, they are a liaison for ";
+
+        for (var i = 0; i < person.liaison.length; i++) {
+          if (i == person.liaison.length - 2) {
+            sentence += person.liaison[i] + ", and ";
+          } else if (i == person.liaison.length - 1) {
+            sentence += person.liaison[i] + ". ";
+          } else {
+            sentence += person.liaison[i] + ", ";
+          }
+        }
+      }
+
+      sentence += "<break time=\"0.5s\"/> Would you like to find more information? " + getLibrariansHelpMessage(data, index);
 
     } else if ((person.topics.length < 3) && (person.topics.length > 0)) {
-      sentence = person.firstName + " specializes in the topics of - "  + generateTopics(person) + ". <break time=\"0.5s\"/> Would you like to find more information? " + getGenericHelpMessage(data);
+      sentence = person.firstName + " specializes in the topics of - "  + generateTopics(person) + ". ";
+
+      if (person.liaison.length != 0) {
+        sentence += genderize("he-she", person.gender) + " is also the liaison for ";
+
+        for (var i = 0; i < person.liaison.length; i++) {
+          if (i == person.liaison.length - 2) {
+            sentence += person.liaison[i] + ", and ";
+          } else if (i == person.liaison.length - 1) {
+            sentence += person.liaison[i] + ". ";
+          } else {
+            sentence += person.liaison[i] + ", ";
+          }
+        }
+
+      }
+
+      sentence += "<break time=\"0.5s\"/> Would you like to find more information? " + getLibrariansHelpMessage(data, index);
 
     } else {
-      sentence = "Some of the topics that " + person.firstName + " specializes in are " + generateTopics(person) + "<break time=\"0.5s\"/> Would you like to find more information? " + getGenericHelpMessage(data);
+      sentence = "Some of the topics that " + person.firstName + " specializes in are - " + generateTopics(person) + ". ";
+
+      if (person.liaison.length != 0) {
+        sentence += genderize("he-she", person.gender) + " is also the liaison for ";
+
+        for (var i = 0; i < person.liaison.length; i++) {
+          if (i == person.liaison.length - 2) {
+            sentence += person.liaison[i] + ", and ";
+          } else if (i == person.liaison.length - 1) {
+            sentence += person.liaison[i] + ". ";
+          } else {
+            sentence += person.liaison[i] + ", ";
+          }
+        }
+      }
     }
+
+    sentence += "<break time=\"0.5s\"/> Would you like to find more information? " + getLibrariansHelpMessage(data, index);
+
   } else {
-    sentence = "Sorry, I don't have that information about " + person.firstName + ". You can ask for " + genderize("his-her", person.gender) + " phone number, email address, or specialties.";
+    sentence = "Sorry, I don't have that information about " + person.firstName + ". You can ask for " + genderize("his-her", person.gender) + " phone number or email address instead. ";
   }
 
   return sentence;
