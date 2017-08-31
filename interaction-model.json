@@ -70,7 +70,10 @@
         "{whatPhrase} {lastName} {infoType} in",
         "{whatPhrase} {lastName} a {infoType} for",
         "{whatPhrase} {firstName} {lastName} a {infoType} in",
-        "{whatPhrase} {firstName} a {infoType} in"
+        "{whatPhrase} {firstName} a {infoType} in",
+        "{whatPhrase} {infoType} does {firstName} specialize in ",
+        "{whatPhrase} {infoType} does {lastName} specialize in",
+        "{whatPhrase} {infoType} does {firstName} {lastName} specialize in "
       ],
       "slots": [
         {
@@ -277,12 +280,49 @@
         "{whatPhrase} the information",
         "{whatPhrase} the details",
         "{whatPhrase} her details",
-        "{whatPhrase} his details"
+        "{whatPhrase} his details",
+        "{whatPhrase} contact information of {firstName}",
+        "{whatPhrase} contact information of {lastName}",
+        "{whatPhrase} contact information of {firstName} {lastName}",
+        "{whatPhrase} details of {firstName}",
+        "{whatPhrase} details of {lastName}",
+        "{whatPhrase} details of {firstName} {lastName}",
+        "{whatPhrase} contact details of {firstName} ",
+        "{whatPhrase} contact details of {lastName}",
+        "{whatPhrase} contact details of {firstName} {lastName}",
+        "{whatPhrase} information about {firstName}",
+        "{whatPhrase} information about {lastName}",
+        "{whatPhrase} information about {firstName} {lastName}",
+        "{whatPhrase} info about {firstName}",
+        "{whatPhrase} info about {lastName}",
+        "{whatPhrase} info about {firstName} {lastName}",
+        "{whatPhrase} information for {firstName}",
+        "{whatPhrase} information for {lastName}",
+        "{whatPhrase} information for {firstName} {lastName}",
+        "{whatPhrase} contact information for {firstName}",
+        "{whatPhrase} contact information for {lastName}",
+        "{whatPhrase} contact information for {firstName} {lastName}",
+        "{whatPhrase} details for {firstName}",
+        "{whatPhrase} details for {lastName}",
+        "{whatPhrase} details for {firstName} {lastName}",
+        "{whatPhrase} contact details for {firstName}",
+        "{whatPhrase} contact details for {lastName}",
+        "{whatPhrase} contact details for {firstName} {lastName}"
       ],
       "slots": [
         {
           "name": "whatPhrase",
           "type": "WHAT_PHRASE",
+          "samples": []
+        },
+        {
+          "name": "firstName",
+          "type": "AMAZON.US_FIRST_NAME",
+          "samples": []
+        },
+        {
+          "name": "lastName",
+          "type": "LAST_NAME",
           "samples": []
         }
       ]
@@ -1408,6 +1448,27 @@
           "id": null,
           "name": {
             "value": "give me information about",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "say",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "say the",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "tell me the",
             "synonyms": []
           }
         }
