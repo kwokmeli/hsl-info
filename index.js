@@ -457,9 +457,6 @@ var multipleSearchResultsHandlers = Alexa.CreateStateHandler(states.MULTIPLE_RES
         var lastName = isSlotValid(this.event.request, "lastName");
         var infoType = isSlotValid(this.event.request, "infoType");
 
-        // console.log("firstName:" + firstName);
-        // console.log("firstName:" + lastName);
-        // console.log("firstName:" + infoType);
         // console.log("Intent Name:" + this.event.request.intent.name);
 
         var canSearch = figureOutWhichSlotToSearchBy(firstName,lastName);
@@ -519,7 +516,7 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
       var cardContent;
       var strEmit;
 
-      if (this.attributes.lastSearch) {
+      if (this.attributes.lastSearch && (this.attributes.lastSearch.count >= 1)) {
         person = this.attributes.lastSearch.results[0];
         cardContent = generateCard(person); // Calling the helper function to generate the card content that will be sent to the Alexa app.
         speechOutput = generateTellMeMoreMessage(person);
@@ -530,7 +527,7 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
         this.attributes.lastSearch.lastSpeech = speechOutput;
         this.emit(":askWithCard", speechOutput, repromptSpeech, cardContent.title, cardContent.body, cardContent.image);
 
-      } else { // TODO: fix so that people can ask for more information?
+      } else { // REVIEW
         var firstName = isSlotValid(this.event.request, "firstName");
         var lastName = isSlotValid(this.event.request, "lastName");
         var canSearch = figureOutWhichSlotToSearchBy(firstName,lastName);
@@ -571,28 +568,87 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
 
     "TellMeThisIntent": function() {
       var slots = this.event.request.intent.slots;
-      var person = this.attributes.lastSearch.results[0];
+      var person;
       var infoType = isSlotValid(this.event.request, "infoType");
       var speechOutput;
       var repromptSpeech;
       var cardContent;
+      var newPerson;
+      var strEmit;
 
-      if (this.attributes.lastSearch && isInfoTypeValid(infoType)) {
-          person = this.attributes.lastSearch.results[0];
+      var firstName = isSlotValid(this.event.request, "firstName");
+      var lastName = isSlotValid(this.event.request, "lastName");
+      var canSearch = figureOutWhichSlotToSearchBy(firstName,lastName);
+
+      // If a person was saved and the requested infoType is valid
+      if (this.attributes.lastSearch && isInfoTypeValid(infoType) && (this.attributes.lastSearch.count >= 1)) {
+        person = this.attributes.lastSearch.results[0];
+        if (canSearch) {
+          var searchQuery = this.event.request.intent.slots[canSearch].value;
+          var searchResults = searchDatabase(data, searchQuery, canSearch);
+
+          if (searchResults.count == 1) {
+            // If one person was found in the database
+            newPerson = searchResults.results[0];
+
+            // If the last person saved == the person requested
+            if ((person.firstName == newPerson.firstName) && (person.lastName == newPerson.lastName)) {
+              // person = this.attributes.lastSearch.results[0];
+              cardContent = generateCard(person);
+              speechOutput = generateSpecificInfoMessage(slots,person);
+              repromptSpeech = "<break time=\"0.5s\"/> Would you like to find more information? Say yes or no. ";
+              this.handler.state = states.SEARCHMODE;
+              this.attributes.lastSearch.lastSpeech = speechOutput;
+              this.emit(":askWithCard", speechOutput, repromptSpeech, cardContent.title, cardContent.body, cardContent.image);
+
+            } else {
+              // Else someone requested information about a new person
+              // Save the new person's information, for future follow-up questions
+              var lastSearch = this.attributes.lastSearch = searchResults;
+              this.attributes.lastSearch.lastIntent = "SearchByNameIntent";
+
+              cardContent = generateCard(newPerson);
+              speechOutput = generateSpecificInfoMessage(slots,newPerson);
+              repromptSpeech = "<break time=\"0.5s\"/> Would you like to find more information? Say yes or no. ";
+              this.handler.state = states.SEARCHMODE;
+              this.attributes.lastSearch.lastSpeech = speechOutput;
+              this.emit(":askWithCard", speechOutput, repromptSpeech, cardContent.title, cardContent.body, cardContent.image);
+            }
+
+          } else if (searchResults.count > 1) {
+            var listOfPeopleFound = loopThroughArrayOfObjects(lastSearch.results);
+            output = generateSearchResultsMessage(searchQuery,searchResults.results) + listOfPeopleFound + ". Who would you like to learn more about?";
+            this.handler.state = states.MULTIPLE_RESULTS; // Change state to MULTIPLE_RESULTS
+            this.attributes.lastSearch.lastSpeech = output;
+            this.emit(":ask", output);
+
+          } else {
+            // The requested person does not exist
+            strEmit = "I'm sorry. I couldn't find anyone by that name. Would you like to try again? " + getLibrariansHelpMessage(data, index);
+            this.emit(":tell", strEmit);
+          }
+
+        } else {
+          // Else a specific person was not mentioned
           cardContent = generateCard(person);
           speechOutput = generateSpecificInfoMessage(slots,person);
-          repromptSpeech = "<break time=\"0.5s\"/> Would you like to find more information? Say yes or no";
+          repromptSpeech = "<break time=\"0.5s\"/> Would you like to find more information? Say yes or no. ";
           this.handler.state = states.SEARCHMODE;
           this.attributes.lastSearch.lastSpeech = speechOutput;
           this.emit(":askWithCard", speechOutput, repromptSpeech, cardContent.title, cardContent.body, cardContent.image);
-        } else {
-          // Not a valid slot, no card needs to be set up, respond with simply a voice response
-          speechOutput = generateSearchHelpMessage(person.gender);
-          repromptSpeech = "You can ask me - what's " + genderize("his-her", person.gender) + " e-mail, or give me " + genderize("his-her", person.gender) + " phone number. ";
-          this.attributes.lastSearch.lastSpeech = speechOutput;
-          this.handler.state = states.SEARCHMODE;
-          this.emit(":ask", speechOutput, repromptSpeech);
         }
+
+      } else {
+        // Not a valid slot, no card needs to be set up, respond with simply a voice response
+        // speechOutput = generateSearchHelpMessage(person.gender);
+        // repromptSpeech = "You can ask me - what's " + genderize("his-her", person.gender) + " e-mail, or give me " + genderize("his-her", person.gender) + " phone number. ";
+        // this.attributes.lastSearch.lastSpeech = speechOutput;
+        // this.handler.state = states.SEARCHMODE;
+        // this.emit(":ask", speechOutput, repromptSpeech);
+
+        strEmit = "Sorry, I don't understand which person you are asking about. Please ask me again and specify their name. " + getLibrariansHelpMessage(data, index);
+        this.emit(":tell", strEmit);
+      }
     },
     "TellHoursIntent": function() {
       tellHoursIntentHandler.call(this);
@@ -655,7 +711,7 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
         var person = this.attributes.lastSearch.results[0];
 
         // console.log("Unhandled intent in DESCRIPTION state handler");
-        this.emit(":ask", "Sorry, I don't know that. " + generateNextPromptMessage(person,"general"), "Sorry, I don't know that. " + generateNextPromptMessage(person,"general"));
+        this.emit(":ask", "Sorry, I don't know that request. " + generateNextPromptMessage(person,"general"), "Sorry, I don't know that request. " + generateNextPromptMessage(person,"general"));
     }
 });
 
@@ -715,8 +771,8 @@ function searchByNameIntentHandler () {
       var lastSearch = this.attributes.lastSearch = searchResults;
       var output;
 
-      // Saving last intent to session attributes
-      this.attributes.lastSearch.lastIntent = "SearchByNameIntent";
+// // Saving last intent to session attributes
+// this.attributes.lastSearch.lastIntent = "SearchByNameIntent";
 
       if (searchResults.count > 1) { // Multiple results found
         var listOfPeopleFound = loopThroughArrayOfObjects(lastSearch.results);
@@ -724,6 +780,10 @@ function searchByNameIntentHandler () {
         this.handler.state = states.MULTIPLE_RESULTS; // Change state to MULTIPLE_RESULTS
         this.attributes.lastSearch.lastSpeech = output;
         this.emit(":ask", output);
+
+        // Saving last intent to session attributes
+        this.attributes.lastSearch.lastIntent = "SearchByNameIntent";
+
       } else if (searchResults.count == 1) { // One result found
           this.handler.state = states.DESCRIPTION; // Change state to description
           if (infoType) {
@@ -735,12 +795,15 @@ function searchByNameIntentHandler () {
             this.attributes.lastSearch.lastSpeech = output;
             this.emit(":ask", output);
           }
+
+          // Saving last intent to session attributes
+          this.attributes.lastSearch.lastIntent = "SearchByNameIntent";
+
       } else { // No match found
         // console.log("searchQuery was  = " + searchQuery);
         // console.log("searchResults.results was  = " + searchResults);
         output = generateSearchResultsMessage(searchQuery,searchResults.results);
-        this.attributes.lastSearch.lastSpeech = output;
-        // this.emit(":ask", generateSearchResultsMessage(searchQuery,searchResults.results));
+// this.attributes.lastSearch.lastSpeech = output;
         this.emit(":ask", output);
       }
     } else { // No searchable slot was provided
@@ -1372,7 +1435,7 @@ function getLibrariansHelpMessage(data, index) {
 }
 
 function generateSearchHelpMessage(gender){
-  var sentence = "Sorry, I don't know that. You can ask me - what's " + genderize("his-her", gender) +" e-mail, or give me " + genderize("his-her", gender) + " phone number";
+  var sentence = "Sorry, I don't know that request. You can ask me - what's " + genderize("his-her", gender) +" e-mail, or give me " + genderize("his-her", gender) + " phone number";
   return sentence;
 }
 
@@ -1414,7 +1477,7 @@ function generateSpecificInfoMessage(slots,person){
   if ((infoTypeValue == "email") || (infoTypeValue == "email address")) {
     info = person.email;
     type = "e-mail";
-    sentence = person.firstName + "'s " + type + " is - " + person.sayemail + " <break time=\"0.5s\"/>at <break time=\"0.5s\"/> u<break time=\"0.025s\"/> w<break time=\"0.05s\"/> dot<break time=\"0.05s\"/> e <break time=\"0.04s\"/>d <break time=\"0.03s\"/>u.<break time=\"0.1s\"/>. Would you like to find more information? " + getGenericHelpMessage(data);
+    sentence = person.firstName + "'s " + type + " is - " + person.sayemail + " <break time=\"0.5s\"/>at <break time=\"0.5s\"/> u<break time=\"0.025s\"/> w<break time=\"0.05s\"/> dot<break time=\"0.05s\"/> e <break time=\"0.04s\"/>d <break time=\"0.03s\"/>u. <break time=\"0.5s\"/> Would you like to find more information? " + getLibrariansHelpMessage(data, index);
 
   } else if ((infoTypeValue == "phone") || (infoTypeValue == "phone number") || (infoTypeValue == "number")) {
     info = person.phone;
@@ -1426,7 +1489,7 @@ function generateSpecificInfoMessage(slots,person){
       sentence = person.firstName + " does not specialize in any topic. ";
 
       if (person.liaison.length != 0) {
-        sentence += "However, they are a liaison for ";
+        sentence += "However, " + genderize("he-she", person.gender) + " is a liaison for ";
 
         for (var i = 0; i < person.liaison.length; i++) {
           if (i == person.liaison.length - 2) {
@@ -1462,7 +1525,7 @@ function generateSpecificInfoMessage(slots,person){
       sentence += "<break time=\"0.5s\"/> Would you like to find more information? " + getLibrariansHelpMessage(data, index);
 
     } else {
-      sentence = "Some of the topics that " + person.firstName + " specializes in are - " + generateTopics(person) + ". ";
+      sentence = "Some of the topics that " + person.firstName + " specializes in are - " + generateTopics(person);
 
       if (person.liaison.length != 0) {
         sentence += genderize("he-she", person.gender) + " is also the liaison for ";
@@ -1477,9 +1540,10 @@ function generateSpecificInfoMessage(slots,person){
           }
         }
       }
-    }
 
-    sentence += "<break time=\"0.5s\"/> Would you like to find more information? " + getLibrariansHelpMessage(data, index);
+      sentence += "<break time=\"0.5s\"/> Would you like to find more information? " + getLibrariansHelpMessage(data, index);
+
+    }
 
   } else {
     sentence = "Sorry, I don't have that information about " + person.firstName + ". You can ask for " + genderize("his-her", person.gender) + " phone number or email address instead. ";
@@ -1539,9 +1603,9 @@ function generateTopics (person) {
 
   if ((person.topics.length < 3) && (person.topics.length > 0)) {
     if (person.topics.length == 1) {
-      result += person.topics[0];
+      result += person.topics[0] + ". ";
     } else {
-      result += person.topics[0] + ", and " + person.topics[1];
+      result += person.topics[0] + ", and " + person.topics[1] + ". ";
     }
 
   } else {
