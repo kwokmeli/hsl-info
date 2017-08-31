@@ -134,7 +134,7 @@ var data = [
   {firstName:"diana",lastName:"louden",title:"Biomedical and Translational Sciences Librarian",sayemail:slowSpell("dknl"),email:"dknl",phone:"206-221-3480",gender:"f",topics:[
   "biochemistry","bioengineering","bioethics and humanities","biological structures","biomedical informatics and medical education","comparative medicine","genome sciences","immunology",
   "medical genetics","microbiology","molecular and cellular biology","molecular medicine","physiology and biophysics","public health genetics"],liaison:["the office of animal welfare",
-  "institute of translational health sciences","the molecular and cellular biology program","the graduate program in neuroscience","the school of pharmacy","the school of puclic health"]},
+  "the institute of translational health sciences","the molecular and cellular biology program","the graduate program in neuroscience","the school of pharmacy","the school of puclic health"]},
 
 /* TODO: Find Emily's title */
   {firstName:"emily",lastName:"patridge",title:"need to do",sayemail:slowSpell("ep001"),email:"ep001",phone:"206-221-3489",gender:"f",topics:["obstetrics and gynecology","occupational therapy"],
@@ -154,7 +154,7 @@ var index = [
   {subject:["airlift northwest"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
   {subject:["allergy and infectious diseases","allergy","allergies","infectious diseases","infections"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
   {subject:["anesthesiology and pain medicine","anesthesiology","pain medicine"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
-  {subject:["office of animal welfare","the office of animal welfare","animal welfare","animal rights"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
+  {subject:["the office of animal welfare","the office of animal welfare","animal welfare","animal rights"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
   {subject:["biochemistry"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
   {subject:["bioengineering","bio e"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
   {subject:["bioethics and humanities","bioethics","humanities","humanities and bioethics"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
@@ -164,7 +164,7 @@ var index = [
   {subject:["cardiology"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
   {subject:["comparative medicine"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
   {subject:["critical care medicine","critical care"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f"},
-  {subject:["school of dentistry","dentistry"],person:["stephen gabrielson","nicole dettmar"],first:["stephen","nicole"],last:["gabrielson","dettmar"],gender:""},
+  {subject:["the school of dentistry","dentistry"],person:["stephen gabrielson","nicole dettmar"],first:["stephen","nicole"],last:["gabrielson","dettmar"],gender:""},
   {subject:["dermatology"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
   {subject:["emergency medicine","emergencies","emergency"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
   {subject:["environmental and occupational health sciences","environmental health sciences","occupational health sciences","occupational health","environmental health"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
@@ -181,28 +181,28 @@ var index = [
   {subject:["health services"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
   {subject:["hematology"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
   {subject:["immunology"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
-  {subject:["institute for health metrics and evaluation","health metrics and evaluation","health metrics"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
-  {subject:["institute of translational health sciences","translational health sciences"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
+  {subject:["the institute for health metrics and evaluation","health metrics and evaluation","health metrics"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
+  {subject:["the institute of translational health sciences","translational health sciences"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
   {subject:["i tech"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
   {subject:["laboratory medicine","lab medicine"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f"},
-  {subject:["maternal and child health program","maternal health program","child health program","maternal health","child health","children's health"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
+  {subject:["the maternal and child health program","maternal health program","child health program","maternal health","child health","children's health"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
   {subject:["medex northwest"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
   {subject:["medical genetics","genetics"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
   {subject:["medical laboratory science","medical lab science","lab science"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f"},
-  {subject:["department of medicine","medicine"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
-  {subject:["school of medicine","medicine school"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f"},
+  {subject:["the department of medicine","medicine"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["the school of medicine","medicine school"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f"},
   {subject:["metabolism"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f"},
   {subject:["endocrinology"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f"},
   {subject:["nutrition"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f"},
   {subject:["microbiology"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
-  {subject:["molecular biology program","molecular biology"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
-  {subject:["cellular biology program","cellular biology"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
+  {subject:["the molecular biology program","molecular biology"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
+  {subject:["the cellular biology program","cellular biology"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
   {subject:["molecular medicine"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
   {subject:["nephrology"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
-  {subject:["graduate program in neuroscience","grad program in neuroscience"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
+  {subject:["the graduate program in neuroscience","grad program in neuroscience"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
   {subject:["neurology"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
   {subject:["northwest hospital"],person:["emily patridge","andrea ball"],first:["emily","andrea"],last:["patridge","ball"],gender:""},
-  {subject:["school of nursing"],person:["frances chu","stephen gabrielson"],first:["frances","stephen"],last:["chu","gabrielson"],gender:""},
+  {subject:["the school of nursing"],person:["frances chu","stephen gabrielson"],first:["frances","stephen"],last:["chu","gabrielson"],gender:""},
   {subject:["nutritional sciences"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
   {subject:["obstetrics"],person:["emily patridge"],first:["emily"],last:["patridge"],gender:"f"},
   {subject:["gynecology"],person:["emily patridge"],first:["emily"],last:["patridge"],gender:"f"},
@@ -217,15 +217,15 @@ var index = [
   {subject:["orthopaedics"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f"},
   {subject:["otolaryngology"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f"},
   {subject:["palliative care"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
-  {subject:["paramedic training program"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
-  {subject:["pathobiology doctoral program"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
+  {subject:["the paramedic training program"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["the pathobiology doctoral program"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
   {subject:["pathology"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f"},
   {subject:["pediatric dentistry"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f"},
   {subject:["pediatrics"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
   {subject:["periodontics"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f"},
   {subject:["pharmaceutics"],person:["joanne rich"],first:["joanne"],last:["rich"],gender:"f"},
   {subject:["pharmacy services"],person:["joanne rich"],first:["joanne"],last:["rich"],gender:"f"},
-  {subject:["school of pharmacy","pharmacy"],person:["joanne rich","diana louden"],first:["joanne","diana"],last:["rich","louden"],gender:""},
+  {subject:["the school of pharmacy","pharmacy"],person:["joanne rich","diana louden"],first:["joanne","diana"],last:["rich","louden"],gender:""},
   {subject:["physical therapy"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
   {subject:["physician assistant"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
   {subject:["physiology"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
@@ -235,7 +235,7 @@ var index = [
   {subject:["behavioral sciences"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f"},
   {subject:["psychosocial health"],person:["joanne rich"],first:["joanne"],last:["rich"],gender:"f"},
   {subject:["community health"],person:["joanne rich"],first:["joanne"],last:["rich"],gender:"f"},
-  {subject:["school of public health"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
+  {subject:["the school of public health"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
   {subject:["public health genetics"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
   {subject:["pulmonary medicine"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
   {subject:["critical care medicine"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
@@ -246,7 +246,7 @@ var index = [
   {subject:["restorative dentistry"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f"},
   {subject:["rheumatology"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
   {subject:["ride"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f"},
-  {subject:["school of social work"],person:["joanne rich"],first:["joanne"],last:["rich"],gender:"f"},
+  {subject:["the school of social work"],person:["joanne rich"],first:["joanne"],last:["rich"],gender:"f"},
   {subject:["social workers"],person:["emily patridge","andrea ball","frances chu"],first:["emily","andrea","frances"],last:["patridge","ball","chu"],gender:""},
   {subject:["surgery"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
   {subject:["urology"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
@@ -344,6 +344,10 @@ const newSessionHandlers = {
     },
     "AMAZON.StartOverIntent": function() {
         this.handler.state = states.SEARCHMODE;
+        // Reset the search
+        if (this.attributes.lastSearch) {
+          this.attributes.lastSearch = null;
+        }
         var output = "Ok, starting over. Can I help you find a librarian, or our opening hours? " + getGenericHelpMessage(data);
         this.emit(":ask", output, output);
     },
@@ -368,11 +372,10 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
     },
     "AMAZON.RepeatIntent": function() {
       var output;
-      if(this.attributes.lastSearch){
+      if (this.attributes.lastSearch) {
         output = this.attributes.lastSearch.lastSpeech;
         // console.log("repeating last speech");
-      }
-      else{
+      } else {
         output = getGenericHelpMessage(data);
         // console.log("no last speech availble. outputting standard help message.");
       }
@@ -412,6 +415,10 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
     },
     "AMAZON.StartOverIntent": function() {
         this.handler.state = states.SEARCHMODE;
+        // Reset the search
+        if (this.attributes.lastSearch) {
+          this.attributes.lastSearch = null;
+        }
         var output = "Ok, starting over. Can I help you find a librarian, or our opening hours? " + getGenericHelpMessage(data);
         this.emit(":ask", output, output);
     },
@@ -427,6 +434,10 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
 var multipleSearchResultsHandlers = Alexa.CreateStateHandler(states.MULTIPLE_RESULTS, {
     "AMAZON.StartOverIntent": function() {
         this.handler.state = states.SEARCHMODE;
+        // Reset the search
+        if (this.attributes.lastSearch) {
+          this.attributes.lastSearch = null;
+        }
         var output = "Ok, starting over. Can I help you find a librarian, or our opening hours? " + getGenericHelpMessage(data);
         this.emit(":ask", output, output);
     },
@@ -506,23 +517,55 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
       var speechOutput;
       var repromptSpeech;
       var cardContent;
+      var strEmit;
 
-      if(this.attributes.lastSearch){
+      if (this.attributes.lastSearch) {
         person = this.attributes.lastSearch.results[0];
         cardContent = generateCard(person); // Calling the helper function to generate the card content that will be sent to the Alexa app.
         speechOutput = generateTellMeMoreMessage(person);
-        repromptSpeech = "Would you like more information? Say yes or no";
+        repromptSpeech = "Would you like more information? Say yes or no. ";
 
         // console.log("the contact you're trying to find more info about is " + person.firstName);
         this.handler.state = states.SEARCHMODE;
         this.attributes.lastSearch.lastSpeech = speechOutput;
         this.emit(":askWithCard", speechOutput, repromptSpeech, cardContent.title, cardContent.body, cardContent.image);
-      }
-      else{
-        speechOutput = getGenericHelpMessage(data);
-        repromptSpeech = getGenericHelpMessage(data);
-        this.handler.state = states.SEARCHMODE;
-        this.emit(":ask", speechOutput, repromptSpeech);
+
+      } else { // TODO: fix so that people can ask for more information?
+        var firstName = isSlotValid(this.event.request, "firstName");
+        var lastName = isSlotValid(this.event.request, "lastName");
+        var canSearch = figureOutWhichSlotToSearchBy(firstName,lastName);
+
+        if (canSearch) {
+          var searchQuery = this.event.request.intent.slots[canSearch].value;
+          var searchResults = searchDatabase(data, searchQuery, canSearch);
+
+          // Saving lastSearch results to the current session
+          var lastSearch = this.attributes.lastSearch = searchResults;
+          var output;
+
+          // Saving last intent to session attributes
+          this.attributes.lastSearch.lastIntent = "SearchByNameIntent";
+          person = this.attributes.lastSearch.results[0];
+          cardContent = generateCard(person);
+          speechOutput = generateTellMeMoreMessage(person);
+          repromptSpeech = "Would you like more information? Say yes or no. ";
+
+          this.handler.state = states.SEARCHMODE;
+          this.attributes.lastSearch.lastSpeech = speechOutput;
+          this.emit(":askWithCard", speechOutput, repromptSpeech, cardContent.title, cardContent.body, cardContent.image);
+
+        } else {
+          // Person does not exist
+          strEmit = "Sorry. I couldn't find anyone by that name. Please try again. " + getLibrariansHelpMessage(data, index);
+          this.emit(":tell", strEmit);
+
+        }
+
+
+        // speechOutput = getGenericHelpMessage(data);
+        // repromptSpeech = getGenericHelpMessage(data);
+        // this.handler.state = states.SEARCHMODE;
+        // this.emit(":ask", speechOutput, repromptSpeech);
       }
     },
 
@@ -595,6 +638,10 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
 
     "AMAZON.StartOverIntent": function() {
         this.handler.state = states.SEARCHMODE;
+        // Reset the search
+        if (this.attributes.lastSearch) {
+          this.attributes.lastSearch = null;
+        }
         var output = "Ok, starting over. Can I help you find a librarian, or our opening hours? " + getGenericHelpMessage(data);
         this.emit(":ask", output, output);
     },
@@ -608,7 +655,7 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
         var person = this.attributes.lastSearch.results[0];
 
         // console.log("Unhandled intent in DESCRIPTION state handler");
-        this.emit(":ask", "Sorry, I don't know that" + generateNextPromptMessage(person,"general"), "Sorry, I don't know that" + generateNextPromptMessage(person,"general"));
+        this.emit(":ask", "Sorry, I don't know that. " + generateNextPromptMessage(person,"general"), "Sorry, I don't know that. " + generateNextPromptMessage(person,"general"));
     }
 });
 
@@ -870,29 +917,29 @@ function searchHoursIntentHandler() {
             var satDate = returnDate(new newDate(5));
             var sunDate = returnDate(new newDate(6));
 
-            var sat = hours[yearIndex].month[satDate.month - 1][satDate.date];
-            var sun = hours[yearIndex].month[sunDate.month - 1][sunDate.date];
+            var sat = hours[yearIndex].month[satDate.month - 1][satDate.date - 1];
+            var sun = hours[yearIndex].month[sunDate.month - 1][sunDate.date - 1];
 
             if (sat == "closed" && sun == "closed") {
               strEmit = "Sorry. The library is not open on the weekend of " + returnMonth(satDate.month) + " " + satDate.date + "th and " +
                         returnMonth(sunDate.month) + " " + sunDate.date + "th. ";
               this.emit(":tell", strEmit);
-            } else if (sat == "closed") {
+            } else if ((sat == "closed") && !(sun == "closed")) {
               strEmit = "The library is not open on Saturday, " + returnMonth(satDate.month) + " " + satDate.date + "th, but it is open on Sunday, " +
                         returnMonth(sunDate.month) + " " + sunDate.date + "th from " + returnHours(sun) + ". ";
               this.emit(":tell", strEmit);
-            } else if (sun == "closed") {
+            } else if ((sun == "closed") && !(sat == "closed")) {
               strEmit = "The library is open on Saturday, " + returnHours(satDate.month) + " " + satDate.date + "th, from " + returnHours(sat) +
                         ". The library is not open on Sunday, " + returnMonth(sunDate.month) + " " + sunDate.date + "th. ";
               this.emit(":tell", strEmit);
             } else if (sat == "" && sun == "") {
               this.emit(":tell", "The library hours for " + returnMonth(satDate.month) + " " + satDate.date + ", " + satDate.year + " and " +
                                  returnMonth(sunDate.month) + " " + sunDate.date + ", " + sunDate.year + " have not been determined yet. ");
-            } else if (sat == "") {
+            } else if ((sat == "") && !(sun == "")) {
               strEmit = "The library hours have not yet been determined for Saturday, " + returnHours(satDate.month) + " " + satDate.date + ", " + satDate.year +
                         ". But the library is open on Sunday, " + returnMonth(sunDate.month) + " " + sunDate.date + "th, from " + returnHours(sun) + ". ";
               this.emit(":tell", strEmit);
-            } else if (sun == "") {
+            } else if ((sun == "") && !(sat == "")) {
               strEmit = "The library hours have not yet been determined for Sunday, " + returnMonth(sunDate.month) + " " + sunDate.date + ", " + sunDate.year +
                         ". But the library is open on Saturday, " + returnMonth(satDate.month) + " " + satDate.date + "th, from " + returnHours(sat) + ". ";
               this.emit(":tell", strEmit);
@@ -918,7 +965,7 @@ function searchHoursIntentHandler() {
       } else if (date.length == 2) {
         if (!isNaN(date[1])) {
           // Asked for a month, e.g. "this month": 2017-08
-          strEmit = "Yes, the library is open during the month of " + returnMonth(date[1]) + ". <break time=\"0.25s\"/> Please specify a date or week for more detailed opening hours." + getHoursHelpMessage();
+          strEmit = "Yes, the library is open during the month of " + returnMonth(date[1]) + ". <break time=\"0.25s\"/> Please specify a date or week for more detailed opening hours. " + getHoursHelpMessage();
           this.emit(":tell", strEmit);
 
         } else if ((date[1].toUpperCase() == "WI") || (date[1].toUpperCase() == "SP") || (date[1].toUpperCase() == "SU") || (date[1].toUpperCase() == "FA")) {
@@ -1395,7 +1442,7 @@ function generateSpecificInfoMessage(slots,person){
       sentence += "<break time=\"0.5s\"/> Would you like to find more information? " + getLibrariansHelpMessage(data, index);
 
     } else if ((person.topics.length < 3) && (person.topics.length > 0)) {
-      sentence = person.firstName + " specializes in the topics of - "  + generateTopics(person) + ". ";
+      sentence = person.firstName + " specializes in the topics of - "  + generateTopics(person);
 
       if (person.liaison.length != 0) {
         sentence += genderize("he-she", person.gender) + " is also the liaison for ";
