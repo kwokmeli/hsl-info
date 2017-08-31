@@ -120,7 +120,7 @@ var data = [
   "hematology","nephrology","oncology","orthopaedics","palliative care","pediatrics","physical therapy","pulmonary and critical care medicine",
   "radiation oncology","rheumatology","surgery","urology"],liaison:["airlift northwest","harborview medical center","the department of medicine","northwest hospital","u dub medical center"]},
 
-  {firstName:"frances",lastName:"chu",title:"Health Sciences Clinical liaison and Content Librarian",sayemail:slowSpell("chuf"),email:"chuf",phone:"206-616-1106",gender:"f",topics:["critical care medicine",
+  {firstName:"frances",lastName:"chu",title:"Health Sciences Clinical Liaison and Content Librarian",sayemail:slowSpell("chuf"),email:"chuf",phone:"206-616-1106",gender:"f",topics:["critical care medicine",
   "laboratory medicine","medical laboratory science","metabolism","endocrinology and nutrition","neurology","ophthalmology","otolaryngology","pathology",
   "psychiatry and behavioral sciences","radiology"],liaison:["hall health primary care center","harborview medical center","the school of nursing","u dub medical center"]},
 
@@ -136,12 +136,10 @@ var data = [
   "medical genetics","microbiology","molecular and cellular biology","molecular medicine","physiology and biophysics","public health genetics"],liaison:["the office of animal welfare",
   "the institute of translational health sciences","the molecular and cellular biology program","the graduate program in neuroscience","the school of pharmacy","the school of puclic health"]},
 
-/* TODO: Find Emily's title */
-  {firstName:"emily",lastName:"patridge",title:"need to do",sayemail:slowSpell("ep001"),email:"ep001",phone:"206-221-3489",gender:"f",topics:["obstetrics and gynecology","occupational therapy"],
+  {firstName:"emily",lastName:"patridge",title:"Assistant Director of Clinical Research and Data Services - and Trail Program Manager",sayemail:slowSpell("ep001"),email:"ep001",phone:"206-221-3489",gender:"f",topics:["obstetrics and gynecology","occupational therapy"],
   liaison:["harborview medical center","northwest hospital","u dub medical center","u dub neighborhood clinics"]},
 
-/* TODO: Find Joanne's title */
-  {firstName:"joanne",lastName:"rich",title:"need to do",sayemail:slowSpell("jrich"),email:"jrich",phone:"206-616-6601",gender:"f",topics:["pharmaceutics","psychosocial and community health"],
+  {firstName:"joanne",lastName:"rich",title:"Information Management Librarian",sayemail:slowSpell("jrich"),email:"jrich",phone:"206-616-6601",gender:"f",topics:["pharmaceutics","psychosocial and community health"],
   liaison:["pharmacy services","the school of pharmacy"]},
 
   {firstName:"sarah",lastName:"safranek",title:"Public Health and Primary Care Librarian",sayemail:slowSpell("safranek"),email:"safranek",phone:"206-543-3408",gender:"f",topics:["biostatistics",
@@ -944,13 +942,13 @@ function searchHoursIntentHandler() {
             status = hours[yearIndex].month[Number(date[1]) - 1][Number(date[2]) - 1];
 
             if (status == "closed") {
-              strEmit = "The library is closed on " + returnMonth(date[1]) + " " + date[2] + "th.";
+              strEmit = "The library is closed on " + returnMonth(date[1]) + " " + parseInt(date[2]) + "th.";
               this.emit(":tell", strEmit);
             } else if (status == "") {
               strEmit = "The library hours have not been determined for that day. Would you like to find opening hours for other dates? " + getHoursHelpMessage();
               this.emit(":tell", strEmit);
             } else {
-              strEmit = "Yes, the library is open on " + returnMonth(date[1]) + " " + date[2] + "th, from " + returnHours(status);
+              strEmit = "Yes, the library is open on " + returnMonth(date[1]) + " " + parseInt(date[2]) + "th, from " + returnHours(status);
               this.emit(":tell", strEmit);
             }
           } else {
@@ -984,36 +982,36 @@ function searchHoursIntentHandler() {
             var sun = hours[yearIndex].month[sunDate.month - 1][sunDate.date - 1];
 
             if (sat == "closed" && sun == "closed") {
-              strEmit = "Sorry. The library is not open on the weekend of " + returnMonth(satDate.month) + " " + satDate.date + "th and " +
-                        returnMonth(sunDate.month) + " " + sunDate.date + "th. ";
+              strEmit = "Sorry. The library is not open on the weekend of " + returnMonth(satDate.month) + " " + parseInt(satDate.date) + "th and " +
+                        returnMonth(sunDate.month) + " " + parseInt(sunDate.date) + "th. ";
               this.emit(":tell", strEmit);
             } else if ((sat == "closed") && !(sun == "closed")) {
-              strEmit = "The library is not open on Saturday, " + returnMonth(satDate.month) + " " + satDate.date + "th, but it is open on Sunday, " +
-                        returnMonth(sunDate.month) + " " + sunDate.date + "th from " + returnHours(sun) + ". ";
+              strEmit = "The library is not open on Saturday, " + returnMonth(satDate.month) + " " + parseInt(satDate.date) + "th, but it is open on Sunday, " +
+                        returnMonth(sunDate.month) + " " + parseInt(sunDate.date) + "th from " + returnHours(sun) + ". ";
               this.emit(":tell", strEmit);
             } else if ((sun == "closed") && !(sat == "closed")) {
-              strEmit = "The library is open on Saturday, " + returnHours(satDate.month) + " " + satDate.date + "th, from " + returnHours(sat) +
-                        ". The library is not open on Sunday, " + returnMonth(sunDate.month) + " " + sunDate.date + "th. ";
+              strEmit = "The library is open on Saturday, " + returnHours(satDate.month) + " " + parseInt(satDate.date) + "th, from " + returnHours(sat) +
+                        ". The library is not open on Sunday, " + returnMonth(sunDate.month) + " " + parseInt(sunDate.date) + "th. ";
               this.emit(":tell", strEmit);
             } else if (sat == "" && sun == "") {
-              this.emit(":tell", "The library hours for " + returnMonth(satDate.month) + " " + satDate.date + ", " + satDate.year + " and " +
-                                 returnMonth(sunDate.month) + " " + sunDate.date + ", " + sunDate.year + " have not been determined yet. ");
+              this.emit(":tell", "The library hours for " + returnMonth(satDate.month) + " " + parseInt(satDate.date) + ", " + satDate.year + " and " +
+                                 returnMonth(sunDate.month) + " " + parseInt(sunDate.date) + ", " + sunDate.year + " have not been determined yet. ");
             } else if ((sat == "") && !(sun == "")) {
-              strEmit = "The library hours have not yet been determined for Saturday, " + returnHours(satDate.month) + " " + satDate.date + ", " + satDate.year +
-                        ". But the library is open on Sunday, " + returnMonth(sunDate.month) + " " + sunDate.date + "th, from " + returnHours(sun) + ". ";
+              strEmit = "The library hours have not yet been determined for Saturday, " + returnHours(satDate.month) + " " + parseInt(satDate.date) + ", " + satDate.year +
+                        ". But the library is open on Sunday, " + returnMonth(sunDate.month) + " " + parseInt(sunDate.date) + "th, from " + returnHours(sun) + ". ";
               this.emit(":tell", strEmit);
             } else if ((sun == "") && !(sat == "")) {
-              strEmit = "The library hours have not yet been determined for Sunday, " + returnMonth(sunDate.month) + " " + sunDate.date + ", " + sunDate.year +
-                        ". But the library is open on Saturday, " + returnMonth(satDate.month) + " " + satDate.date + "th, from " + returnHours(sat) + ". ";
+              strEmit = "The library hours have not yet been determined for Sunday, " + returnMonth(sunDate.month) + " " + parseInt(sunDate.date) + ", " + sunDate.year +
+                        ". But the library is open on Saturday, " + returnMonth(satDate.month) + " " + parseInt(satDate.date) + "th, from " + returnHours(sat) + ". ";
               this.emit(":tell", strEmit);
             } else {
               if (sat == sun) {
-                strEmit = "The library is open on Saturday and Sunday, " + returnMonth(satDate.month) + " " + satDate.date + "th and " + returnMonth(sunDate.month) +
-                          " " + sunDate.date + "th, from " + returnHours(sat); + ". ";
+                strEmit = "The library is open on Saturday and Sunday, " + returnMonth(satDate.month) + " " + parseInt(satDate.date) + "th and " + returnMonth(sunDate.month) +
+                          " " + parseInt(sunDate.date) + "th, from " + returnHours(sat); + ". ";
                 this.emit(":tell", strEmit);
               } else {
-                strEmit = "The library is open on Saturday, " + returnMonth(satDate.month) + " " + satDate.date + "th, from " + returnHours(sat) +
-                          ". The library is also open on Sunday, " + returnMonth(sunDate.month) + " " + sunDate.date + "th, from " + returnHours(sun) + ". ";
+                strEmit = "The library is open on Saturday, " + returnMonth(satDate.month) + " " + parseInt(satDate.date) + "th, from " + returnHours(sat) +
+                          ". The library is also open on Sunday, " + returnMonth(sunDate.month) + " " + parseInt(sunDate.date) + "th, from " + returnHours(sun) + ". ";
                 this.emit(":tell", strEmit);
               }
             }
