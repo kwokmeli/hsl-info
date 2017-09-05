@@ -291,51 +291,64 @@ const newSessionHandlers = {
     "LaunchRequest": function() {
         this.handler.state = states.SEARCHMODE;
         this.emit(":ask", WELCOME_MESSAGE, getGenericHelpMessage(data));
+        printRequest(this.event.request);
     },
     "SearchByNameIntent": function() {
         // console.log("SEARCH INTENT");
         this.handler.state = states.SEARCHMODE;
         this.emitWithState("SearchByNameIntent");
+        printRequest(this.event.request);
     },
     "SearchBySpecialtyIntent": function() {
         this.handler.state = states.SEARCHMODE;
         this.emitWithState("SearchBySpecialtyIntent");
+        printRequest(this.event.request);
     },
     "SearchHoursIntent": function() {
         this.handler.state = states.SEARCHMODE;
         this.emitWithState("SearchHoursIntent");
+        printRequest(this.event.request);
     },
     "TellMeMoreIntent": function() {
         this.handler.state = states.SEARCHMODE;
         // this.emitWithState("SearchByNameIntent");
         this.emit(":ask", WELCOME_MESSAGE, getGenericHelpMessage(data));
+        printRequest(this.event.request);
     },
     "TellHoursIntent": function() {
       this.handler.state = states.SEARCHMODE;
       this.emitWithState("TellHoursIntent");
+      printRequest(this.event.request);
     },
     "TellMeThisIntent": function() {
-        this.handler.state = states.SEARCHMODE;
-        this.emitWithState("SearchByNameIntent");
+      this.handler.state = states.SEARCHMODE;
+      this.emitWithState("SearchByNameIntent");
+      printRequest(this.event.request);
     },
     "SearchByInfoTypeIntent": function() {
-        this.handler.state = states.SEARCHMODE;
-        this.emitWithState("SearchByInfoTypeIntent");
+      this.handler.state = states.SEARCHMODE;
+      this.emitWithState("SearchByInfoTypeIntent");
+      printRequest(this.event.request);
     },
     "AMAZON.YesIntent": function() {
         this.emit(":ask", getGenericHelpMessage(data), getGenericHelpMessage(data));
+        printRequest(this.event.request);
     },
     "AMAZON.NoIntent": function() {
         this.emit(":ask", SHUTDOWN_MESSAGE);
+        printRequest(this.event.request);
     },
     "AMAZON.RepeatIntent": function() {
         this.emit(":ask", HELP_MESSAGE, getGenericHelpMessage(data));
+        printRequest(this.event.request);
     },
     "AMAZON.StopIntent": function() {
         this.emit(":ask", EXIT_SKILL_MESSAGE);
+        printRequest(this.event.request);
     },
     "AMAZON.CancelIntent": function() {
         this.emit(":ask", EXIT_SKILL_MESSAGE);
+        printRequest(this.event.request);
     },
     "AMAZON.StartOverIntent": function() {
         this.handler.state = states.SEARCHMODE;
@@ -345,25 +358,31 @@ const newSessionHandlers = {
         }
         var output = "Ok, starting over. Can I help you find a librarian, or our opening hours? " + getGenericHelpMessage(data);
         this.emit(":ask", output, output);
+        printRequest(this.event.request);
     },
     "AMAZON.HelpIntent": function() {
         this.emit(":ask", HELP_MESSAGE + getGenericHelpMessage(data), getGenericHelpMessage(data));
+        printRequest(this.event.request);
     },
     "SessionEndedRequest": function() {
         this.emit("AMAZON.StopIntent");
+        printRequest(this.event.request);
     },
     "Unhandled": function() {
         this.handler.state = states.SEARCHMODE;
         this.emitWithState("SearchByNameIntent");
+        printRequest(this.event.request);
     }
 };
 
 var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
     "AMAZON.YesIntent": function() {
         this.emit(":ask", NEW_SEARCH_MESSAGE, NEW_SEARCH_MESSAGE);
+        printRequest(this.event.request);
     },
     "AMAZON.NoIntent": function() {
         this.emit(":ask", SHUTDOWN_MESSAGE);
+        printRequest(this.event.request);
     },
     "AMAZON.RepeatIntent": function() {
       var output;
@@ -375,38 +394,49 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
         // console.log("no last speech availble. outputting standard help message.");
       }
       this.emit(":ask",output, output);
+      printRequest(this.event.request);
     },
     "SearchByNameIntent": function() {
       searchByNameIntentHandler.call(this);
+      printRequest(this.event.request);
     },
     "SearchBySpecialtyIntent": function() {
       searchBySpecialtyIntentHandler.call(this);
+      printRequest(this.event.request);
     },
     "SearchHoursIntent": function() {
       searchHoursIntentHandler.call(this);
+      printRequest(this.event.request);
     },
     "SearchByInfoTypeIntent": function() {
       searchByInfoTypeIntentHandler.call(this);
+      printRequest(this.event.request);
     },
     "TellHoursIntent" : function() {
       tellHoursIntentHandler.call(this);
+      printRequest(this.event.request);
     },
     "TellMeThisIntent": function() {
         this.handler.state = states.DESCRIPTION;
         this.emitWithState("TellMeThisIntent");
+        printRequest(this.event.request);
     },
     "TellMeMoreIntent": function() {
         this.handler.state = states.DESCRIPTION;
         this.emitWithState("TellMeMoreIntent");
+        printRequest(this.event.request);
     },
     "AMAZON.HelpIntent": function() {
         this.emit(":ask", HELP_MESSAGE + getGenericHelpMessage(data), getGenericHelpMessage(data));
+        printRequest(this.event.request);
     },
     "AMAZON.StopIntent": function() {
         this.emit(":ask", EXIT_SKILL_MESSAGE);
+        printRequest(this.event.request);
     },
     "AMAZON.CancelIntent": function() {
         this.emit(":ask", EXIT_SKILL_MESSAGE);
+        printRequest(this.event.request);
     },
     "AMAZON.StartOverIntent": function() {
         this.handler.state = states.SEARCHMODE;
@@ -416,13 +446,16 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
         }
         var output = "Ok, starting over. Can I help you find a librarian, or our opening hours? " + getGenericHelpMessage(data);
         this.emit(":ask", output, output);
+        printRequest(this.event.request);
     },
     "SessionEndedRequest": function() {
         this.emit("AMAZON.StopIntent");
+        printRequest(this.event.request);
     },
     "Unhandled": function() {
         // console.log("Unhandled intent in startSearchHandlers");
         this.emit(":ask", SEARCH_STATE_HELP_MESSAGE, SEARCH_STATE_HELP_MESSAGE);
+        printRequest(this.event.request);
     }
 });
 
@@ -435,16 +468,20 @@ var multipleSearchResultsHandlers = Alexa.CreateStateHandler(states.MULTIPLE_RES
         }
         var output = "Ok, starting over. Can I help you find a librarian, or our opening hours? " + getGenericHelpMessage(data);
         this.emit(":ask", output, output);
+        printRequest(this.event.request);
     },
     "AMAZON.YesIntent": function() {
         var output = "Hmm. I think you said - yes, but can you please say the name of the person you'd like to learn more about?";
         this.emit(":ask", output, output);
+        printRequest(this.event.request);
     },
     "AMAZON.NoIntent": function() {
         this.emit(":ask", SHUTDOWN_MESSAGE);
+        printRequest(this.event.request);
     },
     "AMAZON.RepeatIntent": function() {
         this.emit(":ask",this.attributes.lastSearch.lastSpeech, this.attributes.lastSearch.lastSpeech);
+        printRequest(this.event.request);
     },
     "SearchByNameIntent": function() {
         var slots = this.event.request.intent.slots;
@@ -458,7 +495,7 @@ var multipleSearchResultsHandlers = Alexa.CreateStateHandler(states.MULTIPLE_RES
         // console.log("Multiple results found. canSearch is set to = " + canSearch);
         var speechOutput;
 
-        if (canSearch)
+        if (canSearch) {
             var searchQuery = slots[canSearch].value;
             var searchResults = searchDatabase(this.attributes.lastSearch.results, searchQuery, canSearch);
             var lastSearch;
@@ -484,22 +521,30 @@ var multipleSearchResultsHandlers = Alexa.CreateStateHandler(states.MULTIPLE_RES
                 speechOutput = MULTIPLE_RESULTS_STATE_HELP_MESSAGE + ", " + listOfPeopleFound;
                 this.emit(":ask", speechOutput);
             }
+        }
+        printRequest(this.event.request);
+
     },
     "AMAZON.HelpIntent": function() {
         this.emit(":ask", MULTIPLE_RESULTS_STATE_HELP_MESSAGE, MULTIPLE_RESULTS_STATE_HELP_MESSAGE);
+        printRequest(this.event.request);
     },
     "AMAZON.StopIntent": function() {
         this.emit(":ask", EXIT_SKILL_MESSAGE);
+        printRequest(this.event.request);
     },
     "AMAZON.CancelIntent": function() {
         this.emit(":ask", EXIT_SKILL_MESSAGE);
+        printRequest(this.event.request);
     },
     "SessionEndedRequest": function() {
         this.emit("AMAZON.StopIntent");
+        printRequest(this.event.request);
     },
     "Unhandled": function() {
         // console.log("Unhandled intent in multipleSearchResultsHandlers");
         this.emit(":ask", MULTIPLE_RESULTS_STATE_HELP_MESSAGE, MULTIPLE_RESULTS_STATE_HELP_MESSAGE);
+        printRequest(this.event.request);
     }
 });
 
@@ -553,7 +598,7 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
 
         }
 
-
+        printRequest(this.event.request);
         // speechOutput = getGenericHelpMessage(data);
         // repromptSpeech = getGenericHelpMessage(data);
         // this.handler.state = states.SEARCHMODE;
@@ -638,47 +683,58 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
         strEmit = "Sorry, I don't understand which person you are asking about. Please ask me again and specify their name. " + getLibrariansHelpMessage(data, index);
         this.emit(":ask", strEmit);
       }
+      printRequest(this.event.request);
     },
     "TellHoursIntent": function() {
       tellHoursIntentHandler.call(this);
+      printRequest(this.event.request);
     },
 
     "SearchByNameIntent": function() {
         searchByNameIntentHandler.call(this);
+        printRequest(this.event.request);
     },
 
     "SearchBySpecialtyIntent": function() {
         searchBySpecialtyIntentHandler.call(this);
+        printRequest(this.event.request);
     },
 
     "SearchHoursIntent": function() {
         searchHoursIntentHandler.call(this);
+        printRequest(this.event.request);
     },
 
     "AMAZON.HelpIntent": function() {
         var slots = this.event.request.intent.slots;
         var person = this.attributes.lastSearch.results[0];
         this.emit(":ask", generateNextPromptMessage(person,"current"), generateNextPromptMessage(person,"current"));
+        printRequest(this.event.request);
     },
 
     "AMAZON.StopIntent": function() {
         this.emit(":ask", EXIT_SKILL_MESSAGE);
+        printRequest(this.event.request);
     },
 
     "AMAZON.CancelIntent": function() {
         this.emit(":ask", EXIT_SKILL_MESSAGE);
+        printRequest(this.event.request);
     },
 
     "AMAZON.NoIntent": function() {
         this.emit(":ask", SHUTDOWN_MESSAGE);
+        printRequest(this.event.request);
     },
 
     "AMAZON.YesIntent": function() {
         this.emit("TellMeMoreIntent");
+        printRequest(this.event.request);
     },
 
     "AMAZON.RepeatIntent": function() {
         this.emit(":ask",this.attributes.lastSearch.lastSpeech, this.attributes.lastSearch.lastSpeech);
+        printRequest(this.event.request);
     },
 
     "AMAZON.StartOverIntent": function() {
@@ -689,10 +745,12 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
         }
         var output = "Ok, starting over. Can I help you find a librarian, or our opening hours? " + getGenericHelpMessage(data);
         this.emit(":ask", output, output);
+        printRequest(this.event.request);
     },
 
     "SessionEndedRequest": function() {
         this.emit("AMAZON.StopIntent");
+        printRequest(this.event.request);
     },
 
     "Unhandled": function() {
@@ -701,6 +759,7 @@ var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
 
         // console.log("Unhandled intent in DESCRIPTION state handler");
         this.emit(":ask", "Sorry, I don't know that request. " + generateNextPromptMessage(person,"general"), "Sorry, I don't know that request. " + generateNextPromptMessage(person,"general"));
+        printRequest(this.event.request);
     }
 });
 
@@ -1332,6 +1391,10 @@ function tellHoursIntentHandler() {
     this.emit(":ask", strEmit);
   }
 
+}
+
+function printRequest (request) {
+  console.log("REQUEST: " + JSON.stringify(request));
 }
 
 // =====================================================================================================
