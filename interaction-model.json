@@ -56,7 +56,6 @@
       "name": "SearchByInfoTypeIntent",
       "samples": [
         "{whatPhrase} {lastName} {infoType}",
-        "{whatPhrase} {firstName} {infoType}",
         "{whatPhrase} {firstName} {lastName} {infoType}",
         "{lastName} {infoType}",
         "{firstName} {infoType}",
@@ -360,7 +359,10 @@
         "{lastName} is a liaison for which {infoType}",
         "{firstName} is a liaison for what {infoType}",
         "{firstName} {lastName} is a liaison for what {infoType}",
-        "{lastName} is a liaison for what {infoType}"
+        "{lastName} is a liaison for what {infoType}",
+        "{whatPhrase} {firstName} {infoType}",
+        "{whatPhrase} {firstName} {lastName} {infoType}",
+        "{whatPhrase} {lastName} {infoType}"
       ],
       "slots": [
         {
@@ -579,7 +581,9 @@
               "specialties",
               "topics",
               "liaison",
-              "specialize"
+              "specialize",
+              "subject",
+              "subjects"
             ]
           }
         }
