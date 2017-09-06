@@ -201,7 +201,13 @@
         "will you be {libraryStatus} {date}",
         "will you be {libraryStatus} on {date}",
         "{libraryStatus} {date}",
-        "{date}"
+        "{date}",
+        "library hours on {date}",
+        "{whatPhrase} library hours {date}",
+        "{whatPhrase} library hours on {date}",
+        "library hours {date}",
+        "the library hours {date}",
+        "the library hours on {date}"
       ],
       "slots": [
         {
@@ -212,6 +218,11 @@
         {
           "name": "date",
           "type": "AMAZON.DATE",
+          "samples": []
+        },
+        {
+          "name": "whatPhrase",
+          "type": "WHAT_PHRASE",
           "samples": []
         }
       ]
@@ -236,7 +247,9 @@
         "{whatPhrase} the hours for the library",
         "{whatPhrase} your hours for the library",
         "library hours",
-        "hours"
+        "hours",
+        "the library hours",
+        "for the library hours"
       ],
       "slots": [
         {
@@ -1509,6 +1522,13 @@
           "id": null,
           "name": {
             "value": "tell me the",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "which",
             "synonyms": []
           }
         }

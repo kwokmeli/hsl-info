@@ -112,33 +112,33 @@ var periodHours = [
 ];
 
 var data = [
-  {firstName:"tania",lastName:"bardyn",title:"Associate Dean for University Libraries and Director of the Health Sciences Library",sayemail:slowSpell("bardyn"),email:"bardyn",phone:"206-543-0422",gender:"f",
+  {firstName:"tania",lastName:"bardyn",pronounceLast:"",title:"Associate Dean for University Libraries and Director of the Health Sciences Library",sayemail:slowSpell("bardyn"),email:"bardyn",phone:"206-543-0422",gender:"f",
   topics:["mobile app development","library and information services","technology support","informatics and education development"],liaison:[]},
 
-  {firstName:"andrea",lastName:"ball",title:"Care Management and Population Health Librarian",sayemail:slowSpell("alball"),email:"alball",phone:"206-616-6630",gender:"f",topics:[
+  {firstName:"andrea",lastName:"ball",pronounceLast:"",title:"Care Management and Population Health Librarian",sayemail:slowSpell("alball"),email:"alball",phone:"206-616-6630",gender:"f",topics:[
   "allergies and infectious diseases","anesthesiology","pain medicine","cardiology","dermatology","emergency medicine","gastroenterology","general internal medicine","gerontology","geriatric medicine",
   "hematology","nephrology","oncology","orthopaedics","palliative care","pediatrics","physical therapy","pulmonary and critical care medicine",
   "radiation oncology","rheumatology","surgery","urology"],liaison:["airlift northwest","harborview medical center","the department of medicine","northwest hospital","u dub medical center"]},
 
-  {firstName:"frances",lastName:"chu",title:"Health Sciences Clinical Liaison and Content Librarian",sayemail:slowSpell("chuf"),email:"chuf",phone:"206-616-1106",gender:"f",topics:["critical care medicine",
+  {firstName:"frances",lastName:"chu",pronounceLast:"",title:"Health Sciences Clinical Liaison and Content Librarian",sayemail:slowSpell("chuf"),email:"chuf",phone:"206-616-1106",gender:"f",topics:["critical care medicine",
   "laboratory medicine","medical laboratory science","metabolism","endocrinology and nutrition","neurology","ophthalmology","otolaryngology","pathology",
   "psychiatry and behavioral sciences","radiology"],liaison:["hall health primary care center","harborview medical center","the school of nursing","u dub medical center"]},
 
-  {firstName:"nicole",lastName:"dettmar",title:"Health Sciences Curriculum Design Librarian",sayemail:slowSpell("snydern"),email:"snydern",phone:"206-543-3409",gender:"f",topics:["oral health services",
+  {firstName:"nicole",lastName:"dettmar",pronounceLast:"",title:"Health Sciences Curriculum Design Librarian",sayemail:slowSpell("snydern"),email:"snydern",phone:"206-543-3409",gender:"f",topics:["oral health services",
   "oral medicine","oral and maxillofacial surgery","pediatric dentistry","periodontics","prosthodontics","restorative dentistry"],liaison:["the school of dentistry","the school of medicine","ride","write","w.w.a.m.i"]},
 
-  {firstName:"stephen",lastName:"gabrielson",title:"Instruction and Research Librarian",sayemail:slowSpell("gabeswg"),email:"gabeswg",phone:"206-543-3437",gender:"m",topics:[],liaison:["the school of nursing",
+  {firstName:"stephen",lastName:"gabrielson",pronounceLast:"",title:"Instruction and Research Librarian",sayemail:slowSpell("gabeswg"),email:"gabeswg",phone:"206-543-3437",gender:"m",topics:[],liaison:["the school of nursing",
   "the school of dentistry"]},
 
-  {firstName:"diana",lastName:"louden",title:"Biomedical and Translational Sciences Librarian",sayemail:slowSpell("dknl"),email:"dknl",phone:"206-221-3480",gender:"f",topics:[
+  {firstName:"diana",lastName:"louden",pronounceLast:"",title:"Biomedical and Translational Sciences Librarian",sayemail:slowSpell("dknl"),email:"dknl",phone:"206-221-3480",gender:"f",topics:[
   "biochemistry","bioengineering","bioethics and humanities","biological structures","biomedical informatics and medical education","comparative medicine","genome sciences","immunology",
   "medical genetics","microbiology","molecular and cellular biology","molecular medicine","physiology and biophysics","public health genetics"],liaison:["the office of animal welfare",
   "the institute of translational health sciences","the molecular and cellular biology program","the graduate program in neuroscience","the school of pharmacy","the school of public health"]},
 
-  {firstName:"emily",lastName:"patridge",title:"Assistant Director of Clinical Research and Data Services - and Trail Program Manager",sayemail:slowSpell("ep001"),email:"ep001",phone:"206-221-3489",gender:"f",topics:["obstetrics and gynecology","occupational therapy"],
+  {firstName:"emily",lastName:"patridge",pronounceLast:"",title:"Assistant Director of Clinical Research and Data Services - and Trail Program Manager",sayemail:slowSpell("ep001"),email:"ep001",phone:"206-221-3489",gender:"f",topics:["obstetrics and gynecology","occupational therapy"],
   liaison:["harborview medical center","northwest hospital","u dub medical center","u dub neighborhood clinics"]},
 
-  {firstName:"joanne",lastName:"rich",title:"Information Management Librarian",sayemail:slowSpell("jrich"),email:"jrich",phone:"206-616-6601",gender:"f",topics:["pharmaceutics","psychosocial and community health"],
+  {firstName:"joanne",lastName:"rich",pronounceLast:"",title:"Information Management Librarian",sayemail:slowSpell("jrich"),email:"jrich",phone:"206-616-6601",gender:"f",topics:["pharmaceutics","psychosocial and community health"],
   liaison:["pharmacy services","the school of pharmacy"]},
 
   {firstName:"sarah",lastName:"safranek",pronounceLast:"<phoneme alphabet='x-sampa' ph='s@\"fr{nek'>safranek</phoneme>",title:"Public Health and Primary Care Librarian",sayemail:slowSpell("safranek"),email:"safranek",phone:"206-543-3408",gender:"f",topics:["biostatistics",
@@ -161,7 +161,7 @@ var index = [
   {subject:["cardiology"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
   {subject:["comparative medicine"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
   {subject:["critical care medicine","critical care"],person:["frances chu","andrea ball"],first:["frances","andrea"],last:["chu","ball"],gender:""},
-  {subject:["the school of dentistry","school of dentistry","dentistry"],person:["stephen gabrielson","nicole dettmar"],first:["stephen","nicole"],last:["gabrielson","dettmar"],gender:""},
+  {subject:["the school of dentistry","school of dentistry","dentistry","dentistry school"],person:["stephen gabrielson","nicole dettmar"],first:["stephen","nicole"],last:["gabrielson","dettmar"],gender:""},
   {subject:["dermatology"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
   {subject:["emergency medicine","emergencies","emergency"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
   {subject:["environmental and occupational health sciences","environmental health sciences","occupational health sciences","occupational health","environmental health"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
@@ -187,7 +187,7 @@ var index = [
   {subject:["medical genetics","genetics"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
   {subject:["medical laboratory science","medical lab science","lab science"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f"},
   {subject:["the department of medicine","department of medicine","medicine"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
-  {subject:["the school of medicine","school of medicine","medicine school"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f"},
+  {subject:["the school of medicine","school of medicine","medicine school","med school"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f"},
   {subject:["metabolism"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f"},
   {subject:["endocrinology"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f"},
   {subject:["nutrition"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f"},
@@ -196,10 +196,10 @@ var index = [
   {subject:["the cellular biology program","cellular biology program","cellular biology"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
   {subject:["molecular medicine"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
   {subject:["nephrology"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
-  {subject:["the graduate program in neuroscience","graduate program in neuroscience","grad program in neuroscience"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
+  {subject:["the graduate program in neuroscience","graduate program in neuroscience","grad program in neuroscience","neuroscience graduate program","neuroscience grad program"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
   {subject:["neurology"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
   {subject:["northwest hospital","the northwest hospital"],person:["emily patridge","andrea ball"],first:["emily","andrea"],last:["patridge","ball"],gender:""},
-  {subject:["the school of nursing","school of nursing"],person:["frances chu","stephen gabrielson"],first:["frances","stephen"],last:["chu","gabrielson"],gender:""},
+  {subject:["the school of nursing","school of nursing","nursing school"],person:["frances chu","stephen gabrielson"],first:["frances","stephen"],last:["chu","gabrielson"],gender:""},
   {subject:["nutritional sciences"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
   {subject:["obstetrics"],person:["emily patridge"],first:["emily"],last:["patridge"],gender:"f"},
   {subject:["gynecology"],person:["emily patridge"],first:["emily"],last:["patridge"],gender:"f"},
@@ -222,7 +222,7 @@ var index = [
   {subject:["periodontics"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f"},
   {subject:["pharmaceutics"],person:["joanne rich"],first:["joanne"],last:["rich"],gender:"f"},
   {subject:["pharmacy services"],person:["joanne rich"],first:["joanne"],last:["rich"],gender:"f"},
-  {subject:["the school of pharmacy","school of pharmacy","pharmacy"],person:["joanne rich","diana louden"],first:["joanne","diana"],last:["rich","louden"],gender:""},
+  {subject:["the school of pharmacy","school of pharmacy","pharmacy","pharmacy school","pharm school","farm school"],person:["joanne rich","diana louden"],first:["joanne","diana"],last:["rich","louden"],gender:""},
   {subject:["physical therapy"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
   {subject:["physician assistant"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f"},
   {subject:["physiology"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f"},
@@ -242,7 +242,7 @@ var index = [
   {subject:["restorative dentistry"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f"},
   {subject:["rheumatology"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
   {subject:["ride","the ride"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f"},
-  {subject:["the school of social work","school of social work"],person:["joanne rich"],first:["joanne"],last:["rich"],gender:"f"},
+  {subject:["the school of social work","school of social work","social work school"],person:["joanne rich"],first:["joanne"],last:["rich"],gender:"f"},
   {subject:["social workers","social work"],person:["emily patridge","andrea ball","frances chu"],first:["emily","andrea","frances"],last:["patridge","ball","chu"],gender:""},
   {subject:["surgery","surgeries"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
   {subject:["urology"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
@@ -255,7 +255,7 @@ var index = [
 var skillName = "HSL Library Helper";
 
 // This is the welcome message for when a user starts the skill without a specific intent.
-var WELCOME_MESSAGE = "Learn about the librarians of the Health Sciences Library, or search for a librarian by specialty. You can also ask about the opening hours of the library. " + getGenericHelpMessage(data) + "If you ever need help, just say - I need help. ";
+var WELCOME_MESSAGE = "Learn about the librarians of the Health Sciences Library, or search for a librarian by specialty. <break time=\"0.25s\"/> You can also ask about the opening hours of the library. " + getGenericHelpMessage(data) + "If you ever need help, just say - I need help. ";
 
 // This is the message a user will hear when they ask Alexa for help in your skill.
 var HELP_MESSAGE = "I can help you find a librarian, or find library hours for a specific date, week, or weekend. ";
@@ -355,7 +355,7 @@ const newSessionHandlers = {
         if (this.attributes.lastSearch) {
           this.attributes.lastSearch = null;
         }
-        var output = "Ok, starting over. Can I help you find a librarian, or our opening hours? " + getGenericHelpMessage(data);
+        var output = "Ok, starting over. I can help you find a librarian, or our opening hours. " + getGenericHelpMessage(data);
         this.emit(":ask", output, output);
         printRequest(this.event.request);
     },
@@ -443,7 +443,7 @@ var startSearchHandlers = Alexa.CreateStateHandler(states.SEARCHMODE, {
         if (this.attributes.lastSearch) {
           this.attributes.lastSearch = null;
         }
-        var output = "Ok, starting over. Can I help you find a librarian, or our opening hours? " + getGenericHelpMessage(data);
+        var output = "Ok, starting over. I can help you find a librarian, or our opening hours. " + getGenericHelpMessage(data);
         this.emit(":ask", output, output);
         printRequest(this.event.request);
     },
@@ -465,7 +465,7 @@ var multipleSearchResultsHandlers = Alexa.CreateStateHandler(states.MULTIPLE_RES
         if (this.attributes.lastSearch) {
           this.attributes.lastSearch = null;
         }
-        var output = "Ok, starting over. Can I help you find a librarian, or our opening hours? " + getGenericHelpMessage(data);
+        var output = "Ok, starting over. I can help you find a librarian, or our opening hours. " + getGenericHelpMessage(data);
         this.emit(":ask", output, output);
         printRequest(this.event.request);
     },
@@ -549,46 +549,106 @@ var multipleSearchResultsHandlers = Alexa.CreateStateHandler(states.MULTIPLE_RES
 
 var descriptionHandlers = Alexa.CreateStateHandler(states.DESCRIPTION, {
     "TellMeMoreIntent": function() {
-      var person;
+      var person, newPerson;
       var speechOutput;
       var repromptSpeech;
       var cardContent;
       var strEmit;
+      var firstName = isSlotValid(this.event.request, "firstName");
+      var lastName = isSlotValid(this.event.request, "lastName");
+      var canSearch = figureOutWhichSlotToSearchBy(firstName,lastName);
 
       if (this.attributes.lastSearch && (this.attributes.lastSearch.count >= 1)) {
         person = this.attributes.lastSearch.results[0];
-        cardContent = generateCard(person); // Calling the helper function to generate the card content that will be sent to the Alexa app.
-        speechOutput = generateTellMeMoreMessage(person);
-        repromptSpeech = "Would you like more information? Say yes or no. ";
-
-        // console.log("the contact you're trying to find more info about is " + person.firstName);
-        this.handler.state = states.SEARCHMODE;
-        this.attributes.lastSearch.lastSpeech = speechOutput;
-        this.emit(":askWithCard", speechOutput, repromptSpeech, cardContent.title, cardContent.body, cardContent.image);
-
-      } else { // REVIEW
-        var firstName = isSlotValid(this.event.request, "firstName");
-        var lastName = isSlotValid(this.event.request, "lastName");
-        var canSearch = figureOutWhichSlotToSearchBy(firstName,lastName);
-
+        // Even if a person has been previously saved in lastSearch, make sure that the requested person is the same as the saved one
         if (canSearch) {
+          // A specific person's name was mentioned
           var searchQuery = this.event.request.intent.slots[canSearch].value;
           var searchResults = searchDatabase(data, searchQuery, canSearch);
 
-          // Saving lastSearch results to the current session
-          var lastSearch = this.attributes.lastSearch = searchResults;
-          var output;
+          if (searchResults.count == 1) {
+            // If one person was found in the database
+            newPerson = searchResults.results[0];
 
-          // Saving last intent to session attributes
-          this.attributes.lastSearch.lastIntent = "SearchByNameIntent";
+            // If the last person saved == the person requested
+            if ((person.firstName == newPerson.firstName) && (person.lastName == newPerson.lastName)) {
+              // person = this.attributes.lastSearch.results[0];
+              cardContent = generateCard(person);
+              speechOutput = generateTellMeMoreMessage(person);
+              repromptSpeech = "<break time=\"0.5s\"/> Do you still want to find more information? Say yes or no. ";
+
+            } else {
+              // Else someone requested information about a new person
+              // Save the new person's information, for future follow-up questions
+              var lastSearch = this.attributes.lastSearch = searchResults;
+              this.attributes.lastSearch.lastIntent = "SearchByNameIntent";
+
+              cardContent = generateCard(newPerson);
+              speechOutput = generateTellMeMoreMessage(newPerson);
+              repromptSpeech = "<break time=\"0.5s\"/> Do you still want to find more information? Say yes or no. ";
+              this.handler.state = states.SEARCHMODE;
+              this.attributes.lastSearch.lastSpeech = speechOutput;
+              this.emit(":askWithCard", speechOutput, repromptSpeech, cardContent.title, cardContent.body, cardContent.image);
+            }
+
+          } else if (searchResults.count > 1) {
+            var listOfPeopleFound = loopThroughArrayOfObjects(lastSearch.results);
+            output = generateSearchResultsMessage(searchQuery,searchResults.results) + listOfPeopleFound + ". Who would you like to learn more about?";
+            this.handler.state = states.MULTIPLE_RESULTS; // Change state to MULTIPLE_RESULTS
+            this.attributes.lastSearch.lastSpeech = output;
+            this.emit(":ask", output);
+
+          } else {
+            // The requested person does not exist
+            strEmit = "I'm sorry. I couldn't find anyone by that name. Please ask me again. " + getLibrariansHelpMessage(data, index);
+            this.emit(":ask", strEmit);
+          }
+
+        } else {
           person = this.attributes.lastSearch.results[0];
-          cardContent = generateCard(person);
+          cardContent = generateCard(person); // Calling the helper function to generate the card content that will be sent to the Alexa app.
           speechOutput = generateTellMeMoreMessage(person);
-          repromptSpeech = "Would you like more information? Say yes or no. ";
-
+          repromptSpeech = "Do you still want to find more information? Say yes or no. ";
           this.handler.state = states.SEARCHMODE;
           this.attributes.lastSearch.lastSpeech = speechOutput;
           this.emit(":askWithCard", speechOutput, repromptSpeech, cardContent.title, cardContent.body, cardContent.image);
+        }
+
+      } else { // REVIEW: Need to handle multiple search results?
+        // No person was previously saved; a new person's information is being requested
+        if (canSearch) {
+
+          // A specific person's name was mentioned
+          var searchQuery = this.event.request.intent.slots[canSearch].value;
+          var searchResults = searchDatabase(data, searchQuery, canSearch);
+
+          if (searchResults.count == 1) {
+            // If one person was found in the database
+            newPerson = searchResults.results[0];
+
+            // Save the new person's information, for future follow-up questions
+            var lastSearch = this.attributes.lastSearch = searchResults;
+            this.attributes.lastSearch.lastIntent = "SearchByNameIntent";
+            cardContent = generateCard(newPerson);
+            speechOutput = generateTellMeMoreMessage(newPerson);
+            repromptSpeech = "<break time=\"0.5s\"/> Do you still want to find more information? Say yes or no. ";
+            this.handler.state = states.SEARCHMODE;
+            this.attributes.lastSearch.lastSpeech = speechOutput;
+            this.emit(":askWithCard", speechOutput, repromptSpeech, cardContent.title, cardContent.body, cardContent.image);
+
+
+          } else if (searchResults.count > 1) {
+            var listOfPeopleFound = loopThroughArrayOfObjects(lastSearch.results);
+            output = generateSearchResultsMessage(searchQuery,searchResults.results) + listOfPeopleFound + ". Who would you like to learn more about?";
+            this.handler.state = states.MULTIPLE_RESULTS; // Change state to MULTIPLE_RESULTS
+            this.attributes.lastSearch.lastSpeech = output;
+            this.emit(":ask", output);
+
+          } else {
+            // The requested person does not exist
+            strEmit = "I'm sorry. I couldn't find anyone by that name. Please ask me again. " + getLibrariansHelpMessage(data, index);
+            this.emit(":ask", strEmit);
+          }
 
         } else {
           // Person does not exist
@@ -638,6 +698,7 @@ console.log("lastName: " + lastName);
 
           if (searchResults.count == 1) {
             // If one person was found in the database
+            person = this.attributes.lastSearch.results[0];
             newPerson = searchResults.results[0];
 
             // If the last person saved == the person requested
@@ -645,7 +706,7 @@ console.log("lastName: " + lastName);
               // person = this.attributes.lastSearch.results[0];
               cardContent = generateCard(person);
               speechOutput = generateSpecificInfoMessage(slots,person);
-              repromptSpeech = "<break time=\"0.5s\"/> Would you like to find more information? Say yes or no. ";
+              repromptSpeech = "<break time=\"0.5s\"/> Do you still want to find more information? Say yes or no. ";
               this.handler.state = states.SEARCHMODE;
               this.attributes.lastSearch.lastSpeech = speechOutput;
               this.emit(":askWithCard", speechOutput, repromptSpeech, cardContent.title, cardContent.body, cardContent.image);
@@ -658,7 +719,7 @@ console.log("lastName: " + lastName);
 
               cardContent = generateCard(newPerson);
               speechOutput = generateSpecificInfoMessage(slots,newPerson);
-              repromptSpeech = "<break time=\"0.5s\"/> Would you like to find more information? Say yes or no. ";
+              repromptSpeech = "<break time=\"0.5s\"/> Do you still want to find more information? Say yes or no. ";
               this.handler.state = states.SEARCHMODE;
               this.attributes.lastSearch.lastSpeech = speechOutput;
               this.emit(":askWithCard", speechOutput, repromptSpeech, cardContent.title, cardContent.body, cardContent.image);
@@ -674,7 +735,8 @@ console.log("lastName: " + lastName);
           } else {
             // The requested person does not exist
             strEmit = "I'm sorry. I couldn't find anyone by that name. Would you like to try again? " + getLibrariansHelpMessage(data, index);
-            this.emit(":ask", strEmit);
+            repromptSpeech = "<break time=\"0.5s\"/> Would you still like to find more information? Say yes or no. ";
+            this.emit(":ask", strEmit, repromptSpeech);
           }
 
         } else {
@@ -752,7 +814,7 @@ console.log("lastName: " + lastName);
         if (this.attributes.lastSearch) {
           this.attributes.lastSearch = null;
         }
-        var output = "Ok, starting over. Can I help you find a librarian, or our opening hours? " + getGenericHelpMessage(data);
+        var output = "Ok, starting over. I can help you find a librarian, or our opening hours. " + getGenericHelpMessage(data);
         this.emit(":ask", output, output);
         printRequest(this.event.request);
     },
@@ -763,11 +825,9 @@ console.log("lastName: " + lastName);
     },
 
     "Unhandled": function() {
-        var slots = this.event.request.intent.slots;
-        var person = this.attributes.lastSearch.results[0];
-
         // console.log("Unhandled intent in DESCRIPTION state handler");
-        this.emit(":ask", "Sorry, I don't know that request. " + generateNextPromptMessage(person,"general"), "Sorry, I don't know that request. " + generateNextPromptMessage(person,"general"));
+        this.emit(":ask", "Sorry, I don't know that request. Do you need help? You can say - help me. ");
+
         printRequest(this.event.request);
     }
 });
@@ -974,7 +1034,7 @@ function searchHoursIntentHandler() {
           var currentStatus = libraryStatusGivenTime(status, currentDate.getHours(), currentDate.getMinutes());
 
           if (currentStatus == "open") {
-            strEmit = "Yes, the library is currently open. Today's hours are " + returnHours(status);
+            strEmit = "The library is currently open. Today's hours are " + returnHours(status);
             this.emit(":ask", strEmit);
           } else {
             this.emit(":ask", "Sorry, the library is not currently open.");
@@ -1009,7 +1069,7 @@ function searchHoursIntentHandler() {
               strEmit = "The library hours have not been determined for that day. Would you like to find opening hours for other dates? " + getHoursHelpMessage();
               this.emit(":ask", strEmit);
             } else {
-              strEmit = "Yes, the library is open on " + returnMonth(date[1]) + " " + parseInt(date[2]) + "th, from " + returnHours(status);
+              strEmit = "The library is open on " + returnMonth(date[1]) + " " + parseInt(date[2]) + "th, from " + returnHours(status);
               this.emit(":ask", strEmit);
             }
           } else {
@@ -1087,7 +1147,7 @@ function searchHoursIntentHandler() {
       } else if (date.length == 2) {
         if (!isNaN(date[1])) {
           // Asked for a month, e.g. "this month": 2017-08
-          strEmit = "Yes, the library is open during the month of " + returnMonth(date[1]) + ". <break time=\"0.25s\"/> Please specify a date or week for more detailed opening hours. " + getHoursHelpMessage();
+          strEmit = "The library is open during the month of " + returnMonth(date[1]) + ". <break time=\"0.25s\"/> Please specify a date or week for more detailed opening hours. " + getHoursHelpMessage();
           this.emit(":ask", strEmit);
 
         } else if ((date[1].toUpperCase() == "WI") || (date[1].toUpperCase() == "SP") || (date[1].toUpperCase() == "SU") || (date[1].toUpperCase() == "FA")) {
@@ -1109,7 +1169,7 @@ function searchHoursIntentHandler() {
               currentPeriod = 0;
             }
 
-            strEmit = "Yes, the library will be open during " + season + " quarter. " + periodHours[currentPeriod] + " <break time=\"0.5s\"/>" + extraHours[currentPeriod];
+            strEmit = "The library will be open during " + season + " quarter. " + periodHours[currentPeriod] + " <break time=\"0.5s\"/>" + extraHours[currentPeriod];
             this.emit(":ask", strEmit);
 
           } else {
@@ -1118,7 +1178,7 @@ function searchHoursIntentHandler() {
 
         } else if ((date[1].toUpperCase() == "Q1") || (date[1].toUpperCase() == "Q2") || (date[1].toUpperCase() == "Q3") || (date[1].toUpperCase() == "Q4")) {
           // Asked for a calendar quarter
-          strEmit = "Yes, the library is open during ";
+          strEmit = "The library is open during ";
 
           if (date[1].toUpperCase() == "Q1") {
             // January 1 - March 31
@@ -1266,28 +1326,28 @@ function searchHoursIntentHandler() {
       } else {
         if (date[0] == "201X") {
           // Asked for this decade
-          strEmit = "Yes, the library will most likely be open for the next decade. Future hours have yet to be decided. To get current hours, please specify a date, week, or weekend. " + getHoursHelpMessage();
+          strEmit = "The library will most likely be open for the next decade. Future hours have yet to be decided. To get current hours, please specify a date, week, or weekend. " + getHoursHelpMessage();
           this.emit(":ask", strEmit);
         } else if (date[0] == "20XX") {
           // Asked for this century
-          strEmit = "Yes, the library will most likely be open for the next century. Future hours have yet to be decided. Please specify a date, week, or weekend for more detailed opening hours. " + getHoursHelpMessage();
+          strEmit = "The library will most likely be open for the next century. Future hours have yet to be decided. Please specify a date, week, or weekend for more detailed opening hours. " + getHoursHelpMessage();
           this.emit(":ask", strEmit);
         } else {
           if (date[0] == YEAR1) {
             // Asked for this year
-            strEmit = "Yes, the library is open this year. Please specify a date, week, or weekend for more detailed opening hours. " + getHoursHelpMessage();
+            strEmit = "The library is open this year. Please specify a date, week, or weekend for more detailed opening hours. " + getHoursHelpMessage();
             this.emit(":ask", strEmit);
           } else if (date[0] == YEAR2) {
             // Asked for next year
-            strEmit = "Yes, the library will be open next year. Please specify a date or week for more detailed opening hours. " + getHoursHelpMessage();
+            strEmit = "The library will be open next year. Please specify a date or week for more detailed opening hours. " + getHoursHelpMessage();
             this.emit(":ask", strEmit);
           } else if (Number(date[0]) < YEAR1) {
             // Asked for years in the past
-            strEmit = "Yes, the library was open last year. Please specify a present or future date, week, or weekend for more detailed opening hours. " + getHoursHelpMessage();
+            strEmit = "The library was open last year. Please specify a present or future date, week, or weekend for more detailed opening hours. " + getHoursHelpMessage();
             this.emit(":ask", strEmit);
           } else {
             // Asked for other years in the future
-            strEmit = "Yes, the library will most likely be open in the future. Future hours have yet to be decided. Please specify a date or week for more detailed opening hours. " + getHoursHelpMessage();
+            strEmit = "The library will most likely be open in the future. Future hours have yet to be decided. Please specify a date or week for more detailed opening hours. " + getHoursHelpMessage();
             this.emit(":ask", strEmit);
           }
         }
@@ -1513,15 +1573,15 @@ function generateSearchHelpMessage(gender){
 }
 
 function generateTellMeMoreMessage(person){
-  var sentence = person.firstName
-  + "'s e-mail address is " + person.sayemail + " <break time=\"0.5s\"/>at <break time=\"0.5s\"/> u<break time=\"0.025s\"/> w<break time=\"0.05s\"/> dot<break time=\"0.05s\"/> e <break time=\"0.04s\"/>d <break time=\"0.03s\"/>u.<break time=\"0.1s\"/>" +
+  var sentence = "Here are " + person.firstName + "'s contact details - " + genderize("his-her", person.gender) +
+  " e-mail address is " + person.sayemail + " <break time=\"0.5s\"/>at <break time=\"0.5s\"/> u<break time=\"0.025s\"/> w<break time=\"0.05s\"/> dot<break time=\"0.05s\"/> e <break time=\"0.04s\"/>d <break time=\"0.03s\"/>u.<break time=\"0.1s\"/>" +
   genderize("his-her", person.gender) + " phone number is " + person.phone;
 
   if (person.topics.length == 0) {
     sentence += ". ";
 
   } else if ((person.topics.length < 3) && (person.topics.length > 0)) {
-    sentence += ", and " + genderize("his-her", person.gender) + " specialties are " + generateTopics(person) + ". ";
+    sentence += ", and " + genderize("his-her", person.gender) + " specialties are " + generateTopics(person);
 
   } else {
     sentence += ", and some of " + genderize("his-her", person.gender) + " specialties include " + generateTopics(person);
@@ -1560,7 +1620,8 @@ function generateSpecificInfoMessage(slots,person){
                ", you can say - tell me more. To start a new search, say the name of a topic or a librarian. " + getLibrariansHelpMessage(data, index);
 
   } else if ((infoTypeValue == "specialty") || (infoTypeValue == "specialties") || (infoTypeValue == "topics") || (infoTypeValue == "topic") ||
-             (infoTypeValue == "liaison") || (infoTypeValue == "specialize" || (infoTypeValue == "subject") || (infoTypeValue == "subjects"))) {
+             (infoTypeValue == "liaison") || (infoTypeValue == "specialize" || (infoTypeValue == "subject") || (infoTypeValue == "subjects") ||
+             (infoTypeValue == "topics liaison"))) {
     if (person.topics.length == 0) {
       sentence = person.firstName + " does not specialize in any topic. ";
 
