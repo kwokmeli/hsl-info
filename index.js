@@ -1550,12 +1550,14 @@ function generateSpecificInfoMessage(slots,person){
   if ((infoTypeValue == "email") || (infoTypeValue == "email address")) {
     info = person.email;
     type = "e-mail";
-    sentence = person.firstName + "'s " + type + " is - " + person.sayemail + " <break time=\"0.5s\"/>at <break time=\"0.5s\"/> u<break time=\"0.025s\"/> w<break time=\"0.05s\"/> dot<break time=\"0.05s\"/> e <break time=\"0.04s\"/>d <break time=\"0.03s\"/>u. <break time=\"0.5s\"/> Would you like to find more information? " + getLibrariansHelpMessage(data, index);
+    sentence = person.firstName + "'s " + type + " is - " + person.sayemail + " <break time=\"0.5s\"/>at <break time=\"0.5s\"/> u<break time=\"0.025s\"/> w<break time=\"0.05s\"/> dot<break time=\"0.05s\"/> e <break time=\"0.04s\"/>d <break time=\"0.03s\"/>u. <break time=\"0.5s\"/> For more information about " +
+               person.firstName + ", you can say - tell me more. To start a new search, say the name of a topic or a librarian. " + getLibrariansHelpMessage(data, index);
 
   } else if ((infoTypeValue == "phone") || (infoTypeValue == "phone number") || (infoTypeValue == "number")) {
     info = person.phone;
     type = "phone number";
-    sentence = person.firstName + "'s " + type + " is - " + info + ". <break time=\"0.5s\"/> Would you like to find more information? " + getLibrariansHelpMessage(data, index);
+    sentence = person.firstName + "'s " + type + " is - " + info + ". <break time=\"0.5s\"/> For more information about " + person.firstName +
+               ", you can say - tell me more. To start a new search, say the name of a topic or a librarian. " + getLibrariansHelpMessage(data, index);
 
   } else if ((infoTypeValue == "specialty") || (infoTypeValue == "specialties") || (infoTypeValue == "topics") || (infoTypeValue == "topic") ||
              (infoTypeValue == "liaison") || (infoTypeValue == "specialize" || (infoTypeValue == "subject") || (infoTypeValue == "subjects"))) {
@@ -1576,7 +1578,7 @@ function generateSpecificInfoMessage(slots,person){
         }
       }
 
-      sentence += "<break time=\"0.5s\"/> Would you like to find more information? " + getLibrariansHelpMessage(data, index);
+      sentence += "<break time=\"0.5s\"/> For more information about " + person.firstName + ", you can say - tell me more.";
 
     } else if ((person.topics.length < 3) && (person.topics.length > 0)) {
       sentence = person.firstName + " specializes in the topics of - "  + generateTopics(person);
@@ -1596,7 +1598,7 @@ function generateSpecificInfoMessage(slots,person){
 
       }
 
-      sentence += "<break time=\"0.5s\"/> Would you like to find more information? " + getLibrariansHelpMessage(data, index);
+      sentence += "<break time=\"0.5s\"/> For more information about " + person.firstName + ", you can say - tell me more.";
 
     } else {
       sentence = "Some of the topics that " + person.firstName + " specializes in are - " + generateTopics(person);
@@ -1615,7 +1617,7 @@ function generateSpecificInfoMessage(slots,person){
         }
       }
 
-      sentence += "<break time=\"0.5s\"/> Would you like to find more information? " + getLibrariansHelpMessage(data, index);
+      sentence += "<break time=\"0.5s\"/> For more information about " + person.firstName + ", you can say - tell me more.";
 
     }
 
@@ -1643,7 +1645,14 @@ function getRandom (min, max) {
 
 function getRandomName (arrayOfStrings) {
   var randomNumber = getRandom(0, data.length - 1)
-  return arrayOfStrings[randomNumber].firstName + " " + arrayOfStrings[randomNumber].lastName;
+
+  // TODO: Update code so that speech always returns pronounceLast for last names?
+  if (arrayOfStrings[randomNumber].lastName == "safranek") {
+    return arrayOfStrings[randomNumber].firstName + " " + arrayOfStrings[randomNumber].pronounceLast;
+  } else {
+    return arrayOfStrings[randomNumber].firstName + " " + arrayOfStrings[randomNumber].lastName;
+  }
+
 }
 
 function getRandomSubject (arrayOfStrings) {
