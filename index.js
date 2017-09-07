@@ -1,5 +1,6 @@
 "use strict";
 const Alexa = require("alexa-sdk");
+const util = require("util");
 
 // App ID for mkwok account
 // var APP_ID = "amzn1.ask.skill.7a8eca68-7c79-431b-865a-dc27ca4d0135";
@@ -130,7 +131,7 @@ var data = [
   {firstName:"nicole",lastName:"dettmar",pronounceLast:"",title:"Health Sciences Curriculum Design Librarian",sayemail:slowSpell("snydern"),email:"snydern",phone:"206-543-3409",gender:"f",topics:["oral health services",
   "oral medicine","oral and maxillofacial surgery","pediatric dentistry","periodontics","prosthodontics","restorative dentistry"],liaison:["the school of dentistry","the school of medicine","ride","write","w.w.a.m.i"]},
 
-  {firstName:"stephen",lastName:"gabrielson",pronounceLast:"gabrielson",title:"Instruction and Research Librarian",sayemail:slowSpell("gabeswg"),email:"gabeswg",phone:"206-543-3437",gender:"m",topics:[],liaison:["the school of nursing",
+  {firstName:"stephen",lastName:"gabrielson",pronounceLast:"<phoneme alphabet='x-sampa' ph='geIbr\ilsun'>gabrielson</phoneme>",title:"Instruction and Research Librarian",sayemail:slowSpell("gabeswg"),email:"gabeswg",phone:"206-543-3437",gender:"m",topics:[],liaison:["the school of nursing",
   "the school of dentistry"]},
 
   {firstName:"diana",lastName:"louden",pronounceLast:"<phoneme alphabet='x-sampa' ph='\"laUden'>louden</phoneme>",title:"Biomedical and Translational Sciences Librarian",sayemail:slowSpell("dknl"),email:"dknl",phone:"206-221-3480",gender:"f",topics:[
@@ -146,12 +147,12 @@ var data = [
 
   {firstName:"sarah",lastName:"safranek",pronounceLast:"<phoneme alphabet='x-sampa' ph='s@\"fr{nek'>safranek</phoneme>",title:"Public Health and Primary Care Librarian",sayemail:slowSpell("safranek"),email:"safranek",phone:"206-543-3408",gender:"f",topics:["biostatistics",
   "environmental and occupational health sciences","epidemiology","family medicine","global health","health services","nutritional sciences"],liaison:["the health information administration program",
-  "the institute for health metrics and evaluation","i tech","the maternal and child health program","medex northwest","the pathobiology doctoral program","the school of public health","w.w.a.m.i"]}
+  "the institute for health metrics and evaluation","i-tech","the maternal and child health program","medex northwest","the pathobiology doctoral program","the school of public health","w.w.a.m.i"]}
 ];
 
 /* NOTE: Synonyms not currently supported within interaction model; manually addressed in arrays below */
 var index = [
-  {subject:["airlift northwest"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f"},
+  {subject:["airlift northwest"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f",pronounceLast:[]},
   {subject:["allergy and infectious diseases","allergy","allergies","infectious diseases","infections"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f",pronounceLast:[]},
   {subject:["anesthesiology and pain medicine","anesthesiology","pain medicine"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f",pronounceLast:[]},
   {subject:["the office of animal welfare","animal welfare","animal rights","office of animal welfare"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f",pronounceLast:["<phoneme alphabet='x-sampa' ph='\"laUden'>louden</phoneme>"]},
@@ -164,7 +165,7 @@ var index = [
   {subject:["cardiology","cardiologist","cardiologists"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f",pronounceLast:[]},
   {subject:["comparative medicine"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f",pronounceLast:["<phoneme alphabet='x-sampa' ph='\"laUden'>louden</phoneme>"]},
   {subject:["critical care medicine","critical care","care","critical"],person:["frances chu","andrea ball"],first:["frances","andrea"],last:["chu","ball"],gender:"",pronounceLast:[]},
-  {subject:["the school of dentistry","school of dentistry","dentistry","dentistry school"],person:["stephen gabrielson","nicole dettmar"],first:["stephen","nicole"],last:["gabrielson","dettmar"],gender:"",pronounceLast:[]},
+  {subject:["the school of dentistry","school of dentistry","dentistry","dentistry school"],person:["stephen gabrielson","nicole dettmar"],first:["stephen","nicole"],last:["gabrielson","dettmar"],gender:"",pronounceLast:["<phoneme alphabet='x-sampa' ph='geIbr\ilsun'>gabrielson</phoneme>","dettmar"]},
   {subject:["dermatology","dermatologist","dermatologists","skin doctor","skin"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f",pronounceLast:[]},
   {subject:["emergency medicine","emergencies","emergency"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f",pronounceLast:[]},
   {subject:["environmental and occupational health sciences","environmental health sciences","occupational health sciences","occupational health","environmental health"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f",pronounceLast:["<phoneme alphabet='x-sampa' ph='s@\"fr{nek'>safranek</phoneme>"]},
@@ -177,13 +178,13 @@ var index = [
   {subject:["global health"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f",pronounceLast:["<phoneme alphabet='x-sampa' ph='s@\"fr{nek'>safranek</phoneme>"]},
   {subject:["hall health primary care center","hall health care center","hall health center","hall health"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f",pronounceLast:[]},
   {subject:["harborview medical center","harborview","harborview med center","harborview center"],person:["andrea ball","frances chu","emily patridge"],first:["andrea","frances","emily"],last:["ball","chu","patridge"],gender:"",pronounceLast:[]},
-  {subject:["health information administration program","the health information administration program","health information","health information administration","health administration","health administration program","health information program"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f",pronounceLast:["<phoneme alphabet='x-sampa' ph='s@\"fr{nek'>safranek</phoneme>"]},
+  {subject:["the health information administration program","health information administration program","health information","health information administration","health administration","health administration program","health information program"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f",pronounceLast:["<phoneme alphabet='x-sampa' ph='s@\"fr{nek'>safranek</phoneme>"]},
   {subject:["health services","health service"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f",pronounceLast:["<phoneme alphabet='x-sampa' ph='s@\"fr{nek'>safranek</phoneme>"]},
   {subject:["hematology","haematology","blood","hematologist","haematologist","hematologists","haematologists"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f",pronounceLast:[]},
   {subject:["immunology","immunologist","immunologists","the immunologist","the immunologists"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f",pronounceLast:["<phoneme alphabet='x-sampa' ph='\"laUden'>louden</phoneme>"]},
   {subject:["the institute for health metrics and evaluation","institute for health metrics and evaluation","health metrics and evaluation","health metrics"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f",pronounceLast:["<phoneme alphabet='x-sampa' ph='s@\"fr{nek'>safranek</phoneme>"]},
   {subject:["the institute of translational health sciences","institute of translational health sciences","translational health sciences","translational health","translational health science"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f",pronounceLast:["<phoneme alphabet='x-sampa' ph='\"laUden'>louden</phoneme>"]},
-  {subject:["i tech","the i tech","i technology","the i technology"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f",pronounceLast:["<phoneme alphabet='x-sampa' ph='s@\"fr{nek'>safranek</phoneme>"]},
+  {subject:["i-tech","the i-tech","i technology","the i technology"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f",pronounceLast:["<phoneme alphabet='x-sampa' ph='s@\"fr{nek'>safranek</phoneme>"]},
   {subject:["laboratory medicine","lab medicine"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f",pronounceLast:[]},
   {subject:["the maternal and child health program","maternal and child health program","maternal health program","child health program","maternal health","child health","children's health","childrens health","children health","maternal and child health","maternal and children's health"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f",pronounceLast:["<phoneme alphabet='x-sampa' ph='s@\"fr{nek'>safranek</phoneme>"]},
   {subject:["medex northwest","the medex northwest","med x northwest","med ex northwest"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f",pronounceLast:["<phoneme alphabet='x-sampa' ph='s@\"fr{nek'>safranek</phoneme>"]},
@@ -202,10 +203,10 @@ var index = [
   {subject:["the graduate program in neuroscience","graduate program in neuroscience","grad program in neuroscience","neuroscience graduate program","neuroscience grad program","neuroscience","the grad program in neuroscience","the neuroscience grad program","the neuroscience"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f",pronounceLast:["<phoneme alphabet='x-sampa' ph='\"laUden'>louden</phoneme>"]},
   {subject:["neurology","the neurology","neurologist","neurologist"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f",pronounceLast:[]},
   {subject:["northwest hospital","the northwest hospital","northwest hospitals","the northwest hospitals"],person:["emily patridge","andrea ball"],first:["emily","andrea"],last:["patridge","ball"],gender:"",pronounceLast:[]},
-  {subject:["the school of nursing","school of nursing","nursing school","nursing","the nursing school","nurse","the nursing","nursing schools","the nursing schools"],person:["frances chu","stephen gabrielson"],first:["frances","stephen"],last:["chu","gabrielson"],gender:"",pronounceLast:[]},
-  {subject:["nutritional sciences","nutritional science","nutrition","the nutrition","the nutritional sciences","the nutritional science"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f",pronounceLast:["<phoneme alphabet='x-sampa' ph='s@\"fr{nek'>safranek</phoneme>"]},
+  {subject:["the school of nursing","school of nursing","nursing school","nursing","the nursing school","nurse","the nursing","nursing schools","the nursing schools"],person:["frances chu","stephen gabrielson"],first:["frances","stephen"],last:["chu","gabrielson"],gender:"",pronounceLast:["chu","<phoneme alphabet='x-sampa' ph='geIbr\ilsun'>gabrielson</phoneme>"]},
+  {subject:["nutritional sciences","nutritional science","the nutrition","the nutritional sciences","the nutritional science"],person:["sarah safranek"],first:["sarah"],last:["safranek"],gender:"f",pronounceLast:["<phoneme alphabet='x-sampa' ph='s@\"fr{nek'>safranek</phoneme>"]},
   {subject:["obstetrics","obstetric","the obstetrics","the obstetric","child birth","childbirth"],person:["emily patridge"],first:["emily"],last:["patridge"],gender:"f",pronounceLast:[]},
-  {subject:["gynecology","gyneocologist","obgyn","the gynecology","the gyneocologist","the o. b. g. y. n."],person:["emily patridge"],first:["emily"],last:["patridge"],gender:"f",pronounceLast:[]},
+  {subject:["gynecology","gyneocologist","obgyn","the gynecology","the gyneocologist","the obgyn"],person:["emily patridge"],first:["emily"],last:["patridge"],gender:"f",pronounceLast:[]},
   {subject:["occupational therapy","occupational therapist","occupational therapists","the occupational therapy","the occupational therapist","the occupational therapists"],person:["emily patridge"],first:["emily"],last:["patridge"],gender:"f",pronounceLast:[]},
   {subject:["oncology","oncologist","the oncology","the oncologist","oncologists","the oncologists"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f",pronounceLast:[]},
   {subject:["ophthalmology","opthalmologist","opthalmologists","the ophthalmology","the opthalmologist","the opthalmologists"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f",pronounceLast:[]},
@@ -989,7 +990,7 @@ function searchBySpecialtyIntentHandler () {
     }
 
     if (matchFound == false) {
-      this.emit(":ask", "Sorry, I couldn't find anyone who is a liaison for that topic. <break time=\"0.5s\"/> Would you like to try again? " + getLibrariansHelpMessage(data, index), repromptSpeech);
+      this.emit(":ask", "Sorry, I couldn't find anyone who is a liaison for that topic. <break time=\"0.5s\"/> Please try again. " + getLibrariansHelpMessage(data, index), repromptSpeech);
 
     } else {
       if (results.length > 1) {
@@ -1531,7 +1532,7 @@ function generateSearchResultsMessage(searchQuery, results) {
         break;
     }
   } else {
-    sentence = "Sorry, I didn't quite get that. Please try again. " + getGenericHelpMessage(data);
+    sentence = "Sorry, I didn't quite get that. Please try again. ";
   }
   return sentence;
 }
@@ -1567,8 +1568,8 @@ function getHoursHelpMessage() {
 // Returns help messages that are specifically about finding librarians
 function getLibrariansHelpMessage(data, index) {
   var sentences = [
-    "For example, you can say - give me " + getRandomName(data) + "'s phone number. ",
-    "For example, you can say - give me " + getRandomName(data) + "'s email address.",
+    "For example, you can say - give me " + getRandomName(data) + "s phone number. ",
+    "For example, you can say - give me " + getRandomName(data) + "s email address.",
     "For example, you can say - what topics is " + getRandomName(data) + " a liaison for?",
     "For example, you can ask - who is " + getRandomName(data) + "? ",
     "For example, you can say - tell me about " + getRandomName(data) + ". ",
