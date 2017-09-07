@@ -207,7 +207,10 @@
         "{whatPhrase} library hours on {date}",
         "library hours {date}",
         "the library hours {date}",
-        "the library hours on {date}"
+        "the library hours on {date}",
+        "{whatPhrase} hours for {date}",
+        "hours for {date}",
+        "{whatPhrase} library hours for {date}"
       ],
       "slots": [
         {
@@ -319,7 +322,10 @@
         "{whatPhrase} details for {firstName} {lastName}",
         "{whatPhrase} contact details for {firstName}",
         "{whatPhrase} contact details for {lastName}",
-        "{whatPhrase} contact details for {firstName} {lastName}"
+        "{whatPhrase} contact details for {firstName} {lastName}",
+        "{whatPhrase} {firstName}",
+        "{whatPhrase} {firstName} {lastName}",
+        "{whatPhrase} {lastName}"
       ],
       "slots": [
         {
@@ -655,7 +661,8 @@
             "synonyms": [
               "allergy",
               "allergies",
-              "infectious diseases"
+              "infectious diseases",
+              "infections"
             ]
           }
         },
@@ -674,7 +681,9 @@
           "name": {
             "value": "office of animal welfare",
             "synonyms": [
-              "animal welfare"
+              "animal welfare",
+              "the office of animal welfare",
+              "animal rights"
             ]
           }
         },
@@ -682,14 +691,19 @@
           "id": null,
           "name": {
             "value": "biochemistry",
-            "synonyms": []
+            "synonyms": [
+              "biochem",
+              "bio chem"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "bioengineering",
-            "synonyms": []
+            "synonyms": [
+              "bio e"
+            ]
           }
         },
         {
@@ -698,7 +712,8 @@
             "value": "bioethics and humanities",
             "synonyms": [
               "bioethics",
-              "humanities"
+              "humanities",
+              "humanities and bioethics"
             ]
           }
         },
@@ -706,28 +721,44 @@
           "id": null,
           "name": {
             "value": "biological structure",
-            "synonyms": []
+            "synonyms": [
+              "structures",
+              "biological structure",
+              "structure"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "biomedical informatics and medical education",
-            "synonyms": []
+            "synonyms": [
+              "biomedical informatics",
+              "medical education",
+              "informatics",
+              "bio informatics"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "biostatistics",
-            "synonyms": []
+            "synonyms": [
+              "biostatistic",
+              "statistic",
+              "statistics"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "cardiology",
-            "synonyms": []
+            "synonyms": [
+              "cardiologist",
+              "cardiologists"
+            ]
           }
         },
         {
@@ -741,7 +772,11 @@
           "id": null,
           "name": {
             "value": "critical care medicine",
-            "synonyms": []
+            "synonyms": [
+              "critical care",
+              "care",
+              "critical"
+            ]
           }
         },
         {
@@ -750,7 +785,8 @@
             "value": "school of dentistry",
             "synonyms": [
               "dentristy",
-              "dentist"
+              "dentist",
+              "dentistry school"
             ]
           }
         },
@@ -758,14 +794,22 @@
           "id": null,
           "name": {
             "value": "dermatology",
-            "synonyms": []
+            "synonyms": [
+              "dermatologist",
+              "dermatologists",
+              "skin doctor",
+              "skin"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "emergency medicine",
-            "synonyms": []
+            "synonyms": [
+              "emergencies",
+              "emergency"
+            ]
           }
         },
         {
@@ -782,35 +826,50 @@
           "id": null,
           "name": {
             "value": "epidemiology",
-            "synonyms": []
+            "synonyms": [
+              "epidemiologist",
+              "epidemiologists"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "family medicine",
-            "synonyms": []
+            "synonyms": [
+              "family doctor",
+              "family physician",
+              "family"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "gastroenterology",
-            "synonyms": []
+            "synonyms": [
+              "gastroenterologist",
+              "gastroenterologists"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "general internal medicine",
-            "synonyms": []
+            "synonyms": [
+              "internal medicine"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "genome sciences",
-            "synonyms": []
+            "synonyms": [
+              "genomics",
+              "genome"
+            ]
           }
         },
         {
@@ -820,7 +879,8 @@
             "synonyms": [
               "geriatric medicine",
               "gerontology",
-              "geriatrics"
+              "geriatrics",
+              "geriatric"
             ]
           }
         },
@@ -836,7 +896,9 @@
           "name": {
             "value": "hall health primary care center",
             "synonyms": [
-              "hall health"
+              "hall health",
+              "hall health care center",
+              "hall health center"
             ]
           }
         },
@@ -846,7 +908,8 @@
             "value": "harborview medical center",
             "synonyms": [
               "harborview",
-              "medical center"
+              "harborview med center",
+              "harborview center"
             ]
           }
         },
@@ -865,56 +928,82 @@
           "id": null,
           "name": {
             "value": "health information administration program",
-            "synonyms": []
+            "synonyms": [
+              "health administration program",
+              "health administration",
+              "health information administration",
+              "health information program"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "health services",
-            "synonyms": []
+            "synonyms": [
+              "health service"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "hematology",
-            "synonyms": []
+            "synonyms": [
+              "haematology",
+              "haematologist",
+              "hematologists",
+              "haematologists"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "immunology",
-            "synonyms": []
+            "synonyms": [
+              "immunologist",
+              "immunologists"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "institute for health metrics and evaluation",
-            "synonyms": []
+            "synonyms": [
+              "health metrics",
+              "health metrics and evaluation"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "institute of translational health sciences",
-            "synonyms": []
+            "synonyms": [
+              "translational health",
+              "translational health sciences",
+              "translational health science"
+            ]
           }
         },
         {
           "id": null,
           "name": {
-            "value": "i-tech",
-            "synonyms": []
+            "value": "i tech",
+            "synonyms": [
+              "i technology"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "laboratory medicine",
-            "synonyms": []
+            "synonyms": [
+              "lab medicine"
+            ]
           }
         },
         {
@@ -923,7 +1012,14 @@
             "value": "maternal and child health program",
             "synonyms": [
               "maternal health program",
-              "child health program"
+              "child health program",
+              "maternal health program",
+              "child health program",
+              "maternal health",
+              "child health",
+              "children's health",
+              "maternal and child health",
+              "maternal and children's health"
             ]
           }
         },
@@ -931,7 +1027,10 @@
           "id": null,
           "name": {
             "value": "medex northwest",
-            "synonyms": []
+            "synonyms": [
+              "med ex northwest",
+              "med x northwest"
+            ]
           }
         },
         {
@@ -947,21 +1046,34 @@
           "id": null,
           "name": {
             "value": "medical laboratory science",
-            "synonyms": []
+            "synonyms": [
+              "medical lab science",
+              "lab science",
+              "medical lab sciences",
+              "lab sciences",
+              "laboratory sciences",
+              "medical laboratory sciences"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "department of medicine",
-            "synonyms": []
+            "synonyms": [
+              "medicine department",
+              "med department"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "school of medicine",
-            "synonyms": []
+            "synonyms": [
+              "medicine school",
+              "med school"
+            ]
           }
         },
         {
@@ -971,7 +1083,12 @@
             "synonyms": [
               "metabolism",
               "nutrition",
-              "endocrinology"
+              "endocrinology",
+              "nutritionist",
+              "endocrinologist",
+              "endocrinologists",
+              "metabolic process",
+              "metabolic processes"
             ]
           }
         },
@@ -979,7 +1096,12 @@
           "id": null,
           "name": {
             "value": "microbiology",
-            "synonyms": []
+            "synonyms": [
+              "micro bio",
+              "microbio",
+              "microbiologist",
+              "microbiologists"
+            ]
           }
         },
         {
@@ -1000,28 +1122,41 @@
           "id": null,
           "name": {
             "value": "molecular medicine",
-            "synonyms": []
+            "synonyms": [
+              "molecular medicines"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "nephrology",
-            "synonyms": []
+            "synonyms": [
+              "nephrologist",
+              "nephrologists"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "graduate program in neuroscience",
-            "synonyms": []
+            "synonyms": [
+              "grad program in neuroscience",
+              "neuroscience graduate program",
+              "neuroscience grad program",
+              "neuroscience"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "neurology",
-            "synonyms": []
+            "synonyms": [
+              "neurologist",
+              "neurologists"
+            ]
           }
         },
         {
@@ -1038,7 +1173,9 @@
           "id": null,
           "name": {
             "value": "northwest hospital",
-            "synonyms": []
+            "synonyms": [
+              "northwest hospitals"
+            ]
           }
         },
         {
@@ -1054,7 +1191,10 @@
           "id": null,
           "name": {
             "value": "nutritional sciences",
-            "synonyms": []
+            "synonyms": [
+              "nutritional science",
+              "nutrition"
+            ]
           }
         },
         {
@@ -1063,7 +1203,13 @@
             "value": "obstetrics and gynecology",
             "synonyms": [
               "gynecology",
-              "obstetrics"
+              "obstetrics",
+              "gynecologist",
+              "gynecologists",
+              "o. b. g. y. n.",
+              "obstetric",
+              "child birth",
+              "childbirth"
             ]
           }
         },
@@ -1071,35 +1217,51 @@
           "id": null,
           "name": {
             "value": "occupational therapy",
-            "synonyms": []
+            "synonyms": [
+              "occupational therapist",
+              "occupational therapists"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "oncology",
-            "synonyms": []
+            "synonyms": [
+              "oncologist",
+              "oncologists"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "ophthalmology",
-            "synonyms": []
+            "synonyms": [
+              "ophthalmologist",
+              "ophthalmologists"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "oral health services",
-            "synonyms": []
+            "synonyms": [
+              "oral health",
+              "oral health service"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "oral medicine",
-            "synonyms": []
+            "synonyms": [
+              "mouth medicine",
+              "oral medicines",
+              "mouth medicines"
+            ]
           }
         },
         {
@@ -1108,7 +1270,13 @@
             "value": "oral and maxillofacial surgery",
             "synonyms": [
               "oral surgery",
-              "maxillofacial surgery"
+              "maxillofacial surgery",
+              "maxillofacial",
+              "o. m. f. s.",
+              "o. m. s.",
+              "mouth surgeries",
+              "oral surgeries",
+              "mouth surgery"
             ]
           }
         },
@@ -1116,98 +1284,153 @@
           "id": null,
           "name": {
             "value": "orthodontics",
-            "synonyms": []
+            "synonyms": [
+              "orthodontist",
+              "orthodontists"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "otolaryngology",
-            "synonyms": []
+            "synonyms": [
+              "otolaryngologist",
+              "otolaryngologists"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "palliative care",
-            "synonyms": []
+            "synonyms": [
+              "palliative"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "paramedic training program",
-            "synonyms": []
+            "synonyms": [
+              "the paramedic training program",
+              "paramedic",
+              "paramedics",
+              "training program for paramedics",
+              "training program for paramedic",
+              "training paramedics",
+              "the paramedics training program"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "pathobiology doctoral program",
-            "synonyms": []
+            "synonyms": [
+              "the pathobiology doctoral program",
+              "pathobiology",
+              "pathobiologist"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "pathology",
-            "synonyms": []
+            "synonyms": [
+              "pathologist",
+              "pathologists"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "pediatric dentistry",
-            "synonyms": []
+            "synonyms": [
+              "pediatric dentist",
+              "pediatric dentists"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "pediatrics",
-            "synonyms": []
+            "synonyms": [
+              "pediatric",
+              "pediatrician",
+              "pediatricians"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "periodontics",
-            "synonyms": []
+            "synonyms": [
+              "periodontic",
+              "periodontists",
+              "periodontist"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "pharmaceutics",
-            "synonyms": []
+            "synonyms": [
+              "pharmaceutic"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "pharmacy services",
-            "synonyms": []
+            "synonyms": [
+              "pharmacy service"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "school of pharmacy",
-            "synonyms": []
+            "synonyms": [
+              "the school of pharmacy",
+              "school of pharmacy",
+              "pharmacy",
+              "pharmacy school",
+              "pharm school",
+              "farm school"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "physical therapy",
-            "synonyms": []
+            "synonyms": [
+              "physical therapies",
+              "physical therapist",
+              "physical therapists"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "physician assistant",
-            "synonyms": []
+            "synonyms": [
+              "physician's assistant",
+              "physicians assistant",
+              "physician assistants",
+              "physicians assistants",
+              "physician's assistants"
+            ]
           }
         },
         {
@@ -1216,7 +1439,8 @@
             "value": "physiology and biophysics",
             "synonyms": [
               "physiology",
-              "biophysics"
+              "biophysics",
+              "mammalian physiology"
             ]
           }
         },
@@ -1224,7 +1448,11 @@
           "id": null,
           "name": {
             "value": "prosthodontics",
-            "synonyms": []
+            "synonyms": [
+              "prosthodontic",
+              "prosthodontist",
+              "prosthodontists"
+            ]
           }
         },
         {
@@ -1233,7 +1461,9 @@
             "value": "psychiatry and behavioral sciences",
             "synonyms": [
               "psychiatry sciences",
-              "behavioral sciences"
+              "behavioral sciences",
+              "psychiatrist",
+              "psychiatrists"
             ]
           }
         },
@@ -1243,7 +1473,8 @@
             "value": "psychosocial and community health",
             "synonyms": [
               "psychosocial health",
-              "community health"
+              "community health",
+              "health of the community"
             ]
           }
         },
@@ -1251,14 +1482,25 @@
           "id": null,
           "name": {
             "value": "school of public health",
-            "synonyms": []
+            "synonyms": [
+              "the school of public health",
+              "public health",
+              "public health school",
+              "the public health",
+              "the public health school",
+              "the public's health"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "public health genetics",
-            "synonyms": []
+            "synonyms": [
+              "health genetics",
+              "genetics of health",
+              "genetics of public health"
+            ]
           }
         },
         {
@@ -1267,7 +1509,11 @@
             "value": "pulmonary and critical care medicine",
             "synonyms": [
               "pulmonary medicine",
-              "critical care medicine"
+              "critical care medicine",
+              "pulmonary",
+              "critical care",
+              "critical",
+              "care"
             ]
           }
         },
@@ -1275,14 +1521,26 @@
           "id": null,
           "name": {
             "value": "radiation oncology",
-            "synonyms": []
+            "synonyms": [
+              "radiation oncologist",
+              "radiation oncologists",
+              "the radiation oncology",
+              "the radiation oncologist",
+              "the radiation oncologists"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "radiology",
-            "synonyms": []
+            "synonyms": [
+              "radiologist",
+              "radiologists",
+              "the radiology",
+              "the radiologist",
+              "the radiologists"
+            ]
           }
         },
         {
@@ -1300,77 +1558,133 @@
           "id": null,
           "name": {
             "value": "restorative dentistry",
-            "synonyms": []
+            "synonyms": [
+              "restorative dentist",
+              "restorative dentists",
+              "the restorative dentistry",
+              "the restorative dentist",
+              "the restorative dentists"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "rheumatology",
-            "synonyms": []
+            "synonyms": [
+              "rheumatologist",
+              "rheumatologists",
+              "the rheumatology",
+              "the rheumatologist",
+              "the rheumatologists"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "ride",
-            "synonyms": []
+            "synonyms": [
+              "the ride"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "school of social work",
-            "synonyms": []
+            "synonyms": [
+              "the school of social work",
+              "social work school"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "social workers",
-            "synonyms": []
+            "synonyms": [
+              "social work",
+              "the social workers",
+              "the social work"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "surgery",
-            "synonyms": []
+            "synonyms": [
+              "surgeries",
+              "the surgery",
+              "the surgeries",
+              "surgeon",
+              "surgeons",
+              "the surgeon",
+              "the surgeons"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "urology",
-            "synonyms": []
+            "synonyms": [
+              "urologist",
+              "urologists",
+              "the urology",
+              "the urologist",
+              "the urologists"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "medical center",
-            "synonyms": []
+            "synonyms": [
+              "university of washington medical center",
+              "the university of washington medical center",
+              "the u dub medical center",
+              "u dub medical center",
+              "university of washington med center",
+              "u dub med center"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "neighborhood clinics",
-            "synonyms": []
+            "synonyms": [
+              "university of washington neighborhood clinics",
+              "the university of washington neighborhood clinics",
+              "university of washington neighborhood lcinic",
+              "the university of washington neighborhood clinics",
+              "u dub neighborhood clinics",
+              "the u dub neighborhood clinics",
+              "the u dub neighborhood clinic",
+              "u dub neighborhood clinic",
+              "neighborhood clinic"
+            ]
           }
         },
         {
           "id": null,
           "name": {
             "value": "write",
-            "synonyms": []
+            "synonyms": [
+              "the write"
+            ]
           }
         },
         {
           "id": null,
           "name": {
-            "value": "w.w.a.m.i.",
-            "synonyms": []
+            "value": "w. w. a. m. i.",
+            "synonyms": [
+              "the w. w. a. m. i."
+            ]
           }
         }
       ]
@@ -1529,6 +1843,27 @@
           "id": null,
           "name": {
             "value": "which",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "repeat",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "repeat his",
+            "synonyms": []
+          }
+        },
+        {
+          "id": null,
+          "name": {
+            "value": "repeat her",
             "synonyms": []
           }
         }
