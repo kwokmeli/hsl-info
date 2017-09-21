@@ -142,7 +142,7 @@ var data = [
   {firstName:"emily",lastName:"patridge",pronounceLast:"",title:"Assistant Director of Clinical Research and Data Services - and Trail Program Manager",sayemail:slowSpell("ep001"),email:"ep001",phone:"206-221-3489",gender:"f",topics:["obstetrics and gynecology","occupational therapy"],
   liaison:["harborview medical center","northwest hospital","u dub medical center","u dub neighborhood clinics"]},
 
-  {firstName:"joanne",lastName:"rich",pronounceLast:"rich",title:"Information Management Librarian",sayemail:slowSpell("jrich"),email:"jrich",phone:"206-616-6601",gender:"f",topics:["pharmaceutics","psychosocial and community health"],
+  {firstName:"joanne",lastName:"rich",pronounceLast:"rich",title:"Information Management Librarian",sayemail:slowSpell("jrich"),email:"jrich",phone:"206-616-6601",gender:"f",topics:["<prosody rate=\"fast\"><phoneme alphabet='x-sampa' ph='\"farm@\"sutIks'>pharmaceutics</phoneme></prosody>","psychosocial and community health"],
   liaison:["pharmacy services","the school of pharmacy"]},
 
   {firstName:"sarah",lastName:"safranek",pronounceLast:"<phoneme alphabet='x-sampa' ph='s@\"fr{nek'>safranek</phoneme>",title:"Public Health and Primary Care Librarian",sayemail:slowSpell("safranek"),email:"safranek",phone:"206-543-3408",gender:"f",topics:["biostatistics",
@@ -224,7 +224,7 @@ var index = [
   {subject:["pediatric dentistry","pediatric dentist","pediatric dentists"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f",pronounceLast:[]},
   {subject:["pediatrics","pediatric","pediatrician","the pediatrician","the pediatric","the pediatrics","pediatricians"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f",pronounceLast:[]},
   {subject:["periodontics","periodontic","periodontist","periodontists"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f",pronounceLast:[]},
-  {subject:["pharmaceutics","pharmaceutic"],person:["joanne rich"],first:["joanne"],last:["rich"],gender:"f",pronounceLast:[]},
+  {subject:["<prosody rate=\"fast\"><phoneme alphabet='x-sampa' ph='\"farm@\"sutIks'>pharmaceutics</phoneme></prosody>","pharmaceutic"],person:["joanne rich"],first:["joanne"],last:["rich"],gender:"f",pronounceLast:[]},
   {subject:["pharmacy services","pharmacy service"],person:["joanne rich"],first:["joanne"],last:["rich"],gender:"f",pronounceLast:[]},
   {subject:["the school of pharmacy","school of pharmacy","pharmacy","pharmacy school","pharm school","farm school"],person:["joanne rich","diana louden"],first:["joanne","diana"],last:["rich","louden"],gender:"",pronounceLast:["rich","<phoneme alphabet='x-sampa' ph='\"laUden'>louden</phoneme>"]},
   {subject:["physical therapy","physical therapies","physical therapist"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f",pronounceLast:[]},
@@ -1181,7 +1181,7 @@ function searchHoursIntentHandler() {
               currentPeriod = 0;
             }
 
-            strEmit = "The library will be open during " + season + " quarter. " + periodHours[currentPeriod] + " <break time=\"0.5s\"/>" + extraHours[currentPeriod];
+            strEmit = periodHours[currentPeriod] + " <break time=\"0.5s\"/>" + extraHours[currentPeriod];
             this.emit(":ask", strEmit, repromptSpeech);
 
           } else {
@@ -1190,20 +1190,20 @@ function searchHoursIntentHandler() {
 
         } else if ((date[1].toUpperCase() == "Q1") || (date[1].toUpperCase() == "Q2") || (date[1].toUpperCase() == "Q3") || (date[1].toUpperCase() == "Q4")) {
           // Asked for a calendar quarter
-          strEmit = "The library is open during ";
+          strEmit = "The library will be open during ";
 
           if (date[1].toUpperCase() == "Q1") {
             // January 1 - March 31
-            strEmit += " the first calendar quarter, from January 1st to March 31st. ";
+            strEmit += "the first calendar quarter, from January 1st to March 31st. ";
           } else if (date[1].toUpperCase() == "Q2") {
             // April 1 - June 30
-            strEmit += " the second calendar quarter, from April 1st to June 30th. ";
+            strEmit += "the second calendar quarter, from April 1st to June 30th. ";
           } else if (date[1].toUpperCase() == "Q3") {
             // July 1 - September 30
-            strEmit += " the third calendar quarter, from July 1st to September 30th. ";
+            strEmit += "the third calendar quarter, from July 1st to September 30th. ";
           } else {
             // October 1 - December 31
-            strEmit += " the fourth calendar quarter, from October 1st to December 31st. ";
+            strEmit += "the fourth calendar quarter, from October 1st to December 31st. ";
           }
 
           strEmit += "For more detailed opening hours, please ask for the hours on a specific date. Or - for opening hours for school quarters, please ask for the hours of a season. ";

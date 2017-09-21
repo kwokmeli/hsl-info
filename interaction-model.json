@@ -210,7 +210,12 @@
         "the library hours on {date}",
         "{whatPhrase} hours for {date}",
         "hours for {date}",
-        "{whatPhrase} library hours for {date}"
+        "{whatPhrase} library hours for {date}",
+        "{whatPhrase} library {libraryStatus} in the {date}",
+        "{whatPhrase} library {libraryStatus} in {date}",
+        "{whatPhrase} library {libraryStatus} on {date}",
+        "is the library {libraryStatus} in the {date}",
+        "is the library open {date}"
       ],
       "slots": [
         {
@@ -233,13 +238,10 @@
     {
       "name": "TellHoursIntent",
       "samples": [
-        "{whatPhrase} hours",
         "{whatPhrase} library hours",
         "{whatPhrase} your hours",
         "{whatPhrase} the hours",
         "{whatPhrase} the library hours",
-        "when are you {libraryStatus}",
-        "when is the library {libraryStatus}",
         "{whatPhrase} your library hours",
         "{whatPhrase} the opening hours ",
         "{whatPhrase} your opening hours",
@@ -252,17 +254,12 @@
         "library hours",
         "hours",
         "the library hours",
-        "for the library hours"
+        "when are you open"
       ],
       "slots": [
         {
           "name": "whatPhrase",
           "type": "WHAT_PHRASE",
-          "samples": []
-        },
-        {
-          "name": "libraryStatus",
-          "type": "LIBRARY_STATUS",
           "samples": []
         }
       ]
@@ -381,7 +378,11 @@
         "{lastName} is a liaison for what {infoType}",
         "{whatPhrase} {firstName} {infoType}",
         "{whatPhrase} {firstName} {lastName} {infoType}",
-        "{whatPhrase} {lastName} {infoType}"
+        "{whatPhrase} {lastName} {infoType}",
+        "{whatPhrase} {infoType} is {firstName} {lastName} a liaison for",
+        "{whatPhrase} topics is {firstName} {lastName} a {infoType} for",
+        "{whatPhrase} {infoType} are {firstName} {lastName} a liaison for",
+        "{whatPhrase} topics are {firstName} {lastName} a {infoType} for"
       ],
       "slots": [
         {
@@ -784,9 +785,9 @@
           "name": {
             "value": "school of dentistry",
             "synonyms": [
-              "dentristy",
               "dentist",
-              "dentistry school"
+              "dentistry school",
+              "dentistry"
             ]
           }
         },
