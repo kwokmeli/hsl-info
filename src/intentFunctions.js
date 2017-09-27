@@ -6,6 +6,12 @@ var constants = require("./constants");
 var helperFunctions = require("./helperFunctions");
 var speechGeneration = require("./speechGeneration");
 
+var states = {
+    SEARCHMODE: "_SEARCHMODE",
+    DESCRIPTION: "_DESCRIPTION",
+    MULTIPLE_RESULTS: "_MULTIPLE_RESULTS"
+};
+
 function searchByNameIntentHandler () {
   var firstName = helperFunctions.isSlotValid(this.event.request, "firstName");
   var lastName = helperFunctions.isSlotValid(this.event.request, "lastName");
@@ -177,7 +183,7 @@ function searchHoursIntentHandler() {
           var currentStatus = helperFunctions.libraryStatusGivenTime(status, currentDate.getHours(), currentDate.getMinutes());
 
           if (currentStatus == "open") {
-            strEmit = "The library is currently open. Today's hours are " + returnHours(status);
+            strEmit = "The library is currently open. Today's hours are " + helperFunctions.returnHours(status);
             this.emit(":ask", strEmit, repromptSpeech);
           } else {
             this.emit(":ask", "Sorry, the library is not currently open.", repromptSpeech);
@@ -518,7 +524,7 @@ function searchByInfoTypeIntentHandler(){
 
     if (canSearch) {
       var searchQuery = slots[canSearch].value;
-      var searchResults = helperFunctions.earchDatabase(constants.data, searchQuery, canSearch);
+      var searchResults = helperFunctions.searchDatabase(constants.data, searchQuery, canSearch);
 
       // Saving lastSearch results to the current session
       var lastSearch = this.attributes.lastSearch = searchResults;
@@ -581,9 +587,9 @@ function tellHoursIntentHandler() {
   var repromptSpeech = "<break time=\"0.5s\"/> Do you still want to find more information? Say yes or no";
 
   // Check date to see if it falls within one of the current school year's quarters/interims
-  for (var i = 0; i < period.length; i++) {
-    d1 = period[i][0].split("/");
-    d2 = period[i][1].split("/");
+  for (var i = 0; i < constants.period.length; i++) {
+    d1 = constants.period[i][0].split("/");
+    d2 = constants.period[i][1].split("/");
     c = today.split("/");
 
     date1 = new Date(d1[2], parseInt(d1[1]) - 1, d1[0]);

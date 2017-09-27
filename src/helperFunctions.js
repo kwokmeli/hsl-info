@@ -24,9 +24,11 @@ function getRandomName (arrayOfStrings) {
 
 function getRandomSubject (arrayOfStrings) {
 console.log("arrayOfStrings: " + arrayOfStrings);
-  var randomNumber = getRandom(0, constants.index - 1)
+console.log("typeof arrayOfStrings: " + typeof arrayOfStrings);
+  var randomNumber = getRandom(0, constants.index.length - 1)
 console.log("randomNumber: " + randomNumber);
-console.log("can i see data? : " + constants.data);
+console.log("constants.data: " + constants.data);
+console.log("typeof constants.data: " + typeof constants.data);
   return arrayOfStrings[randomNumber].subject[0];
 }
 

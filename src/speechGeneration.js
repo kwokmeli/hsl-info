@@ -82,7 +82,7 @@ function getHoursHelpMessage() {
     "is the library open this weekend? ",
     "is the library open this winter? ",
     "will the library be open next week? ",
-    "is the library open on " + helperFunctions.returnMonth(helperFunctions.getRandom(1, 12)) + helperFunctions.getRandom(1, 28) + "th? ",
+    "is the library open on " + helperFunctions.returnMonth(helperFunctions.getRandom(1, 12)) + " " + helperFunctions.getRandom(1, 28) + "th? ",
     "what are the library hours? ",
     "is the library open right now?"
   ];
