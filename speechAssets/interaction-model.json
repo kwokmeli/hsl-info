@@ -322,7 +322,9 @@
         "{whatPhrase} contact details for {firstName} {lastName}",
         "{whatPhrase} {firstName}",
         "{whatPhrase} {firstName} {lastName}",
-        "{whatPhrase} {lastName}"
+        "{whatPhrase} {lastName}",
+        "{whatPhrase} her information",
+        "{whatPhrase} his information"
       ],
       "slots": [
         {
