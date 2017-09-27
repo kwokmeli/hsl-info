@@ -1,4 +1,5 @@
 "use strict";
+
 const util = require("util");
 
 var constants = require("./constants");
@@ -603,4 +604,12 @@ function tellHoursIntentHandler() {
     this.emit(":ask", strEmit, repromptSpeech);
   }
 
+}
+
+module.exports = {
+  searchByNameIntentHandler,
+  searchBySpecialtyIntentHandler,
+  searchHoursIntentHandler,
+  searchByInfoTypeIntentHandler,
+  tellHoursIntentHandler
 }

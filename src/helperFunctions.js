@@ -12,7 +12,7 @@ function getRandom (min, max) {
 }
 
 function getRandomName (arrayOfStrings) {
-  var randomNumber = getRandom(0, constants.data.length - 1)
+  var randomNumber = getRandom(0, arrayOfStrings.length - 1)
 
   if (arrayOfStrings[randomNumber].lastName != "") {
     return arrayOfStrings[randomNumber].firstName + " " + arrayOfStrings[randomNumber].pronounceLast;
@@ -23,16 +23,15 @@ function getRandomName (arrayOfStrings) {
 }
 
 function getRandomSubject (arrayOfStrings) {
-  var randomNumber = getRandom(0, index.length - 1)
+console.log("arrayOfStrings: " + arrayOfStrings);
+  var randomNumber = getRandom(0, constants.index - 1)
+console.log("randomNumber: " + randomNumber);
+console.log("can i see data? : " + constants.data);
   return arrayOfStrings[randomNumber].subject[0];
 }
 
 function titleCase (str) {
   return str.replace(str[0], str[0].toUpperCase());
-}
-
-function slowSpell (str) {
-  return "" + str.split("").join("<break time=\"0.05s\"/>");
 }
 
 function generateCard (person) {
@@ -518,7 +517,6 @@ module.exports = {
   getRandomName,
   getRandomSubject,
   titleCase,
-  slowSpell,
   generateCard,
   generateTopics,
   generateLiaisons,

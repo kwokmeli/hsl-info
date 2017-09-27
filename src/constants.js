@@ -1,19 +1,83 @@
 "use strict";
 
-var speechGeneration = require("./speechGeneration");
-var helperFunctions = require("./helperFunctions");
-
 // =====================================================================================================
 // --------------------------------- Section 1. Data and Text strings  ---------------------------------
 // =====================================================================================================
+var aa = "7:30:19:00";
+var bb = "7:30:21:00";
+var cc = "7:30:17:00";
+var dd = "9:00:17:00";
+var ee = "10:00:19:00";
+var ff = "12:00:17:00";
+var gg = "12:00:19:00";
+var hh = "13:00:17:00";
+var ii = "closed";
+
+var autumnExtra = "The library is also closed on November 23rd, November 24th, and November 25th. The adjusted library hours for November 10th are 1:00pm to 5:00pm, and the hours for November 22nd are 7:30am to 5:00pm. ";
+var autumnWinterExtra = "The library is also closed on December 25th, and January 1st. ";
+var winterExtra = "The adjusted library hours for January 15th and February 19th are 1:00pm to 5:00pm. ";
+var winterSpringExtra = "";
+var springExtra = "The adjusted library hours for May 28th are 1:00pm to 5:00pm. ";
+var springSummerExtra = "";
+var summerExtra = "The library is also closed on July 4th. The adjusted library hours for July 3rd are 7:30am to 5:00pm. ";
+var summerAutumnExtra = "The library is also closed on September 4th. The adjusted library hours for August 21st are 3:00pm - 7:00pm. The hours for September 19th are 10:00am to 7:00pm. And the hours for September 25th and September 26th are 7:30am to 9:00pm. ";
+
+var autumnHours = "The opening hours for autumn quarter are: Monday through Thursday, from 7:30am to 9:00pm - Fridays from 7:30am to 7:00pm - Saturdays from 12:00pm to 5:00pm - and Sundays from 12:00pm to 7:00pm. ";
+var autumnWinterHours = "The opening hours for the autumn winter interim are: Monday through Friday, from 9:00am to 5:00pm. The library is closed on Saturdays and Sundays. ";
+var winterHours = "The opening hours for winter quarter are: Monday through Thursday, from 7:30am to 9:00pm - Fridays from 7:30am to 7:00pm - Saturdays from 12:00pm to 5:00pm - and Sundays from 12:00pm to 7:00pm. ";
+var winterSpringHours = "The opening hours for the winter spring interim are: Monday through Friday, from 7:30am to 7:00pm. The library is closed on Saturdays and Sundays. ";
+var springHours = "The opening hours for spring quarter are: Monday through Thursday, from 7:30am to 9:00pm - Fridays from 7:30am to 7:00pm - Saturdays from 12:00pm to 5:00pm - and Sundays from 12:00pm to 7:00pm. ";
+var springSummerHours = "The opening hours for the spring summer interim are: Monday through Friday, from 7:30am to 7:00pm. The library is closed on Saturdays and Sundays. ";
+var summerHours = "The opening hours for summer quarter are: Monday through Friday, from 7:30am to 7:00pm - Sundays from 1:00pm to 5:00pm. The library is closed on Saturdays. ";
+var summerAutumnHours = "The opening hours for the summer autumn interim are: Monday through Friday, from 7:30am to 7:00pm. The library is closed on Saturdays and Sundays. ";
+
+function slowSpell (str) {
+  return "" + str.split("").join("<break time=\"0.05s\"/>");
+}
+
+var rawData = [
+    {firstName:"tania",lastName:"bardyn",pronounceLast:"",title:"Associate Dean for University Libraries and Director of the Health Sciences Library",sayemail:slowSpell("bardyn"),email:"bardyn",phone:"206-543-0422",gender:"f",
+    topics:["mobile app development","library and information services","technology support","informatics and education development"],liaison:[]},
+
+    {firstName:"andrea",lastName:"ball",pronounceLast:"ball",title:"Care Management and Population Health Librarian",sayemail:slowSpell("alball"),email:"alball",phone:"206-616-6630",gender:"f",topics:[
+    "allergies and infectious diseases","anesthesiology","pain medicine","cardiology","dermatology","emergency medicine","gastroenterology","general internal medicine","gerontology","geriatric medicine",
+    "hematology","nephrology","oncology","orthopaedics","palliative care","pediatrics","physical therapy","pulmonary and critical care medicine",
+    "radiation oncology","rheumatology","surgery","urology"],liaison:["airlift northwest","harborview medical center","the department of medicine","northwest hospital","u dub medical center"]},
+
+    {firstName:"frances",lastName:"chu",pronounceLast:"chu",title:"Health Sciences Clinical Liaison and Content Librarian",sayemail:slowSpell("chuf"),email:"chuf",phone:"206-616-1106",gender:"f",topics:["critical care medicine",
+    "laboratory medicine","medical laboratory science","metabolism","endocrinology and nutrition","neurology","ophthalmology","otolaryngology","pathology",
+    "psychiatry and behavioral sciences","radiology"],liaison:["hall health primary care center","harborview medical center","the school of nursing","u dub medical center"]},
+
+    {firstName:"nicole",lastName:"dettmar",pronounceLast:"",title:"Health Sciences Curriculum Design Librarian",sayemail:slowSpell("snydern"),email:"snydern",phone:"206-543-3409",gender:"f",topics:["oral health services",
+    "oral medicine","oral and maxillofacial surgery","pediatric dentistry","periodontics","prosthodontics","restorative dentistry"],liaison:["the school of dentistry","the school of medicine","ride","write","w.w.a.m.i"]},
+
+    {firstName:"stephen",lastName:"gabrielson",pronounceLast:"<phoneme alphabet='x-sampa' ph='geIbr\ilsun'>gabrielson</phoneme>",title:"Instruction and Research Librarian",sayemail:slowSpell("gabeswg"),email:"gabeswg",phone:"206-543-3437",gender:"m",topics:[],liaison:["the school of nursing",
+    "the school of dentistry"]},
+
+    {firstName:"diana",lastName:"louden",pronounceLast:"<phoneme alphabet='x-sampa' ph='\"laUden'>louden</phoneme>",title:"Biomedical and Translational Sciences Librarian",sayemail:slowSpell("dknl"),email:"dknl",phone:"206-221-3480",gender:"f",topics:[
+    "biochemistry","bioengineering","bioethics and humanities","biological structures","biomedical informatics and medical education","comparative medicine","genome sciences","immunology",
+    "medical genetics","microbiology","molecular and cellular biology","molecular medicine","physiology and biophysics","public health genetics"],liaison:["the office of animal welfare",
+    "the institute of translational health sciences","the molecular and cellular biology program","the graduate program in neuroscience","the school of pharmacy","the school of public health"]},
+
+    {firstName:"emily",lastName:"patridge",pronounceLast:"",title:"Assistant Director of Clinical Research and Data Services - and Trail Program Manager",sayemail:slowSpell("ep001"),email:"ep001",phone:"206-221-3489",gender:"f",topics:["obstetrics and gynecology","occupational therapy"],
+    liaison:["harborview medical center","northwest hospital","u dub medical center","u dub neighborhood clinics"]},
+
+    {firstName:"joanne",lastName:"rich",pronounceLast:"rich",title:"Information Management Librarian",sayemail:slowSpell("jrich"),email:"jrich",phone:"206-616-6601",gender:"f",topics:["<prosody rate=\"fast\"><phoneme alphabet='x-sampa' ph='\"farm@\"sutIks'>pharmaceutics</phoneme></prosody>","psychosocial and community health"],
+    liaison:["pharmacy services","the school of pharmacy"]},
+
+    {firstName:"sarah",lastName:"safranek",pronounceLast:"<phoneme alphabet='x-sampa' ph='s@\"fr{nek'>safranek</phoneme>",title:"Public Health and Primary Care Librarian",sayemail:slowSpell("safranek"),email:"safranek",phone:"206-543-3408",gender:"f",topics:["biostatistics",
+    "environmental and occupational health sciences","epidemiology","family medicine","global health","health services","nutritional sciences"],liaison:["the health information administration program",
+    "the institute for health metrics and evaluation","i-tech","the maternal and child health program","medex northwest","the pathobiology doctoral program","the school of public health","w.w.a.m.i"]}
+  ];
+
 module.exports = Object.freeze({
   /******************************
   *           App IDs           *
   ******************************/
   // App ID for mkwok account
-  // APP_ID: "amzn1.ask.skill.7a8eca68-7c79-431b-865a-dc27ca4d0135",
+  APP_ID: "amzn1.ask.skill.7a8eca68-7c79-431b-865a-dc27ca4d0135",
   // App ID for trailq account
-  APP_ID: "amzn1.ask.skill.f70210e4-4669-4528-8f58-89025d4723d0",
+  //APP_ID: "amzn1.ask.skill.f70210e4-4669-4528-8f58-89025d4723d0",
 
   /******************************
   *            Hours            *
@@ -25,19 +89,19 @@ module.exports = Object.freeze({
 
   // Possible library opening hours for the academic calendar year of 2017-2018
   // NOTE: Update these times for each new school year
-  a: "7:30:19:00",
-  b: "7:30:21:00",
-  c: "7:30:17:00",
-  d: "9:00:17:00",
-  e: "10:00:19:00",
-  f: "12:00:17:00",
-  g: "12:00:19:00",
-  h: "13:00:17:00",
-  i: "closed",
+  a: aa,
+  b: bb,
+  c: cc,
+  d: dd,
+  e: ee,
+  f: ff,
+  g: gg,
+  h: hh,
+  i: ii,
 
   // NOTE: Update these dates for each new school year
   hours: [
-    {year: YEAR1,
+    {year: "2017",
     month: [["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""],
             ["","","","","","","","","","","","","","","","","","","","","","","","","","","",""], // Feb
             ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""], // Mar
@@ -45,20 +109,20 @@ module.exports = Object.freeze({
             ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""], // May
             ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""], // Jun
             ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""], // Jul
-            [a,a,a,a,i,i,a,a,a,a,a,i,i,a,a,a,a,a,i,i,a,a,a,a,a,i,i,a,a,a,a], // Aug
-            [a,i,i,i,a,a,a,a,i,i,a,a,a,a,a,i,i,a,e,a,a,a,i,i,b,b,b,b,a,f], // Sep
-            [g,b,b,b,b,a,f,g,b,b,b,b,a,f,g,b,b,b,b,a,f,g,b,b,b,b,a,f,g,b,b], // Oct
-            [b,b,a,f,g,b,b,b,b,h,f,g,b,b,b,b,a,f,g,b,b,c,i,i,i,g,b,b,b,b], // Nov
-            [a,f,g,b,b,b,b,a,f,g,b,b,b,b,a,i,i,d,d,d,d,d,i,i,i,d,d,d,d,i,i]] // Dec
+            [aa,aa,aa,aa,ii,ii,aa,aa,aa,aa,aa,ii,ii,aa,aa,aa,aa,aa,ii,ii,aa,aa,aa,aa,aa,ii,ii,aa,aa,aa,aa], // Aug
+            [aa,ii,ii,ii,aa,aa,aa,aa,ii,ii,aa,aa,aa,aa,aa,ii,ii,aa,ee,aa,aa,aa,ii,ii,bb,bb,bb,bb,aa,ff], // Sep
+            [gg,bb,bb,bb,bb,aa,ff,gg,bb,bb,bb,bb,aa,ff,gg,bb,bb,bb,bb,aa,ff,gg,bb,bb,bb,bb,aa,ff,gg,bb,bb], // Oct
+            [bb,bb,aa,ff,gg,bb,bb,bb,bb,hh,ff,gg,bb,bb,bb,bb,aa,ff,gg,bb,bb,cc,ii,ii,ii,gg,bb,bb,bb,bb], // Nov
+            [aa,ff,gg,bb,bb,bb,bb,aa,ff,gg,bb,bb,bb,bb,aa,ii,ii,dd,dd,dd,dd,dd,ii,ii,ii,dd,dd,dd,dd,ii,ii]] // Dec
     },
 
-    {year: YEAR2,
-    month: [[i,d,b,b,a,f,g,b,b,b,b,a,f,g,h,b,b,b,a,f,g,b,b,b,b,a,f,g,b,b,b], // Jan
-            [b,a,f,g,b,b,b,b,a,f,g,b,b,b,b,a,f,g,h,b,b,b,a,f,g,b,b,b], // Feb
-            [b,a,f,g,b,b,b,b,a,f,g,b,b,b,b,a,i,i,a,a,a,a,a,i,i,b,b,b,b,a,f], // Mar
-            [g,b,b,b,b,a,f,g,b,b,b,b,a,f,g,b,b,b,b,a,f,g,b,b,b,b,a,f,g,b], // Apr
-            [b,b,b,a,f,g,b,b,b,b,a,f,g,b,b,b,b,a,f,g,b,b,b,b,a,f,g,h,b,b,b], // May
-            [a,f,g,b,b,b,b,a,i,i,a,a,a,a,a,i,i,"","","","","","","","","","","","",""], // Jun
+    {year: "2018",
+    month: [[ii,dd,bb,bb,aa,ff,gg,bb,bb,bb,bb,aa,ff,gg,hh,bb,bb,bb,aa,ff,gg,bb,bb,bb,bb,aa,ff,gg,bb,bb,bb], // Jan
+            [bb,aa,ff,gg,bb,bb,bb,bb,aa,ff,gg,bb,bb,bb,bb,aa,ff,gg,hh,bb,bb,bb,aa,ff,gg,bb,bb,bb], // Feb
+            [bb,aa,ff,gg,bb,bb,bb,bb,aa,ff,gg,bb,bb,bb,bb,aa,ii,ii,aa,aa,aa,aa,aa,ii,ii,bb,bb,bb,bb,aa,ff], // Mar
+            [gg,bb,bb,bb,bb,aa,ff,gg,bb,bb,bb,bb,aa,ff,gg,bb,bb,bb,bb,aa,ff,gg,bb,bb,bb,bb,aa,ff,gg,bb], // Apr
+            [bb,bb,bb,aa,ff,gg,bb,bb,bb,bb,aa,ff,gg,bb,bb,bb,bb,aa,ff,gg,bb,bb,bb,bb,aa,ff,gg,hh,bb,bb,bb], // May
+            [aa,ff,gg,bb,bb,bb,bb,aa,ii,ii,aa,aa,aa,aa,aa,ii,ii,"","","","","","","","","","","","",""], // Jun
             ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""], // Jul
             ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""], // Aug
             ["","","","","","","","","","","","","","","","","","","","","","","","","","","","","",""], // Sep
@@ -82,24 +146,24 @@ module.exports = Object.freeze({
   ],
 
   // NOTE: Update these dates for each new school year
-  autumnHours: "The opening hours for autumn quarter are: Monday through Thursday, from 7:30am to 9:00pm - Fridays from 7:30am to 7:00pm - Saturdays from 12:00pm to 5:00pm - and Sundays from 12:00pm to 7:00pm. ",
-  autumnWinterHours: "The opening hours for the autumn winter interim are: Monday through Friday, from 9:00am to 5:00pm. The library is closed on Saturdays and Sundays. ",
-  winterHours: "The opening hours for winter quarter are: Monday through Thursday, from 7:30am to 9:00pm - Fridays from 7:30am to 7:00pm - Saturdays from 12:00pm to 5:00pm - and Sundays from 12:00pm to 7:00pm. ",
-  winterSpringHours: "The opening hours for the winter spring interim are: Monday through Friday, from 7:30am to 7:00pm. The library is closed on Saturdays and Sundays. ",
-  springHours: "The opening hours for spring quarter are: Monday through Thursday, from 7:30am to 9:00pm - Fridays from 7:30am to 7:00pm - Saturdays from 12:00pm to 5:00pm - and Sundays from 12:00pm to 7:00pm. ",
-  springSummerHours: "The opening hours for the spring summer interim are: Monday through Friday, from 7:30am to 7:00pm. The library is closed on Saturdays and Sundays. ",
-  summerHours: "The opening hours for summer quarter are: Monday through Friday, from 7:30am to 7:00pm - Sundays from 1:00pm to 5:00pm. The library is closed on Saturdays. ",
-  summerAutumnHours: "The opening hours for the summer autumn interim are: Monday through Friday, from 7:30am to 7:00pm. The library is closed on Saturdays and Sundays. ",
+  autumnHours: autumnHours,
+  autumnWinterHours: autumnWinterHours,
+  winterHours: winterHours,
+  winterSpringHours: winterSpringHours,
+  springHours: springHours,
+  springSummerHours: springSummerHours,
+  summerHours: summerHours,
+  summerAutumnHours: summerAutumnHours,
 
   // NOTE: Update these extra hours for each new school year
-  autumnExtra: "The library is also closed on November 23rd, November 24th, and November 25th. The adjusted library hours for November 10th are 1:00pm to 5:00pm, and the hours for November 22nd are 7:30am to 5:00pm. ",
-  autumnWinterExtra: "The library is also closed on December 25th, and January 1st. ",
-  winterExtra: "The adjusted library hours for January 15th and February 19th are 1:00pm to 5:00pm. ",
+  autumnExtra: autumnExtra,
+  autumnWinterExtra: autumnWinterExtra,
+  winterExtra: winterExtra,
   winterSpringExtra: "",
-  springExtra: "The adjusted library hours for May 28th are 1:00pm to 5:00pm. ",
+  springExtra: springExtra,
   springSummerExtra: "",
-  summerExtra: "The library is also closed on July 4th. The adjusted library hours for July 3rd are 7:30am to 5:00pm. ",
-  summerAutumnExtra: "The library is also closed on September 4th. The adjusted library hours for August 21st are 3:00pm - 7:00pm. The hours for September 19th are 10:00am to 7:00pm. And the hours for September 25th and September 26th are 7:30am to 9:00pm. ",
+  summerExtra: summerExtra,
+  summerAutumnExtra: summerAutumnExtra,
 
   extraHours: [
     autumnExtra,
@@ -126,40 +190,7 @@ module.exports = Object.freeze({
   /******************************
   *    Librarian Information    *
   ******************************/
-  data: [
-    {firstName:"tania",lastName:"bardyn",pronounceLast:"",title:"Associate Dean for University Libraries and Director of the Health Sciences Library",sayemail:helperFunctions.slowSpell("bardyn"),email:"bardyn",phone:"206-543-0422",gender:"f",
-    topics:["mobile app development","library and information services","technology support","informatics and education development"],liaison:[]},
-
-    {firstName:"andrea",lastName:"ball",pronounceLast:"ball",title:"Care Management and Population Health Librarian",sayemail:helperFunctions.slowSpell("alball"),email:"alball",phone:"206-616-6630",gender:"f",topics:[
-    "allergies and infectious diseases","anesthesiology","pain medicine","cardiology","dermatology","emergency medicine","gastroenterology","general internal medicine","gerontology","geriatric medicine",
-    "hematology","nephrology","oncology","orthopaedics","palliative care","pediatrics","physical therapy","pulmonary and critical care medicine",
-    "radiation oncology","rheumatology","surgery","urology"],liaison:["airlift northwest","harborview medical center","the department of medicine","northwest hospital","u dub medical center"]},
-
-    {firstName:"frances",lastName:"chu",pronounceLast:"chu",title:"Health Sciences Clinical Liaison and Content Librarian",sayemail:helperFunctions.slowSpell("chuf"),email:"chuf",phone:"206-616-1106",gender:"f",topics:["critical care medicine",
-    "laboratory medicine","medical laboratory science","metabolism","endocrinology and nutrition","neurology","ophthalmology","otolaryngology","pathology",
-    "psychiatry and behavioral sciences","radiology"],liaison:["hall health primary care center","harborview medical center","the school of nursing","u dub medical center"]},
-
-    {firstName:"nicole",lastName:"dettmar",pronounceLast:"",title:"Health Sciences Curriculum Design Librarian",sayemail:helperFunctions.slowSpell("snydern"),email:"snydern",phone:"206-543-3409",gender:"f",topics:["oral health services",
-    "oral medicine","oral and maxillofacial surgery","pediatric dentistry","periodontics","prosthodontics","restorative dentistry"],liaison:["the school of dentistry","the school of medicine","ride","write","w.w.a.m.i"]},
-
-    {firstName:"stephen",lastName:"gabrielson",pronounceLast:"<phoneme alphabet='x-sampa' ph='geIbr\ilsun'>gabrielson</phoneme>",title:"Instruction and Research Librarian",sayemail:helperFunctions.slowSpell("gabeswg"),email:"gabeswg",phone:"206-543-3437",gender:"m",topics:[],liaison:["the school of nursing",
-    "the school of dentistry"]},
-
-    {firstName:"diana",lastName:"louden",pronounceLast:"<phoneme alphabet='x-sampa' ph='\"laUden'>louden</phoneme>",title:"Biomedical and Translational Sciences Librarian",sayemail:helperFunctions.slowSpell("dknl"),email:"dknl",phone:"206-221-3480",gender:"f",topics:[
-    "biochemistry","bioengineering","bioethics and humanities","biological structures","biomedical informatics and medical education","comparative medicine","genome sciences","immunology",
-    "medical genetics","microbiology","molecular and cellular biology","molecular medicine","physiology and biophysics","public health genetics"],liaison:["the office of animal welfare",
-    "the institute of translational health sciences","the molecular and cellular biology program","the graduate program in neuroscience","the school of pharmacy","the school of public health"]},
-
-    {firstName:"emily",lastName:"patridge",pronounceLast:"",title:"Assistant Director of Clinical Research and Data Services - and Trail Program Manager",sayemail:helperFunctions.slowSpell("ep001"),email:"ep001",phone:"206-221-3489",gender:"f",topics:["obstetrics and gynecology","occupational therapy"],
-    liaison:["harborview medical center","northwest hospital","u dub medical center","u dub neighborhood clinics"]},
-
-    {firstName:"joanne",lastName:"rich",pronounceLast:"rich",title:"Information Management Librarian",sayemail:helperFunctions.slowSpell("jrich"),email:"jrich",phone:"206-616-6601",gender:"f",topics:["<prosody rate=\"fast\"><phoneme alphabet='x-sampa' ph='\"farm@\"sutIks'>pharmaceutics</phoneme></prosody>","psychosocial and community health"],
-    liaison:["pharmacy services","the school of pharmacy"]},
-
-    {firstName:"sarah",lastName:"safranek",pronounceLast:"<phoneme alphabet='x-sampa' ph='s@\"fr{nek'>safranek</phoneme>",title:"Public Health and Primary Care Librarian",sayemail:helperFunctions.slowSpell("safranek"),email:"safranek",phone:"206-543-3408",gender:"f",topics:["biostatistics",
-    "environmental and occupational health sciences","epidemiology","family medicine","global health","health services","nutritional sciences"],liaison:["the health information administration program",
-    "the institute for health metrics and evaluation","i-tech","the maternal and child health program","medex northwest","the pathobiology doctoral program","the school of public health","w.w.a.m.i"]}
-  ],
+  data: rawData,
 
   /* NOTE: Synonyms not currently supported within interaction model; manually addressed in arrays below */
   index: [
@@ -272,17 +303,16 @@ module.exports = Object.freeze({
   ******************************/
   skillName: "HSL Library Helper",
   // This is the message a user will hear when they ask Alexa for help in your skill.
-  WELCOME_MESSAGE: "Learn about the librarians of the Health Sciences Library, or search for a librarian by specialty. <break time=\"0.25s\"/> You can also ask about the opening hours of the library. " +
-                   speechGeneration.getGenericHelpMessage(data) + "<break time=\"0.25s\"/> If you ever need help, just say - I need help. ",
+  WELCOME_MESSAGE: "Learn about the librarians of the Health Sciences Library, or search for a librarian by specialty. <break time=\"0.25s\"/> You can also ask about the opening hours of the library. <break time=\"0.25s\"/> If you ever need help, just say - I need help. ",
 
   // This is the message a user will hear when they begin a new search
   HELP_MESSAGE: "I can help you find a librarian, or find library hours for a specific date, week, or weekend. ",
 
   // This is the message a user will hear when they ask Alexa for help while in the SEARCH state
-  NEW_SEARCH_MESSAGE: "To start a new search, say the name of a librarian or a topic to search for. " + speechGeneration.getGenericHelpMessage(data),
+  NEW_SEARCH_MESSAGE: "To start a new search, say the name of a librarian or a topic to search for. ",
 
   // This is the message use when the decides to end the search
-  SEARCH_STATE_HELP_MESSAGE: "Say the name of a librarian or a topic to search for. Or, you can ask for library hours. " + speechGeneration.getGenericHelpMessage(data),
+  SEARCH_STATE_HELP_MESSAGE: "Say the name of a librarian or a topic to search for. Or, you can ask for library hours. ",
 
   // This is the message a user will hear when they try to cancel or stop the skill.
   DESCRIPTION_STATE_HELP_MESSAGE: "Here are some things you can say: Tell me more, or give me his or her contact info",
