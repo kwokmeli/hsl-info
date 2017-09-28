@@ -203,7 +203,7 @@ function searchHoursIntentHandler() {
               this.emit(":ask", strEmit, repromptSpeech);
             }
           } else {
-            strEmit = "The library hours have not been determined for that year. Would you like to find opening hours for other dates? " + helperFunctions.getHoursHelpMessage();
+            strEmit = "The library hours have not been determined for that year. Would you like to find opening hours for other dates? " + speechGeneration.getHoursHelpMessage();
             this.emit(":ask", strEmit,repromptSpeech);
           }
 
