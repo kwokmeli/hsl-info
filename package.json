@@ -1,0 +1,25 @@
+{
+  "name": "uw-health-sciences-library-helper",
+  "version": "1.0.0",
+  "description": "An Amazon Alexa skill to help University of Washington Health Sciences library patrons find the information they need.",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mlkwok/hsl-info.git"
+  },
+  "keywords": [
+    "amazon",
+    "alexa",
+    "echo",
+    "skill",
+    "library"
+  ],
+  "author": "Melissa Kwok",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mlkwok/hsl-info/issues"
+  },
+  "homepage": "https://github.com/mlkwok/hsl-info#readme"
+}
