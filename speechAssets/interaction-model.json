@@ -320,11 +320,16 @@
         "{whatPhrase} contact details for {firstName}",
         "{whatPhrase} contact details for {lastName}",
         "{whatPhrase} contact details for {firstName} {lastName}",
-        "{whatPhrase} {firstName}",
-        "{whatPhrase} {firstName} {lastName}",
-        "{whatPhrase} {lastName}",
         "{whatPhrase} her information",
-        "{whatPhrase} his information"
+        "{whatPhrase} his information",
+        "{whatPhrase} {firstName} information",
+        "{whatPhrase} {firstName} {lastName} information",
+        "{whatPhrase} {firstName} contact details",
+        "{whatPhrase} {firstName} {lastName} contact details",
+        "{whatPhrase} {firstName} details",
+        "{whatPhrase} {firstName} {lastName} details",
+        "{whatPhrase} {firstName} contact information",
+        "{whatPhrase} {firstName} {lastName} contact information"
       ],
       "slots": [
         {
@@ -1776,13 +1781,6 @@
           "id": null,
           "name": {
             "value": "what's some of",
-            "synonyms": []
-          }
-        },
-        {
-          "id": null,
-          "name": {
-            "value": "tell me about",
             "synonyms": []
           }
         },
