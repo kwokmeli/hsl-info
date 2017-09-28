@@ -7,73 +7,63 @@ var helperFunctions = require("./helperFunctions");
 var speechGeneration = require("./speechGeneration");
 
 var states = {
-    SEARCHMODE: "_SEARCHMODE",
-    DESCRIPTION: "_DESCRIPTION",
-    MULTIPLE_RESULTS: "_MULTIPLE_RESULTS"
+  SEARCHMODE: "_SEARCHMODE",
+  DESCRIPTION: "_DESCRIPTION",
+  MULTIPLE_RESULTS: "_MULTIPLE_RESULTS"
 };
 
-function searchByNameIntentHandler () {
+function searchByNameIntentHandler() {
   var firstName = helperFunctions.isSlotValid(this.event.request, "firstName");
   var lastName = helperFunctions.isSlotValid(this.event.request, "lastName");
   var infoType = helperFunctions.isSlotValid(this.event.request, "infoType");
   var repromptSpeech = "<break time=\"0.5s\"/> Do you still want to find more information? Say yes or no. ";
 
   var canSearch = helperFunctions.figureOutWhichSlotToSearchBy(firstName,lastName);
-  // console.log("canSearch is set to = " + canSearch);
 
-    if (canSearch) {
-      var searchQuery = this.event.request.intent.slots[canSearch].value;
-      var searchResults = helperFunctions.searchDatabase(constants.data, searchQuery, canSearch);
+  if (canSearch) {
+    var searchQuery = this.event.request.intent.slots[canSearch].value;
+    var searchResults = helperFunctions.searchDatabase(constants.data, searchQuery, canSearch);
 
-      // Saving lastSearch results to the current session
-      var lastSearch = this.attributes.lastSearch = searchResults;
-      var output;
+    // Saving lastSearch results to the current session
+    var lastSearch = this.attributes.lastSearch = searchResults;
+    var output;
 
-// // Saving last intent to session attributes
-// this.attributes.lastSearch.lastIntent = "SearchByNameIntent";
+    if (searchResults.count > 1) { // Multiple results found
+      var listOfPeopleFound = helperFunctions.loopThroughArrayOfObjects(lastSearch.results);
+      output = speechGeneration.generateSearchResultsMessage(searchQuery,searchResults.results) + listOfPeopleFound + ". Who would you like to learn more about?";
+      this.handler.state = states.MULTIPLE_RESULTS; // Change state to MULTIPLE_RESULTS
+      this.attributes.lastSearch.lastSpeech = output;
+      this.emit(":ask", output, repromptSpeech);
 
-      if (searchResults.count > 1) { // Multiple results found
-        var listOfPeopleFound = helperFunctions.loopThroughArrayOfObjects(lastSearch.results);
-        output = speechGeneration.generateSearchResultsMessage(searchQuery,searchResults.results) + listOfPeopleFound + ". Who would you like to learn more about?";
-        this.handler.state = states.MULTIPLE_RESULTS; // Change state to MULTIPLE_RESULTS
-        this.attributes.lastSearch.lastSpeech = output;
-        this.emit(":ask", output, repromptSpeech);
+      // Saving last intent to session attributes
+      this.attributes.lastSearch.lastIntent = "SearchByNameIntent";
 
-        // Saving last intent to session attributes
-        this.attributes.lastSearch.lastIntent = "SearchByNameIntent";
-
-      } else if (searchResults.count == 1) { // One result found
-          this.handler.state = states.DESCRIPTION; // Change state to description
-          if (infoType) {
-              // If a specific infoType was requested, redirect to specificInfoIntent
-              // infoType was provided
-              this.emitWithState("TellMeThisIntent");
-          } else { // No infoType was provided
-            output = speechGeneration.generateSearchResultsMessage(searchQuery,searchResults.results);
-            this.attributes.lastSearch.lastSpeech = output;
-            this.emit(":ask", output,repromptSpeech);
-          }
-
-          // Saving last intent to session attributes
-          this.attributes.lastSearch.lastIntent = "SearchByNameIntent";
-
-      } else { // No match found
-        // console.log("searchQuery was  = " + searchQuery);
-        // console.log("searchResults.results was  = " + searchResults);
+    } else if (searchResults.count == 1) { // One result found
+      this.handler.state = states.DESCRIPTION; // Change state to description
+      if (infoType) {
+        // If a specific infoType was requested, redirect to specificInfoIntent
+        // infoType was provided
+        this.emitWithState("TellMeThisIntent");
+      } else { // No infoType was provided
         output = speechGeneration.generateSearchResultsMessage(searchQuery,searchResults.results);
-// this.attributes.lastSearch.lastSpeech = output;
+        this.attributes.lastSearch.lastSpeech = output;
         this.emit(":ask", output,repromptSpeech);
       }
-    } else { // No searchable slot was provided
-        // console.log("searchQuery was  = " + searchQuery);
-        // console.log("searchResults.results was  = " + searchResults);
 
-        this.emit(":ask", speechGeneration.generateSearchResultsMessage(searchQuery,false), repromptSpeech);
+      // Saving last intent to session attributes
+      this.attributes.lastSearch.lastIntent = "SearchByNameIntent";
+
+    } else { // No match found
+      output = speechGeneration.generateSearchResultsMessage(searchQuery,searchResults.results);
+// this.attributes.lastSearch.lastSpeech = output;
+      this.emit(":ask", output,repromptSpeech);
     }
+  } else { // No searchable slot was provided
+    this.emit(":ask", speechGeneration.generateSearchResultsMessage(searchQuery,false), repromptSpeech);
+  }
 }
 
-/* REVIEW */
-function searchBySpecialtyIntentHandler () {
+function searchBySpecialtyIntentHandler() {
   var specialty = helperFunctions.isSlotValid(this.event.request, "specialty");
   var results = [];
   var str = "";
@@ -121,14 +111,12 @@ function searchBySpecialtyIntentHandler () {
               str += results[l] + ", ";
             }
           }
-
         }
       }
     }
 
     if (matchFound == false) {
       this.emit(":ask", "Sorry, I couldn't find anyone who is a liaison for that topic. <break time=\"0.5s\"/> Please try again. " + speechGeneration.getLibrariansHelpMessage(constants.data, constants.index), repromptSpeech);
-
     } else {
       if (results.length > 1) {
         str += " are the liaisons for your requested topic of " + constants.index[subject].subject[0] + ". You can ask for their email, phone number, or contact information. Or, you can start a new search. " + speechGeneration.getGenericHelpMessage(constants.data);
@@ -139,15 +127,12 @@ function searchBySpecialtyIntentHandler () {
         this.emit(":ask", str,repromptSpeech);
       }
     }
-
   } else {
     str = "I'm not sure what you're asking. Please ask me again. " + speechGeneration.getGenericHelpMessage(constants.data);
     this.emit(":ask", str,repromptSpeech);
   }
-
 }
 
-/* REVIEW */
 function searchHoursIntentHandler() {
   var requestedDate = helperFunctions.isSlotValid(this.event.request, "date");
 
@@ -165,7 +150,6 @@ function searchHoursIntentHandler() {
       year = currentDate.getFullYear();
 
       if ((year == constants.YEAR1) || (year == constants.YEAR2)) {
-
         if (year == constants.YEAR1) {
           yearIndex = 0;
         } else {
@@ -188,14 +172,11 @@ function searchHoursIntentHandler() {
           } else {
             this.emit(":ask", "Sorry, the library is not currently open.", repromptSpeech);
           }
-
         }
-
       } else {
         strEmit = "The current library hours have not been determined yet. Would you like to find opening hours for other dates? " + speechGeneration.getHoursHelpMessage();
         this.emit(":ask", strEmit, repromptSpeech);
       }
-
     } else {
       var date = requestedDate.split("-");
 
@@ -285,14 +266,11 @@ function searchHoursIntentHandler() {
                 this.emit(":ask", strEmit, repromptSpeech);
               }
             }
-
           } else {
             strEmit = "The library hours have not been determined for that year. Would you like to find opening hours for other dates? " + speechGeneration.getHoursHelpMessage();
             this.emit(":ask", strEmit, repromptSpeech);
           }
-
         }
-
       } else if (date.length == 2) {
         if (!isNaN(date[1])) {
           // Asked for a month, e.g. "this month": 2017-08
@@ -500,80 +478,69 @@ function searchHoursIntentHandler() {
             this.emit(":ask", strEmit, repromptSpeech);
           }
         }
-
       }
-
     }
-
   } else {
     strEmit = "I'm sorry. I couldn't understand the date you asked for. Please ask me again. " + speechGeneration.getHoursHelpMessage();
     this.emit(":ask", strEmit, repromptSpeech);
   }
-
 }
 
-function searchByInfoTypeIntentHandler(){
+function searchByInfoTypeIntentHandler() {
   var slots = this.event.request.intent.slots;
   var firstName = helperFunctions.isSlotValid(this.event.request, "firstName");
   var lastName = helperFunctions.isSlotValid(this.event.request, "lastName");
   var infoType = helperFunctions.isSlotValid(this.event.request, "infoType");
   var repromptSpeech = "<break time=\"0.5s\"/> Do you still want to find more information? Say yes or no";
-
   var canSearch = helperFunctions.figureOutWhichSlotToSearchBy(firstName,lastName);
-  // console.log("canSearch is set to = " + canSearch);
 
-    if (canSearch) {
-      var searchQuery = slots[canSearch].value;
-      var searchResults = helperFunctions.searchDatabase(constants.data, searchQuery, canSearch);
+  if (canSearch) {
+    var searchQuery = slots[canSearch].value;
+    var searchResults = helperFunctions.searchDatabase(constants.data, searchQuery, canSearch);
 
-      // Saving lastSearch results to the current session
-      var lastSearch = this.attributes.lastSearch = searchResults;
-      var output;
+    // Saving lastSearch results to the current session
+    var lastSearch = this.attributes.lastSearch = searchResults;
+    var output;
 
-      // Saving last intent to session attributes
-      this.attributes.lastSearch.lastIntent = "SearchByNameIntent";
+    // Saving last intent to session attributes
+    this.attributes.lastSearch.lastIntent = "SearchByNameIntent";
 
-      if (searchResults.count > 1) { // Multiple results found
-        var listOfPeopleFound = helperFunctions.loopThroughArrayOfObjects(lastSearch.results);
-        output = speechGeneration.generateSearchResultsMessage(searchQuery,searchResults.results) + listOfPeopleFound + ". Who would you like to learn more about?";
-        this.handler.state = states.MULTIPLE_RESULTS; // Change state to MULTIPLE_RESULTS
-        this.attributes.lastSearch.lastSpeech = output;
-        this.emit(":ask", output, repromptSpeech);
+    if (searchResults.count > 1) { // Multiple results found
+      var listOfPeopleFound = helperFunctions.loopThroughArrayOfObjects(lastSearch.results);
+      output = speechGeneration.generateSearchResultsMessage(searchQuery,searchResults.results) + listOfPeopleFound + ". Who would you like to learn more about?";
+      this.handler.state = states.MULTIPLE_RESULTS; // Change state to MULTIPLE_RESULTS
+      this.attributes.lastSearch.lastSpeech = output;
+      this.emit(":ask", output, repromptSpeech);
 
-      } else if (searchResults.count == 1) { // One result found
-          this.handler.state = states.DESCRIPTION; // Change state to description
-          if (infoType) {
-            // If a specific infoType was requested, redirect to specificInfoIntent
-            // infoType or specialty was provided as well
-            var person = this.attributes.lastSearch.results[0];
-            var cardContent = helperFunctions.generateCard(person);
-            var speechOutput = speechGeneration.generateSpecificInfoMessage(slots,person);
-            this.attributes.lastSearch.lastSpeech = speechOutput;
-            this.handler.state = states.SEARCHMODE;
-            this.emit(":askWithCard", speechOutput, repromptSpeech, cardContent.title, cardContent.body, cardContent.image);
-            // this.emitWithState("TellMeThisIntent");
+    } else if (searchResults.count == 1) { // One result found
+      this.handler.state = states.DESCRIPTION; // Change state to description
+      if (infoType) {
+      // If a specific infoType was requested, redirect to specificInfoIntent
+      // infoType or specialty was provided as well
+      var person = this.attributes.lastSearch.results[0];
+      var cardContent = helperFunctions.generateCard(person);
+      var speechOutput = speechGeneration.generateSpecificInfoMessage(slots,person);
+      this.attributes.lastSearch.lastSpeech = speechOutput;
+      this.handler.state = states.SEARCHMODE;
+      this.emit(":askWithCard", speechOutput, repromptSpeech, cardContent.title, cardContent.body, cardContent.image);
+      // this.emitWithState("TellMeThisIntent");
 
-          } else { // No infoType was provided
-            output = speechGeneration.generateSearchResultsMessage(searchQuery,searchResults.results)
-            this.attributes.lastSearch.lastSpeech = output;
-            // this.emit(":ask", generateSearchResultsMessage(searchQuery,searchResults.results));
-            this.emit(":ask", output, repromptSpeech);
-          }
-
-      } else { // No match found
-        // console.log("searchQuery was  = " + searchQuery);
-        // console.log("searchResults.results was  = " + searchResults);
+      } else { // No infoType was provided
         output = speechGeneration.generateSearchResultsMessage(searchQuery,searchResults.results)
         this.attributes.lastSearch.lastSpeech = output;
         // this.emit(":ask", generateSearchResultsMessage(searchQuery,searchResults.results));
         this.emit(":ask", output, repromptSpeech);
       }
-    } else { // No searchable slot was provided
-      // console.log("searchQuery was  = " + searchQuery);
-      // console.log("searchResults.results was  = " + searchResults);
 
-      this.emit(":ask", speechGeneration.generateSearchResultsMessage(searchQuery,false), repromptSpeech);
+    } else { // No match found
+      output = speechGeneration.generateSearchResultsMessage(searchQuery,searchResults.results)
+      this.attributes.lastSearch.lastSpeech = output;
+      // this.emit(":ask", generateSearchResultsMessage(searchQuery,searchResults.results));
+      this.emit(":ask", output, repromptSpeech);
     }
+  } else { // No searchable slot was provided
+    this.emit(":ask", speechGeneration.generateSearchResultsMessage(searchQuery,false), repromptSpeech);
+  }
 }
 
 function tellHoursIntentHandler() {

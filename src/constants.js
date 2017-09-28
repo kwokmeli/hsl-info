@@ -1,8 +1,5 @@
 "use strict";
 
-// =====================================================================================================
-// --------------------------------- Section 1. Data and Text strings  ---------------------------------
-// =====================================================================================================
 var aa = "7:30:19:00";
 var bb = "7:30:21:00";
 var cc = "7:30:17:00";
@@ -30,10 +27,6 @@ var springHours = "The opening hours for spring quarter are: Monday through Thur
 var springSummerHours = "The opening hours for the spring summer interim are: Monday through Friday, from 7:30am to 7:00pm. The library is closed on Saturdays and Sundays. ";
 var summerHours = "The opening hours for summer quarter are: Monday through Friday, from 7:30am to 7:00pm - Sundays from 1:00pm to 5:00pm. The library is closed on Saturdays. ";
 var summerAutumnHours = "The opening hours for the summer autumn interim are: Monday through Friday, from 7:30am to 7:00pm. The library is closed on Saturdays and Sundays. ";
-
-function slowSpell (str) {
-  return "" + str.split("").join("<break time=\"0.05s\"/>");
-}
 
 var rawData = [
     {firstName:"tania",lastName:"bardyn",pronounceLast:"",title:"Associate Dean for University Libraries and Director of the Health Sciences Library",sayemail:slowSpell("bardyn"),email:"bardyn",phone:"206-543-0422",gender:"f",
@@ -69,6 +62,10 @@ var rawData = [
     "environmental and occupational health sciences","epidemiology","family medicine","global health","health services","nutritional sciences"],liaison:["the health information administration program",
     "the institute for health metrics and evaluation","i-tech","the maternal and child health program","medex northwest","the pathobiology doctoral program","the school of public health","w.w.a.m.i"]}
   ];
+
+function slowSpell (str) {
+  return "" + str.split("").join("<break time=\"0.05s\"/>");
+}
 
 module.exports = Object.freeze({
   /******************************

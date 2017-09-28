@@ -3,15 +3,11 @@ const util = require("util");
 
 var constants = require("./constants");
 
-// =====================================================================================================
-// ------------------------------------ Section 4. Helper Functions  -----------------------------------
-// =====================================================================================================
-
-function getRandom (min, max) {
+function getRandom(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function getRandomName (arrayOfStrings) {
+function getRandomName(arrayOfStrings) {
   var randomNumber = getRandom(0, arrayOfStrings.length - 1)
 
   if (arrayOfStrings[randomNumber].lastName != "") {
@@ -19,33 +15,28 @@ function getRandomName (arrayOfStrings) {
   } else {
     return arrayOfStrings[randomNumber].firstName + " " + arrayOfStrings[randomNumber].lastName;
   }
-
 }
 
-function getRandomSubject (arrayOfStrings) {
-console.log("arrayOfStrings: " + arrayOfStrings);
-console.log("typeof arrayOfStrings: " + typeof arrayOfStrings);
+function getRandomSubject(arrayOfStrings) {
   var randomNumber = getRandom(0, constants.index.length - 1)
-console.log("randomNumber: " + randomNumber);
-console.log("constants.data: " + constants.data);
-console.log("typeof constants.data: " + typeof constants.data);
   return arrayOfStrings[randomNumber].subject[0];
 }
 
-function titleCase (str) {
+function titleCase(str) {
   return str.replace(str[0], str[0].toUpperCase());
 }
 
-function generateCard (person) {
+function generateCard(person) {
   var cardTitle = "Contact Info for " + titleCase(person.firstName) + " " + titleCase(person.lastName);
   var cardBody = "E-mail: " + person.email + "@uw.edu \n" + "Phone: " + person.phone + " \n";
+
   return {
-      "title": cardTitle,
-      "body": cardBody,
+    "title": cardTitle,
+    "body": cardBody,
   };
 }
 
-function generateTopics (person) {
+function generateTopics(person) {
   var topic1;
   var topic2;
   var topic3;
@@ -83,7 +74,7 @@ function generateTopics (person) {
   return result;
 }
 
-function generateLiaisons (person) {
+function generateLiaisons(person) {
   var liaison1;
   var liaison2;
   var liaison3;
@@ -121,58 +112,61 @@ function generateLiaisons (person) {
   return result;
 }
 
-function loopThroughArrayOfObjects (arrayOfStrings) {
+function loopThroughArrayOfObjects(arrayOfStrings) {
   var joinedResult = "";
   // Looping through the each object in the array
   for (var i = 0; i < arrayOfStrings.length; i++) {
   // Concatenating names (firstName + lastName ) for each item
-      joinedResult = joinedResult + ", " + arrayOfStrings[i].firstName + " " + arrayOfStrings[i].lastName;
+    joinedResult = joinedResult + ", " + arrayOfStrings[i].firstName + " " + arrayOfStrings[i].lastName;
   }
+
   return joinedResult;
 }
 
-function genderize (type, gender) {
+function genderize(type, gender) {
   var pronouns = {
-      "m":{"he-she":"he","his-her":"his","him-her":"him"},
-      "f":{"he-she":"she","his-her":"her","him-her":"her"}
+    "m":{"he-she":"he","his-her":"his","him-her":"him"},
+    "f":{"he-she":"she","his-her":"her","him-her":"her"}
   };
+
   return pronouns[gender][type];
 }
 
-function sanitizeSearchQuery (searchQuery) {
+function sanitizeSearchQuery(searchQuery) {
   searchQuery = searchQuery.replace(/’s/g, "").toLowerCase();
   searchQuery = searchQuery.replace(/'s/g, "").toLowerCase();
+
   return searchQuery;
 }
 
-function isSlotValid (request, slotName) {
+function isSlotValid(request, slotName) {
   var slot = request.intent.slots[slotName];
   // console.log("request = "+JSON.stringify(request)); //uncomment if you want to see the request
   var slotValue;
 
   // If we have a slot, get the text and store it into speechOutput
   if (slot && slot.value) {
-      // We have a value in the slot
-      if ((slotName == "firstName") || (slotName == "lastName")) {
-        slotValue = dePossessive(slot.value.toLowerCase());
-      } else {
-        slotValue = slot.value.toLowerCase();
-      }
-      return slotValue;
+    // We have a value in the slot
+    if ((slotName == "firstName") || (slotName == "lastName")) {
+      slotValue = dePossessive(slot.value.toLowerCase());
+    } else {
+      slotValue = slot.value.toLowerCase();
+    }
+
+    return slotValue;
   } else {
-      // We didn't get a value in the slot.
-      return false;
+    // We didn't get a value in the slot.
+    return false;
   }
 }
 
-function isInArray (value, array) {
+function isInArray(value, array) {
   return array.indexOf(value) > -1;
 }
 
-function isInfoTypeValid (infoType) {
+function isInfoTypeValid(infoType) {
   var validTypes = ["phone number","e-mail", "email", "e mail", "phone", "topics", "specialty",
-                    "specialties", "topic", "liaison", "specialize","subject","subjects"
-                   ];
+                    "specialties", "topic", "liaison", "specialize","subject","subjects"];
   return isInArray(infoType,validTypes);
 }
 
@@ -182,7 +176,7 @@ function isInfoTypeValid (infoType) {
 
 // All information should be passed in as an object
 // NOTE: Function is only meant for positive numbers of days
-function returnDate (dateObject) {
+function returnDate(dateObject) {
   var isLeapYear;
   var newMonth, newDate, newYear, newDays;
   var daysInMonth;
@@ -283,7 +277,7 @@ function returnDate (dateObject) {
       days: newDays
     };
 
-    return returnDate (newDateObject);
+    return returnDate(newDateObject);
 
   } else {
     // Number of days won't exceed number of days in a month, can just add the days
@@ -303,7 +297,7 @@ function returnDate (dateObject) {
 }
 
 // Given the numerical value of the day (0-6), returns the name of the day
-function returnDay (num) {
+function returnDay(num) {
   switch (Number(num)) {
     case 0:
       return "Monday";
@@ -325,7 +319,7 @@ function returnDay (num) {
 }
 
 // Given the numerical value of the month, returns the name of the month
-function returnMonth (num) {
+function returnMonth(num) {
   switch (Number(num)) {
     case 1:
       return "January";
@@ -354,7 +348,6 @@ function returnMonth (num) {
     default:
       return null;
   }
-
 }
 
 // Given the raw opening hours, returns dialogue for opening hours
@@ -385,7 +378,7 @@ function returnHours (raw) {
 }
 
 // Given a week number and year, returns the date of the start of that week
-function getDateOfISOWeek (week, year) {
+function getDateOfISOWeek(week, year) {
   var date = new Date(year, 0, 1 + (week - 1) * 7);
   var ISOWeekStart = date;
   if (date.getDay() <= 4) {
@@ -399,7 +392,7 @@ function getDateOfISOWeek (week, year) {
 
 // Given a time and a range of opening times, returns whether library is open
 // or closed
-function libraryStatusGivenTime (constraints, hour, minutes) {
+function libraryStatusGivenTime(constraints, hour, minutes) {
   var timeArray = constraints.split(":");
   var h1 = timeArray[0];
   var m1 = timeArray[1];
@@ -464,14 +457,14 @@ function libraryStatusGivenTime (constraints, hour, minutes) {
   }
 
   return status;
-
 }
 
-function dePossessive (possessiveName) {
+function dePossessive(possessiveName) {
   return possessiveName.replace("'s","");
 }
 
-function printRequest (request) {
+// Used for debug purposes within AWS Cloud
+function printRequest(request) {
   console.log("REQUEST: " + JSON.stringify(request));
 }
 
@@ -482,16 +475,16 @@ function searchDatabase(dataset, searchQuery, searchType) {
   // Beginning search
   for (var i = 0; i < dataset.length; i++) {
     if (sanitizeSearchQuery(searchQuery) == dataset[i][searchType]) {
-        results.push(dataset[i]);
-        matchFound = true;
+      results.push(dataset[i]);
+      matchFound = true;
     }
     if ((i == dataset.length - 1) && (matchFound == false)) {
     // This means that we are on the last record, and no match was found
-        matchFound = false;
-        // console.log("no match was found using " + searchType);
     // If more than searchable items were provided, set searchType to the next item, and set i=0
+      matchFound = false;
     }
   }
+
   return {
     count: results.length,
     results: results
@@ -500,19 +493,16 @@ function searchDatabase(dataset, searchQuery, searchType) {
 
 function figureOutWhichSlotToSearchBy(firstName,lastName) {
   if (lastName){
-    // console.log("search by lastName");
+    // Search by last name
     return "lastName";
-  }
-  else if (!lastName && firstName){
-    // console.log("search by firstName")
+  } else if (!lastName && firstName) {
+    // Search by first name
     return "firstName";
-  }
-  else{
+  } else {
+    // No valid slot provided, unable to perform search
     return false;
-    // console.log("no valid slot provided. can't search.")
   }
 }
-
 
 module.exports = {
   getRandom,

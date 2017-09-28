@@ -4,10 +4,6 @@ const util = require("util");
 var constants = require("./constants");
 var helperFunctions = require("./helperFunctions");
 
-// =====================================================================================================
-// ------------------------------- Section 3. Generating Speech Messages -------------------------------
-// =====================================================================================================
-
 function generateNextPromptMessage(person, mode) {
   var infoTypes = ["e-mail","phone number"]
   var prompt;
@@ -20,6 +16,7 @@ function generateNextPromptMessage(person, mode) {
   else if (mode == "general") {
     prompt = getGenericHelpMessage(constants.data);
   }
+
   return prompt;
 }
 
@@ -36,29 +33,29 @@ function generateSearchResultsMessage(searchQuery, results) {
   if (results) {
     switch (true) {
     case (results.length == 0):
-        sentence = "Hmm. I couldn't find " + searchQuery + ". Please try again. " + getGenericHelpMessage(constants.data);
-        break;
+      sentence = "Hmm. I couldn't find " + searchQuery + ". Please try again. " + getGenericHelpMessage(constants.data);
+      break;
     case (results.length == 1):
-        var person = results[0];
+      var person = results[0];
 
-        // Alexa standard pronounciation of some last names is incorrect
-        if (person.pronounceLast != "") {
-          details = person.firstName + " " + person.pronounceLast + " is the " + person.title;
-        } else {
-          details = person.firstName + " " + person.lastName + " is the " + person.title;
-        }
+      // Alexa standard pronounciation of some last names is incorrect
+      if (person.pronounceLast != "") {
+        details = person.firstName + " " + person.pronounceLast + " is the " + person.title;
+      } else {
+        details = person.firstName + " " + person.lastName + " is the " + person.title;
+      }
 
-        prompt = generateNextPromptMessage(person,"current");
-        sentence = details + prompt
-        // console.log(sentence);
-        break;
+      prompt = generateNextPromptMessage(person,"current");
+      sentence = details + prompt
+      break;
     case (results.length > 1):
-        sentence = "I found " + results.length + " matching results";
-        break;
+      sentence = "I found " + results.length + " matching results";
+      break;
     }
   } else {
     sentence = "Sorry, I didn't quite get that. Please try again. ";
   }
+
   return sentence;
 }
 
@@ -105,12 +102,12 @@ function getLibrariansHelpMessage(data, index) {
   return sentences[helperFunctions.getRandom(0, sentences.length - 1)];
 }
 
-function generateSearchHelpMessage(gender){
+function generateSearchHelpMessage(gender) {
   var sentence = "Sorry, I don't know that request. You can ask me - what's " + helperFunctions.genderize("his-her", gender) +" e-mail, or give me " + helperFunctions.genderize("his-her", gender) + " phone number";
   return sentence;
 }
 
-function generateTellMeMoreMessage(person){
+function generateTellMeMoreMessage(person) {
   var sentence = "Here are " + person.firstName + "'s contact details - " + helperFunctions.genderize("his-her", person.gender) +
   " e-mail address is " + person.sayemail + " <break time=\"0.5s\"/>at <break time=\"0.5s\"/> u<break time=\"0.025s\"/> w<break time=\"0.05s\"/> dot<break time=\"0.05s\"/> e <break time=\"0.04s\"/>d <break time=\"0.03s\"/>u.<break time=\"0.1s\"/>" +
   helperFunctions.genderize("his-her", person.gender) + " phone number is " + person.phone;
@@ -137,13 +134,11 @@ function generateTellMeMoreMessage(person){
   return sentence;
 }
 
-function generateSpecificInfoMessage(slots,person){
-  var infoTypeValue;
+function generateSpecificInfoMessage(slots,person) {
+  var infoTypeValue = slots.infoType.value;
   var sentence;
   var info;
   var type;
-
-  infoTypeValue = slots.infoType.value;
 
   if ((infoTypeValue == "email") || (infoTypeValue == "email address")) {
     info = person.email;
@@ -215,11 +210,8 @@ function generateSpecificInfoMessage(slots,person){
           }
         }
       }
-
       sentence += "<break time=\"0.5s\"/> For more information about " + person.firstName + ", you can say - tell me more.";
-
     }
-
   } else {
     sentence = "Sorry, I don't have that information about " + person.firstName + ". You can ask for " + helperFunctions.genderize("his-her", person.gender) + " phone number or email address instead. ";
   }
