@@ -71,10 +71,7 @@ module.exports = Object.freeze({
   /******************************
   *           App IDs           *
   ******************************/
-  // App ID for mkwok account
-  APP_ID: "amzn1.ask.skill.7a8eca68-7c79-431b-865a-dc27ca4d0135",
-  // App ID for trailq account
-  //APP_ID: "amzn1.ask.skill.f70210e4-4669-4528-8f58-89025d4723d0",
+  APP_ID: "APP_ID HERE",
 
   /******************************
   *            Hours            *
@@ -230,7 +227,7 @@ module.exports = Object.freeze({
     {subject:["medical genetics","genetics"],person:["diana louden"],first:["diana"],last:["louden"],gender:"f",pronounceLast:["<phoneme alphabet='x-sampa' ph='\"laUden'>louden</phoneme>"]},
     {subject:["medical laboratory science","medical lab science","lab science","medical lab sciences","lab sciences","medical laboratory sciences","laboratory sciences"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f",pronounceLast:[]},
     {subject:["the department of medicine","department of medicine","medicine department","med department"],person:["andrea ball"],first:["andrea"],last:["ball"],gender:"f",pronounceLast:[]},
-    {subject:["the school of medicine","school of medicine","medicine school","med school","medicine"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f",pronounceLast:[]},
+    {subject:["the school of medicine","school of medicine","medicine school","med school","medicine","medical school"],person:["nicole dettmar"],first:["nicole"],last:["dettmar"],gender:"f",pronounceLast:[]},
     {subject:["metabolism","metabolic process","metabolic processes","the metabolic process","the metabolic processes","metabolic"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f",pronounceLast:[]},
     {subject:["endocrinology","endocrinologist","endocrinologists","the endocrinology","the endocrinologist","the endocrinologists"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f",pronounceLast:[]},
     {subject:["nutrition","nutritionist","the nutrition","the nutritionist","nutritionists","the nutritionists"],person:["frances chu"],first:["frances"],last:["chu"],gender:"f",pronounceLast:[]},
